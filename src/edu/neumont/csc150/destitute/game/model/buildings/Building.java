@@ -1,6 +1,6 @@
 package edu.neumont.csc150.destitute.game.model.buildings;
 
-public class Building {
+public abstract class Building {
 	
 	private String name;
 	private int health;

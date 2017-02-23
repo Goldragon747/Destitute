@@ -8,7 +8,7 @@ public class Tile {
 	private Player player;
 	private Unit unit;
 	private Building building;
-	private String resourceName;
+	private Resource type;
 	private boolean passable;
 	//TODO ICON
 	public Player getPlayer() {
@@ -29,16 +29,22 @@ public class Tile {
 	public void setBuilding(Building building) {
 		this.building = building;
 	}
-	public String getResourceName() {
-		return resourceName;
+	public Resource getResourceName() {
+		return type;
 	}
-	public void setResourceName(String resourceName) {
-		this.resourceName = resourceName;
+	public void setResourceName(Resource type) {
+		this.type = type;
 	}
 	public boolean isPassable() {
 		return passable;
 	}
 	public void setPassable(boolean passable) {
 		this.passable = passable;
+	}
+	public Resource getType() {
+		return type;
+	}
+	public void setType(Resource type) {
+		this.type = type;
 	}
 }
