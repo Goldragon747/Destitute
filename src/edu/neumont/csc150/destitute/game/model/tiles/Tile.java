@@ -1,10 +1,12 @@
 package edu.neumont.csc150.destitute.game.model.tiles;
 
+import javax.swing.JButton;
+
 import edu.neumont.csc150.destitute.game.model.Player;
 import edu.neumont.csc150.destitute.game.model.buildings.Building;
 import edu.neumont.csc150.destitute.game.model.units.Unit;
 
-public class Tile {
+public abstract class Tile extends JButton{
 	private Player player;
 	private Unit unit;
 	private Building building;
