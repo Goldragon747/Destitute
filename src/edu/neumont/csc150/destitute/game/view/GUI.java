@@ -10,7 +10,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import edu.neumont.csc150.destitute.game.controller.Game;
+import edu.neumont.csc150.destitute.game.model.tiles.Grass;
+import edu.neumont.csc150.destitute.game.model.tiles.Horse;
+import edu.neumont.csc150.destitute.game.model.tiles.Lumber;
+import edu.neumont.csc150.destitute.game.model.tiles.Stone;
 import edu.neumont.csc150.destitute.game.model.tiles.Tile;
+import edu.neumont.csc150.destitute.game.model.tiles.Water;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -319,7 +324,18 @@ public class GUI extends javax.swing.JFrame {
         	for (int j = 0; j < MAP_SIZE;j++) {
         		jPanel2.add(map[i][j]);
         		map[i][j].setPreferredSize(new Dimension(1196/MAP_SIZE,1196/ MAP_SIZE));
-        		map[i][j].setBackground(null);
+        		if (map[i][j] instanceof Grass) {
+        			map[i][j].setBackground(Color.green);
+        		} else if (map[i][j] instanceof Lumber) {
+        			map[i][j].setBackground(new Color(205,133,63));
+        		} else if(map[i][j] instanceof Stone) {
+        			map[i][j].setBackground(Color.gray);
+        		} else if (map[i][j] instanceof Water) {
+        			map[i][j].setBackground(Color.blue);
+        		} else if (map[i][j] instanceof Horse) {
+        			map[i][j].setBackground(new Color(245,222,179));
+        		}
+        		
         	}
         }
         pack();
