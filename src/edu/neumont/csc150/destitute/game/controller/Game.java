@@ -68,13 +68,11 @@ public class Game {
 					map[i][j] = new Water();
 				} else if ((i == MAP_SIZE - (MAP_SIZE - 1) && j == MAP_SIZE - (MAP_SIZE - 1))) {
 					map[i][j] = new Grass();
-					map[i][j].setBuilding(new Settlement(SETTLEMENT_HEALTH, SETTLEMENT_MARK_COST, 
-							SETTLEMENT_LUMBER_COST, SETTLEMENT_STONE_COST));
+					map[i][j].setBuilding(new Settlement();
 					map[i][j].setPlayer(player1);
 				} else if ((i == MAP_SIZE - 2 && j == MAP_SIZE - 2)) {
 					map[i][j] = new Grass();
-					map[i][j].setBuilding(new Settlement(SETTLEMENT_HEALTH, SETTLEMENT_MARK_COST, 
-							SETTLEMENT_LUMBER_COST, SETTLEMENT_STONE_COST));
+					map[i][j].setBuilding(new Settlement();
 					map[i][j].setPlayer(player2);
 				} else {
 					map[i][j] = new Grass();
