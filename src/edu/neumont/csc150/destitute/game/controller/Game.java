@@ -15,7 +15,7 @@ import edu.neumont.csc150.destitute.game.view.GUI;
 import edu.neumont.csc150.destitute.game.view.UserInteractions;
 
 public class Game {
-	private GUI gui = new GUI(this);
+	private GUI gui;
 	private UserInteractions UI = new UserInteractions();
 	private Assets asset = new Assets();
 	private Player player1 = new Player();
@@ -26,9 +26,9 @@ public class Game {
 	
 	private Random gen = new Random();
 	
-	private final int TOTAL_LUMBER_PER_SIDE = 1;
-	private final int TOTAL_STONE_PER_SIDE = 1;
-	private final int TOTAL_HORSE_PER_SIDE = 1;
+	private final int TOTAL_LUMBER_PER_SIDE = 8;
+	private final int TOTAL_STONE_PER_SIDE = 6;
+	private final int TOTAL_HORSE_PER_SIDE = 4;
 	
 	private final int SETTLEMENT_HEALTH = 5;
 	private final int SETTLEMENT_MARK_COST = 0;
@@ -36,6 +36,7 @@ public class Game {
 	private final int SETTLEMENT_STONE_COST = 0;
 	public void run(){
 		initializeMapArray();
+		gui = new GUI(this, map, MAP_SIZE);
 	}
 	public void initializeMapArray() {
 		int lumberInTopMap = 0;
@@ -126,6 +127,7 @@ public class Game {
 				horseInTopMap == TOTAL_HORSE_PER_SIDE && horseInBottomMap == TOTAL_HORSE_PER_SIDE));
 		for (int m = 0; m < MAP_SIZE; m++){
 			for (int n = 0; n < MAP_SIZE; n++) {
+				map[m][n].setActionCommand(m + " " + n);
 				System.out.println("k: " + m + " L: " + n + "   " + map[m][n].getResourceName());
 			}
 		}
