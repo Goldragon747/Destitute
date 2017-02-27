@@ -13,6 +13,7 @@ import edu.neumont.csc150.destitute.game.model.tiles.Water;
 import edu.neumont.csc150.destitute.game.view.Assets;
 import edu.neumont.csc150.destitute.game.view.GUI;
 import edu.neumont.csc150.destitute.game.view.UserInteractions;
+import javafx.scene.paint.Color;
 
 public class Game {
 	private GUI gui;
@@ -26,9 +27,9 @@ public class Game {
 	
 	private Random gen = new Random();
 	
-	private final int TOTAL_LUMBER_PER_SIDE = 8;
-	private final int TOTAL_STONE_PER_SIDE = 6;
-	private final int TOTAL_HORSE_PER_SIDE = 4;
+	private final int TOTAL_LUMBER_PER_SIDE = (MAP_SIZE / 2);
+	private final int TOTAL_STONE_PER_SIDE = (MAP_SIZE / 3);
+	private final int TOTAL_HORSE_PER_SIDE = (MAP_SIZE / 4);
 	
 	public void run(){
 		initializeMapArray();
