@@ -30,10 +30,6 @@ public class Game {
 	private final int TOTAL_STONE_PER_SIDE = 6;
 	private final int TOTAL_HORSE_PER_SIDE = 4;
 	
-	private final int SETTLEMENT_HEALTH = 5;
-	private final int SETTLEMENT_MARK_COST = 0;
-	private final int SETTLEMENT_LUMBER_COST = 0;
-	private final int SETTLEMENT_STONE_COST = 0;
 	public void run(){
 		initializeMapArray();
 		gui = new GUI(this, map, MAP_SIZE);
@@ -68,11 +64,11 @@ public class Game {
 					map[i][j] = new Water();
 				} else if ((i == MAP_SIZE - (MAP_SIZE - 1) && j == MAP_SIZE - (MAP_SIZE - 1))) {
 					map[i][j] = new Grass();
-					map[i][j].setBuilding(new Settlement();
+					map[i][j].setBuilding(new Settlement());
 					map[i][j].setPlayer(player1);
 				} else if ((i == MAP_SIZE - 2 && j == MAP_SIZE - 2)) {
 					map[i][j] = new Grass();
-					map[i][j].setBuilding(new Settlement();
+					map[i][j].setBuilding(new Settlement());
 					map[i][j].setPlayer(player2);
 				} else {
 					map[i][j] = new Grass();
