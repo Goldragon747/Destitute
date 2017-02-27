@@ -16,7 +16,7 @@ import edu.neumont.csc150.destitute.game.view.UserInteractions;
 
 public class Game {
 	private GUI gui;
-	private UserInteractions UI = new UserInteractions();
+	private UserInteractions UI;
 	private Assets asset = new Assets();
 	private Player player1 = new Player();
 	private Player player2 = new Player();
@@ -33,6 +33,7 @@ public class Game {
 	public void run(){
 		initializeMapArray();
 		gui = new GUI(this, map, MAP_SIZE);
+		UI = new UserInteractions(this.gui);
 	}
 	public void initializeMapArray() {
 		int lumberInTopMap = 0;
