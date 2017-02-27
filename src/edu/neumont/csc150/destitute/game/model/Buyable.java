@@ -6,6 +6,8 @@ public abstract class Buyable {
 	private int markCost;
 	private int lumberCost;
 	private int stoneCost;
+	private int horseCost;
+	private int moveSpeed;
 	
 	public int getStoneCost() {
 		return stoneCost;
@@ -36,5 +38,17 @@ public abstract class Buyable {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public int getHorseCost() {
+		return horseCost;
+	}
+	public void setHorseCost(int horseCost) {
+		this.horseCost = horseCost;
+	}
+	public int getMoveSpeed() {
+		return moveSpeed;
+	}
+	public void setMoveSpeed(int moveSpeed) {
+		this.moveSpeed = moveSpeed;
 	}
 }

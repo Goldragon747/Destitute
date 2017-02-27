@@ -1,11 +1,10 @@
 package edu.neumont.csc150.destitute.game.model.buildings;
 
 public class Quarry extends Building {
-	public Quarry(int health, int markCost, int lumberCost, int stoneCost){
-		super.setHealth(health);
-		super.setMarkCost(markCost);
-		super.setLumberCost(lumberCost);
-		super.setStoneCost(stoneCost);
+	public Quarry(){
+		super.setHealth(2);
+		super.setMarkCost(40);
+		super.setLumberCost(20);
 		super.setName("Quarry");
 	}
 }
