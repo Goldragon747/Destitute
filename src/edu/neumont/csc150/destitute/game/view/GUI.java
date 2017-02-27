@@ -339,9 +339,14 @@ public class GUI extends javax.swing.JFrame {
         	}
         }
         pack();
-        
-    }               
+    }
+	
+	public void setTurnEventBox(String s){
+		String source = jTextArea1.getText();
+		jTextArea1.setText(source +  "\n" +s);
 
+	}
+	
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
     }                                        

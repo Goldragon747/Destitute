@@ -7,7 +7,9 @@ public class UserInteractions {
 	private GUI gui;
 	public UserInteractions(GUI gui) {
 		this.gui = gui;
-		gen.nextInt(10);
 		
+	}
+	public void CreationArcher(){
+		gui.setTurnEventBox("");
 	}
 }
