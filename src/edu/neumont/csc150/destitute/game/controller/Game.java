@@ -64,16 +64,20 @@ public class Game {
 					(i == MAP_SIZE - 2 && j == 0) ||
 					(i == MAP_SIZE - 1 && j <= 3)){
 					map[i][j] = new Water();
+					map[i][j].setIcon(asset.tenXtenWater());
 				} else if ((i == MAP_SIZE - (MAP_SIZE - 1) && j == MAP_SIZE - (MAP_SIZE - 1))) {
 					map[i][j] = new Grass();
+					map[i][j].setIcon(asset.tenXtenGrass());
 					map[i][j].setBuilding(new Settlement());
 					map[i][j].setPlayer(player1);
 				} else if ((i == MAP_SIZE - 2 && j == MAP_SIZE - 2)) {
 					map[i][j] = new Grass();
+					map[i][j].setIcon(asset.tenXtenGrass());
 					map[i][j].setBuilding(new Settlement());
 					map[i][j].setPlayer(player2);
 				} else {
 					map[i][j] = new Grass();
+					map[i][j].setIcon(asset.tenXtenGrass());
 				}
 				System.out.println("i: " + i + " J: " + j + "   " + map[i][j].getResourceName());
 				System.out.println("-------------------------------------------------");
@@ -88,20 +92,24 @@ public class Game {
 							if (((evenMapSize && k <= topMap) || (!evenMapSize && k <= bottomMap)) &&
 								lumberInTopMap < TOTAL_LUMBER_PER_SIDE) {
 								map[k][l] = new Lumber();
+								map[k][l].setIcon(asset.tenXtenLumber());
 								lumberInTopMap++;
 							} else if (((evenMapSize && k >= topMap) || (!evenMapSize && k >= bottomMap)) &&
 								lumberInBottomMap < TOTAL_LUMBER_PER_SIDE) {
 								map[k][l] = new Lumber();
+								map[k][l].setIcon(asset.tenXtenLumber());
 								lumberInBottomMap++;
 							}
 						} else if (randomTile == 2) {
 							if (((evenMapSize && k <= topMap) || (!evenMapSize && k <= bottomMap)) &&
 									   stoneInTopMap < TOTAL_STONE_PER_SIDE) {
 								map[k][l] = new Stone();
+								map[k][l].setIcon(asset.tenXtenStone());
 								stoneInTopMap++;
 							} else if (((evenMapSize && k >= topMap) || (!evenMapSize && k >= bottomMap)) &&
 									   stoneInBottomMap < TOTAL_STONE_PER_SIDE) {
 								map[k][l] = new Stone();
+								map[k][l].setIcon(asset.tenXtenStone());
 								stoneInBottomMap++;
 							}
 						} else if (randomTile == 3) {
