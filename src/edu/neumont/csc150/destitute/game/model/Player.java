@@ -1,6 +1,7 @@
 package edu.neumont.csc150.destitute.game.model;
 
 public class Player {
+private String playerName;
 private int marks, stone, lumber, horses;
 
 public int getMarks() {
@@ -33,5 +34,13 @@ public int getHorses() {
 
 public void setHorses(int horses) {
 	this.horses = horses;
+}
+
+public String getPlayerName() {
+	return playerName;
+}
+
+public void setPlayerName(String playerName) {
+	this.playerName = playerName;
 }
 }

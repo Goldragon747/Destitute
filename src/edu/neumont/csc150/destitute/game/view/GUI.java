@@ -33,6 +33,7 @@ public class GUI extends javax.swing.JFrame {
 	private Game game;
 	private Tile[][] map;
 	private final int MAP_SIZE;
+	private JButton tileSelection;
 	private javax.swing.JButton lumberMillButton;
     private javax.swing.JButton endTurnButton;
     private javax.swing.JButton quarryButton;
@@ -134,22 +135,35 @@ public class GUI extends javax.swing.JFrame {
         lumberMillButton.setText("Lumber Mill");
         lumberMillButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                lumberMillButtonActionPerformed(evt);
             }
         });
 
         quarryButton.setText("Quarry");
-
+        quarryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quarryButtonActionPerformed(evt);
+            }
+        });
         stableButton.setText("Stable");
-
+        stableButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               stableButtonActionPerformed(evt);
+            }
+        });
         barracksButton.setText("Barracks");
         barracksButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                barracksButtonActionPerformed(evt);
             }
         });
 
         roadButton.setText("Road");
+        roadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roadButtonActionPerformed(evt);
+            }
+        });
 
         hunterButton.setText("Hunter");
         hunterButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -159,14 +173,23 @@ public class GUI extends javax.swing.JFrame {
         });
         hunterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                hunterButtonActionPerformed(evt);
             }
         });
 
         warriorButton.setText("Warrior");
-
+        warriorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                warriorButtonActionPerformed(evt);
+            }
+        });
         calvaryButton.setText("Calvary");
-
+        calvaryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calvaryButtonActionPerformed(evt);
+            }
+        });
+        
         archerButton.setText("Archer");
         archerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,7 +209,7 @@ public class GUI extends javax.swing.JFrame {
         });
         endTurnButton.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jButton10KeyPressed(evt);
+                endTurnKeyPressed(evt);
             }
         });
 
@@ -354,15 +377,28 @@ public class GUI extends javax.swing.JFrame {
 
 	}
 	
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        
+    private void lumberMillButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
+       
     }                                        
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void barracksButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
-    }                                        
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    }    
+    private void roadButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+    }
+    private void calvaryButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+    }
+    private void warriorButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+    }    
+    private void quarryButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+    }             
+    private void stableButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+    }             
+    private void hunterButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
     }                                        
 
@@ -378,8 +414,8 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                        
 
-    private void jButton10KeyPressed(java.awt.event.KeyEvent evt) {                                     
-        // TODO End Player Turn
+    private void endTurnKeyPressed(java.awt.event.KeyEvent evt) {                                     
+        
     }                                         
 }
 
