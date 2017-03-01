@@ -148,7 +148,7 @@ public class Game {
 		
 	}
 	public void handleMovement() {
-		
+	
 	}
 	public void handleAttacking() {
 		
