@@ -71,6 +71,7 @@ public class UserInteractions {
 		}
 	}
 	public void Death(){
+		//TODO finish death sayings
 		int ran = gen.nextInt(4);
 		if(ran == 0){
 			gui.setTurnEventBox("Caught in my trap are ya?");
