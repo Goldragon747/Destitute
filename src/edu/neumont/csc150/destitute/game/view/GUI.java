@@ -44,20 +44,20 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton calvaryButton;
     private javax.swing.JButton archerButton;
     private javax.swing.JLabel playerTurnLabel;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel unitsLabel;
     private javax.swing.JLabel marksLabel;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel buildingsLabel;
     private javax.swing.JLabel stoneLabel;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel turnEventsLabel;
     private javax.swing.JLabel lumberLabel;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel consoleCommandsLabel;
     private javax.swing.JLabel horsesLabel;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel playerMenuPanel;
+    private javax.swing.JPanel boardPanel;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextArea turnEventsTextArea;
+    private javax.swing.JTextField consoleCommandsTextField;
 
     public GUI(Game game,Tile[][] map,int MAP_SIZE) {
     	this.game = game;
@@ -68,15 +68,21 @@ public class GUI extends javax.swing.JFrame {
     }
 
 	private void initComponents() {
-        jPanel1 = new javax.swing.JPanel();
-        playerTurnLabel = new javax.swing.JLabel();
+        //Panels
+		playerMenuPanel = new javax.swing.JPanel();
+		boardPanel = new javax.swing.JPanel();
+		//Labels
+		playerTurnLabel = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         marksLabel = new javax.swing.JLabel();
         stoneLabel = new javax.swing.JLabel();
         lumberLabel = new javax.swing.JLabel();
         horsesLabel = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        unitsLabel = new javax.swing.JLabel();
+        buildingsLabel = new javax.swing.JLabel();
+        turnEventsLabel = new javax.swing.JLabel();
+        consoleCommandsLabel = new javax.swing.JLabel();
+        //Buttons
         lumberMillButton = new javax.swing.JButton();
         quarryButton = new javax.swing.JButton();
         stableButton = new javax.swing.JButton();
@@ -86,19 +92,20 @@ public class GUI extends javax.swing.JFrame {
         warriorButton = new javax.swing.JButton();
         calvaryButton = new javax.swing.JButton();
         archerButton = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         endTurnButton = new javax.swing.JButton();
+        //Scroll Pane
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
+        //TextArea
+        turnEventsTextArea = new javax.swing.JTextArea();
+        //TextField
+        consoleCommandsTextField = new javax.swing.JTextField();
+       
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Destitute");
         setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        playerMenuPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         playerTurnLabel.setFont(new java.awt.Font("Tahoma", 0, 24));
         playerTurnLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -120,9 +127,9 @@ public class GUI extends javax.swing.JFrame {
         horsesLabel.setText("10");
         horsesLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("Horses"));
 
-        jLabel2.setText("Units");
+        unitsLabel.setText("Units");
 
-        jLabel4.setText("Buildings");
+        buildingsLabel.setText("Buildings");
 
         lumberMillButton.setText("Lumber Mill");
         lumberMillButton.addActionListener(new java.awt.event.ActionListener() {
@@ -167,8 +174,8 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Turn Events");
+        turnEventsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        turnEventsLabel.setText("Turn Events");
 
         endTurnButton.setFont(new java.awt.Font("Tahoma", 0, 21));
         endTurnButton.setText("End Turn");
@@ -183,25 +190,25 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 18));
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Welcome to Destitute");
-        jScrollPane1.setViewportView(jTextArea1);
+        turnEventsTextArea.setEditable(false);
+        turnEventsTextArea.setColumns(20);
+        turnEventsTextArea.setFont(new java.awt.Font("Tahoma", 0, 18));
+        turnEventsTextArea.setLineWrap(true);
+        turnEventsTextArea.setRows(5);
+        turnEventsTextArea.setText("Welcome to Destitute");
+        jScrollPane1.setViewportView(turnEventsTextArea);
 
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Console Commands");
+        consoleCommandsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        consoleCommandsLabel.setText("Console Commands");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(playerMenuPanel);
+        playerMenuPanel.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(3, 3, 3)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(turnEventsLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(playerTurnLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,7 +222,7 @@ public class GUI extends javax.swing.JFrame {
                                         .addComponent(marksLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(stoneLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel2))
+                                    .addComponent(unitsLabel))
                                 .addGap(0, 15, Short.MAX_VALUE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -229,7 +236,7 @@ public class GUI extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel4)
+                                                .addComponent(buildingsLabel)
                                                 .addGap(56, 56, 56))
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,12 +250,12 @@ public class GUI extends javax.swing.JFrame {
                                     .addComponent(quarryButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap())))
                     .addComponent(endTurnButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(consoleCommandsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addComponent(jTextField1)
+                    .addComponent(consoleCommandsTextField)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(roadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -267,8 +274,8 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(horsesLabel))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4))
+                    .addComponent(unitsLabel)
+                    .addComponent(buildingsLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lumberMillButton)
@@ -290,19 +297,19 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(177, 177, 177)
                 .addComponent(endTurnButton)
                 .addGap(46, 46, 46)
-                .addComponent(jLabel6)
+                .addComponent(turnEventsLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8)
+                .addComponent(consoleCommandsLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(consoleCommandsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        boardPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jPanel2.setLayout(new GridLayout(MAP_SIZE,MAP_SIZE));
+        boardPanel.setLayout(new GridLayout(MAP_SIZE,MAP_SIZE));
         
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -310,19 +317,19 @@ public class GUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(boardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(playerMenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(playerMenuPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(boardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-        jPanel2.setBackground(Color.black);
+        boardPanel.setBackground(Color.black);
         for (int i = 0; i < MAP_SIZE;i++) {
         	for (int j = 0; j < MAP_SIZE;j++) {
-        		jPanel2.add(map[i][j]);
+        		boardPanel.add(map[i][j]);
         		map[i][j].setPreferredSize(new Dimension(1196/MAP_SIZE,1196/ MAP_SIZE));
         		if (map[i][j] instanceof Grass) {
         			map[i][j].setBackground(Color.green);
@@ -342,8 +349,8 @@ public class GUI extends javax.swing.JFrame {
     }
 	
 	public void setTurnEventBox(String s){
-		String source = jTextArea1.getText();
-		jTextArea1.setText(source +  "\n" +s);
+		String source = turnEventsTextArea.getText();
+		turnEventsTextArea.setText(source +  "\n" +s);
 
 	}
 	
