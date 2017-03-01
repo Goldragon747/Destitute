@@ -3,12 +3,15 @@ package edu.neumont.csc150.destitute.game.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.border.LineBorder;
 
 import edu.neumont.csc150.destitute.game.controller.Game;
 import edu.neumont.csc150.destitute.game.model.tiles.Grass;
@@ -29,7 +32,7 @@ import edu.neumont.csc150.destitute.game.model.tiles.Water;
  *
  * @author Gabe B
  */
-public class GUI extends javax.swing.JFrame {
+public class GUI extends javax.swing.JFrame implements ActionListener{
 	private Game game;
 	private Tile[][] map;
 	private final int MAP_SIZE;
@@ -354,6 +357,8 @@ public class GUI extends javax.swing.JFrame {
         	for (int j = 0; j < MAP_SIZE;j++) {
         		boardPanel.add(map[i][j]);
         		map[i][j].setPreferredSize(new Dimension(1196/MAP_SIZE,1196/ MAP_SIZE));
+        		map[i][j].setBorder(new LineBorder(Color.GRAY));
+        		map[i][j].addActionListener(this);
         		if (map[i][j] instanceof Grass) {
         			map[i][j].setBackground(Color.green);
         		} else if (map[i][j] instanceof Lumber) {
@@ -416,6 +421,19 @@ public class GUI extends javax.swing.JFrame {
 
     private void endTurnKeyPressed(java.awt.event.KeyEvent evt) {                                     
         
-    }                                         
+    }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		for(int i = 0; i < MAP_SIZE; i++) {
+			for(int j = 0; j < MAP_SIZE; j++) {
+				map[i][j].setBorder(new LineBorder(Color.GRAY));
+				if (e.getSource() == map[i][j] && !(map[i][j] instanceof Water)) {
+					tileSelection = map[i][j];
+					map[i][j].setBorder(new LineBorder(Color.RED));
+				}
+			}
+		}
+	}                                         
 }
 
