@@ -18,11 +18,11 @@ import javafx.scene.paint.Color;
 public class Game {
 	private GUI gui;
 	private UserInteractions UI;
-	private Assets asset = new Assets();
 	private Player player1 = new Player();
 	private Player player2 = new Player();
 	
-	private final int MAP_SIZE = 10;
+	private final int MAP_SIZE = 15;
+	private Assets asset;
 	private Tile[][] map = new Tile[MAP_SIZE][MAP_SIZE];
 	
 	private Random gen = new Random();
@@ -32,6 +32,7 @@ public class Game {
 	private final int TOTAL_HORSE_PER_SIDE = (MAP_SIZE / 4);
 	
 	public void run(){
+		asset = new Assets(MAP_SIZE);
 		initializeMapArray();
 		gui = new GUI(this, map, MAP_SIZE);
 		UI = new UserInteractions(this.gui);
@@ -64,20 +65,20 @@ public class Game {
 					(i == MAP_SIZE - 2 && j == 0) ||
 					(i == MAP_SIZE - 1 && j <= 3)){
 					map[i][j] = new Water();
-					map[i][j].setIcon(asset.tenXtenWater());
+					map[i][j].setIcon(asset.getWater());
 				} else if ((i == MAP_SIZE - (MAP_SIZE - 1) && j == MAP_SIZE - (MAP_SIZE - 1))) {
 					map[i][j] = new Grass();
-					map[i][j].setIcon(asset.tenXtenGrass());
+					map[i][j].setIcon(asset.getGrass());
 					map[i][j].setBuilding(new Settlement());
 					map[i][j].setPlayer(player1);
 				} else if ((i == MAP_SIZE - 2 && j == MAP_SIZE - 2)) {
 					map[i][j] = new Grass();
-					map[i][j].setIcon(asset.tenXtenGrass());
+					map[i][j].setIcon(asset.getGrass());
 					map[i][j].setBuilding(new Settlement());
 					map[i][j].setPlayer(player2);
 				} else {
 					map[i][j] = new Grass();
-					map[i][j].setIcon(asset.tenXtenGrass());
+					map[i][j].setIcon(asset.getGrass());
 				}
 				System.out.println("i: " + i + " J: " + j + "   " + map[i][j].getResourceName());
 				System.out.println("-------------------------------------------------");
@@ -92,36 +93,36 @@ public class Game {
 							if (((evenMapSize && k <= topMap) || (!evenMapSize && k <= bottomMap)) &&
 								lumberInTopMap < TOTAL_LUMBER_PER_SIDE) {
 								map[k][l] = new Lumber();
-								map[k][l].setIcon(asset.tenXtenLumber());
+								map[k][l].setIcon(asset.getLumber());
 								lumberInTopMap++;
 							} else if (((evenMapSize && k >= topMap) || (!evenMapSize && k >= bottomMap)) &&
 								lumberInBottomMap < TOTAL_LUMBER_PER_SIDE) {
 								map[k][l] = new Lumber();
-								map[k][l].setIcon(asset.tenXtenLumber());
+								map[k][l].setIcon(asset.getLumber());
 								lumberInBottomMap++;
 							}
 						} else if (randomTile == 2) {
 							if (((evenMapSize && k <= topMap) || (!evenMapSize && k <= bottomMap)) &&
 									   stoneInTopMap < TOTAL_STONE_PER_SIDE) {
 								map[k][l] = new Stone();
-								map[k][l].setIcon(asset.tenXtenStone());
+								map[k][l].setIcon(asset.getStone());
 								stoneInTopMap++;
 							} else if (((evenMapSize && k >= topMap) || (!evenMapSize && k >= bottomMap)) &&
 									   stoneInBottomMap < TOTAL_STONE_PER_SIDE) {
 								map[k][l] = new Stone();
-								map[k][l].setIcon(asset.tenXtenStone());
+								map[k][l].setIcon(asset.getStone());
 								stoneInBottomMap++;
 							}
 						} else if (randomTile == 3) {
 							if (((evenMapSize && k <= topMap) || (!evenMapSize && k <= bottomMap)) &&
 									   horseInTopMap < TOTAL_HORSE_PER_SIDE) {
 								map[k][l] = new Horse();
-								map[k][l].setIcon(asset.tenXtenHorse());
+								map[k][l].setIcon(asset.getHorse());
 								horseInTopMap++;
 							} else if (((evenMapSize && k >= topMap) || (!evenMapSize && k >= bottomMap)) &&
 									   horseInBottomMap < TOTAL_HORSE_PER_SIDE) {
 								map[k][l] = new Horse();
-								map[k][l].setIcon(asset.tenXtenHorse());
+								map[k][l].setIcon(asset.getHorse());
 								horseInBottomMap++;
 							} 
 						}
