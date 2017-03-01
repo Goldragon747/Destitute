@@ -15,5 +15,8 @@ public class Assets{
 	public ImageIcon tenXtenStone() {
 		return new ImageIcon("10x10_stone.png");
 	}
+	public ImageIcon tenXtenHorse() {
+		return new ImageIcon("10x10_horse.png");
+	}
 
 }

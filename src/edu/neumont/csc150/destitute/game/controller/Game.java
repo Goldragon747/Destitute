@@ -116,10 +116,12 @@ public class Game {
 							if (((evenMapSize && k <= topMap) || (!evenMapSize && k <= bottomMap)) &&
 									   horseInTopMap < TOTAL_HORSE_PER_SIDE) {
 								map[k][l] = new Horse();
+								map[k][l].setIcon(asset.tenXtenHorse());
 								horseInTopMap++;
 							} else if (((evenMapSize && k >= topMap) || (!evenMapSize && k >= bottomMap)) &&
 									   horseInBottomMap < TOTAL_HORSE_PER_SIDE) {
 								map[k][l] = new Horse();
+								map[k][l].setIcon(asset.tenXtenHorse());
 								horseInBottomMap++;
 							} 
 						}
