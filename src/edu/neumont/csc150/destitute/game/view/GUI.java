@@ -445,66 +445,72 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 		LumberMill lumby = new LumberMill();
 		int markCost = lumby.getMarkCost();
 		boolean valid = false;
-		if(tileSelection instanceof Lumber){
-		if (game.getCurrentPlayer().getMarks() >= markCost) {
-			for (int i = 0; i < MAP_SIZE; i++) {
-				for (int j = 0; j < MAP_SIZE; j++) {
-					if (tileSelection == map[i][j] && map[i][j].isPassable()) {
-						map[i][j].setBuilding(lumby);
-						if(game.getCurrentPlayer() == game.getPlayer1()){
-							map[i][j].setIcon(game.getAsset().getP1Lumbermill());	
+		if (tileSelection instanceof Lumber) {
+			if (game.getCurrentPlayer().getMarks() >= markCost) {
+				for (int i = 0; i < MAP_SIZE; i++) {
+					for (int j = 0; j < MAP_SIZE; j++) {
+						if (tileSelection == map[i][j] && map[i][j].isPassable()) {
+							map[i][j].setBuilding(lumby);
+							if (game.getCurrentPlayer() == game.getPlayer1()) {
+								map[i][j].setIcon(game.getAsset().getP1Lumbermill());
+							} else {
+								map[i][j].setIcon(game.getAsset().getP2Lumbermill());
+							}
+							game.getCurrentPlayer().setMarks((game.getCurrentPlayer().getMarks() - markCost));
+							valid = true;
 						}
-						else{
-							map[i][j].setIcon(game.getAsset().getP2Lumbermill());
-						}
-						game.getCurrentPlayer().setMarks((game.getCurrentPlayer().getMarks() - markCost));
-						valid = true;
 					}
 				}
+
+			} else {
+				setTurnEventBox("You do not have enough Marks");
 			}
-		
-		}
-		else{
-			setTurnEventBox("You do not have enough Marks");
-		}
-		}
-		else{
+		} else {
 			setTurnEventBox("That is not a lumber tile");
 		}
-		if(valid = false){
+		if (valid = false) {
 			setTurnEventBox("That tile is not buildable, please choose a non-water tile or move the unit");
-			//TODO PLEASE TEST ME TO SEE IF I WORK
+			// TODO PLEASE TEST ME TO SEE IF I WORK
 		}
-		
+
 	}
 
 	private void barracksButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		Barracks barbar = new Barracks();
 		int markCost = barbar.getMarkCost();
+		int stoneCost = barbar.getStoneCost();
 		boolean valid = false;
-		if (game.getCurrentPlayer().getMarks() >= markCost) {
-			for (int i = 0; i < MAP_SIZE; i++) {
-				for (int j = 0; j < MAP_SIZE; j++) {
-					if (tileSelection == map[i][j] && map[i][j].isPassable()) {
-						map[i][j].setBuilding(barbar);
-						map[i][j].setIcon(game.getAsset().getP1Barracks());
-						game.getCurrentPlayer().setMarks((game.getCurrentPlayer().getMarks() - markCost));
-						valid = true;
+		if (tileSelection instanceof Grass) {
+			if(game.getCurrentPlayer().getStone() >= 30){
+			if (game.getCurrentPlayer().getMarks() >= markCost) {
+				for (int i = 0; i < MAP_SIZE; i++) {
+					for (int j = 0; j < MAP_SIZE; j++) {
+						if (tileSelection == map[i][j] && map[i][j].isPassable()) {
+							map[i][j].setBuilding(barbar);
+							if (game.getCurrentPlayer() == game.getPlayer1()) {
+								map[i][j].setIcon(game.getAsset().getP1Barracks());
+							} else {
+								map[i][j].setIcon(game.getAsset().getP2Barracks());
+							}
+							game.getCurrentPlayer().setMarks((game.getCurrentPlayer().getMarks() - markCost));
+							game.getCurrentPlayer().setStone(game.getCurrentPlayer().getStone() - stoneCost);
+							valid = true;
+						}
 					}
 				}
+
+			} else {
+				setTurnEventBox("You do not have enough Marks");
 			}
+		} else {
+			setTurnEventBox("That is not a Grass Tile");
 		}
-		
-		else{
-			setTurnEventBox("You do not have enough Marks");
-		}
-		if(valid = false){
+		if (valid = false) {
 			setTurnEventBox("That tile is not buildable, please choose a non-water tile or move the unit");
-			//TODO PLEASE TEST ME TO SEE IF I WORK
+			// TODO PLEASE TEST ME TO SEE IF I WORK
+		}
 		}
 	}
-
-	
 
 	private void roadButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
@@ -564,6 +570,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 			}
 		}
 	}
+
 	public JButton getTileSelection() {
 		return tileSelection;
 	}
