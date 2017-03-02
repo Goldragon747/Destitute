@@ -223,6 +223,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 		turnEventsTextArea.setColumns(20);
 		turnEventsTextArea.setFont(new java.awt.Font("Tahoma", 0, 18));
 		turnEventsTextArea.setLineWrap(true);
+		turnEventsTextArea.setWrapStyleWord(true);
 		turnEventsTextArea.setRows(5);
 		turnEventsTextArea.setText("Welcome to Destitute");
 		jScrollPane1.setViewportView(turnEventsTextArea);
