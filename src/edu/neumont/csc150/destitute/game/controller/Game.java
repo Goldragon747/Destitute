@@ -183,9 +183,12 @@ public class Game {
 		return false;
 	}
 	public void handlePurchase(Buyable item, int markCost, int lumberCost, int stoneCost, int horseCost) {
+		boolean valid = false;
+		Tile currentTile = (Tile) gui.getTileSelection();
 		for (int i = 0; i < MAP_SIZE; i++) {
 			for (int j = 0; j < MAP_SIZE; j++) {
-				if (map[i][j] == gui.getTileSelection()) {
+				if (map[i][j] == currentTile && currentTile.getBuilding() == null) {
+					valid = true;
 					currentPlayer.setMarks(currentPlayer.getMarks() - markCost);
 					currentPlayer.setLumber(currentPlayer.getLumber() - lumberCost);
 					currentPlayer.setStone(currentPlayer.getStone() - stoneCost);
@@ -251,8 +254,11 @@ public class Game {
 					}
 					
 					
-				}
+				} 
 			}
+		}
+		if (valid == false) {
+			gui.setTurnEventBox("You already have a " + ((Tile)gui.getTileSelection()).getBuilding().getName() + " there!");
 		}
 	}
 	public void handleMovement() {
