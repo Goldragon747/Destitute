@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -43,7 +44,7 @@ import edu.neumont.csc150.destitute.game.model.tiles.Water;
  *
  * @author Gabe B
  */
-public class GUI extends javax.swing.JFrame implements ActionListener {
+public class GUI extends javax.swing.JFrame implements ActionListener, KeyListener {
 	private Game game;
 	private Tile[][] map;
 	private final int MAP_SIZE;
@@ -215,11 +216,13 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 				endTurnActionPerformed(evt);
 			}
 		});
-		endTurnButton.addKeyListener(new java.awt.event.KeyAdapter() {
-			public void keyPressed(java.awt.event.KeyEvent evt) {
-				endTurnKeyPressed(evt);
-			}
-		});
+		//endTurnButton.addKeyListener(new java.awt.event.KeyAdapter() {
+			//public void keyPressed(java.awt.event.KeyEvent evt) {
+				//if(evt.getKeyCode() == KeyEvent.VK_){
+				//endTurn();
+				//}
+			//}
+		//});
 
 		turnEventsTextArea.setEditable(false);
 		turnEventsTextArea.setColumns(20);
@@ -232,6 +235,9 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 
 		consoleCommandsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		consoleCommandsLabel.setText("Console Commands");
+		
+		playerMenuPanel.addKeyListener(this);
+		boardPanel.addKeyListener(this);
 
 		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(playerMenuPanel);
 		playerMenuPanel.setLayout(jPanel1Layout);
@@ -451,6 +457,20 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 		turnEventsTextArea.setText(source + "\n" + s);
 
 	}
+	private void endTurn(){
+		updateResources();
+		game.doEndTurn();
+		
+		if (game.getCurrentPlayer() == game.getPlayer1()) {
+			game.setCurrentPlayer(game.getPlayer2());
+			playerTurnLabel.setText("Player 2");
+		} else {
+			game.setCurrentPlayer(game.getPlayer1());
+			playerTurnLabel.setText("Player 1");
+		}
+		getCorrectRoad();
+		updateResources();
+	}
 
 	private void lumberMillButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		LumberMill lumberMill = new LumberMill();
@@ -512,20 +532,9 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 	private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {
 		// TODO add your
 	}
-
+	
 	private void endTurnActionPerformed(java.awt.event.ActionEvent evt) {
-		updateResources();
-		game.doEndTurn();
-		
-		if (game.getCurrentPlayer() == game.getPlayer1()) {
-			game.setCurrentPlayer(game.getPlayer2());
-			playerTurnLabel.setText("Player 2");
-		} else {
-			game.setCurrentPlayer(game.getPlayer1());
-			playerTurnLabel.setText("Player 1");
-		}
-		getCorrectRoad();
-		updateResources();
+		endTurn();
 	}
 
 	private void archerActionPerformed(java.awt.event.ActionEvent evt) {
@@ -533,9 +542,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 	}
 
 	private void endTurnKeyPressed(java.awt.event.KeyEvent evt) {
-		if(evt.getKeyChar() == KeyEvent.VK_SPACE){
-			
-		}
+		
 	}
 
 	@Override
@@ -658,6 +665,25 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 			}
 		}
 		
+		
+	}
+
+	@Override
+	public void keyPressed(java.awt.event.KeyEvent e) {
+		
+		
+		
+	}
+
+	@Override
+	public void keyReleased(java.awt.event.KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(java.awt.event.KeyEvent arg0) {
+		// TODO Auto-generated method stub
 		
 	}
 }
