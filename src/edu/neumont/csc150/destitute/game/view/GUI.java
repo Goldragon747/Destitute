@@ -33,6 +33,7 @@ import edu.neumont.csc150.destitute.game.model.tiles.Resource;
 import edu.neumont.csc150.destitute.game.model.tiles.Stone;
 import edu.neumont.csc150.destitute.game.model.tiles.Tile;
 import edu.neumont.csc150.destitute.game.model.tiles.Water;
+import edu.neumont.csc150.destitute.game.model.units.Hunter;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -526,7 +527,8 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	}
 
 	private void hunterButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+		Hunter hunter = new Hunter();
+		game.handlePurchase(hunter, hunter.getMarkCost() , hunter.getLumberCost(), hunter.getStoneCost(), hunter.getHorseCost());
 	}
 
 	private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {
