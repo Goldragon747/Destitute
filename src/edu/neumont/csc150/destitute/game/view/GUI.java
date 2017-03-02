@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -118,16 +119,16 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 		playerTurnLabel.setText("Player 1");
 		playerTurnLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
-		marksLabel.setText("1000");
+		marksLabel.setText(game.getCurrentPlayer().getMarks() + "");
 		marksLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("Marks"));
 
 		stoneLabel.setText(game.getCurrentPlayer().getStone() + "");
 		stoneLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("Stone"));
 
-		lumberLabel.setText("10");
+		lumberLabel.setText(game.getCurrentPlayer().getLumber() + "");
 		lumberLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("Lumber"));
 
-		horsesLabel.setText("10");
+		horsesLabel.setText(game.getCurrentPlayer().getHorses() + "");
 		horsesLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("Horses"));
 
 		unitsLabel.setText("Units");
@@ -450,6 +451,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 		if (game.handleBuildingBuildings(Resource.Lumber, lumberMill.getMarkCost() , lumberMill.getLumberCost(), lumberMill.getStoneCost(), lumberMill.getHorseCost())) {
 			game.handlePurchase(lumberMill, lumberMill.getMarkCost() , lumberMill.getLumberCost(), lumberMill.getStoneCost(), lumberMill.getHorseCost());
 		}
+		updateResources();
 	}
 
 	private void barracksButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -457,6 +459,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 		if (game.handleBuildingBuildings(Resource.Grass, barrack.getMarkCost() , barrack.getLumberCost(), barrack.getStoneCost(), barrack.getHorseCost())) {
 			game.handlePurchase(barrack, barrack.getMarkCost() , barrack.getLumberCost(), barrack.getStoneCost(), barrack.getHorseCost());
 		}
+		updateResources();
 	}
 
 	private void roadButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -464,6 +467,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 		if (game.handleBuildingBuildings(Resource.Grass, road.getMarkCost() , road.getLumberCost(), road.getStoneCost(), road.getHorseCost())) {
 			game.handlePurchase(road, road.getMarkCost() , road.getLumberCost(), road.getStoneCost(), road.getHorseCost());
 		}
+		updateResources();
 	}
 
 	private void calvaryButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -479,6 +483,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 		if (game.handleBuildingBuildings(Resource.Stone, quarry.getMarkCost() , quarry.getLumberCost(), quarry.getStoneCost(), quarry.getHorseCost())) {
 			game.handlePurchase(quarry, quarry.getMarkCost() , quarry.getLumberCost(), quarry.getStoneCost(), quarry.getHorseCost());
 		}
+		updateResources();
 	}
 
 	private void stableButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -486,6 +491,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 		if (game.handleBuildingBuildings(Resource.Horse, stable.getMarkCost() , stable.getLumberCost(), stable.getStoneCost(), stable.getHorseCost())) {
 			game.handlePurchase(stable, stable.getMarkCost() , stable.getLumberCost(), stable.getStoneCost(), stable.getHorseCost());
 		}
+		updateResources();
 	}
 
 	private void hunterButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -497,6 +503,9 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 	}
 
 	private void endTurnActionPerformed(java.awt.event.ActionEvent evt) {
+		updateResources();
+		game.doEndTurn();
+		
 		if (game.getCurrentPlayer() == game.getPlayer1()) {
 			game.setCurrentPlayer(game.getPlayer2());
 			playerTurnLabel.setText("Player 2");
@@ -504,6 +513,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 			game.setCurrentPlayer(game.getPlayer1());
 			playerTurnLabel.setText("Player 1");
 		}
+		updateResources();
 	}
 
 	private void archerActionPerformed(java.awt.event.ActionEvent evt) {
@@ -521,10 +531,17 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 				map[i][j].setBorder(new LineBorder(Color.GRAY));
 				if (e.getSource() == map[i][j] && !(map[i][j] instanceof Water)) {
 					tileSelection = map[i][j];
-					map[i][j].setBorder(new LineBorder(Color.RED));
+					map[i][j].setBorder(BorderFactory.createLineBorder(Color.RED, 4));
 				}
 			}
 		}
+	}
+	
+	public void updateResources() {
+		marksLabel.setText(game.getCurrentPlayer().getMarks() + "");
+		lumberLabel.setText(game.getCurrentPlayer().getLumber() + "");
+		stoneLabel.setText(game.getCurrentPlayer().getStone() + "");
+		horsesLabel.setText(game.getCurrentPlayer().getHorses() + "");
 	}
 
 	public JButton getTileSelection() {

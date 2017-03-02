@@ -83,12 +83,12 @@ public class Game {
 					map[i][j].setIcon(asset.getWater());
 				} else if ((i == MAP_SIZE - (MAP_SIZE - 1) && j == MAP_SIZE - (MAP_SIZE - 1))) {
 					map[i][j] = new Grass();
-					map[i][j].setIcon(asset.getGrass());
+					map[i][j].setIcon(asset.getP1Settlement());
 					map[i][j].setBuilding(new Settlement());
 					map[i][j].getBuilding().setPlayer(player1);
 				} else if ((i == MAP_SIZE - 2 && j == MAP_SIZE - 2)) {
 					map[i][j] = new Grass();
-					map[i][j].setIcon(asset.getGrass());
+					map[i][j].setIcon(asset.getP2Settlement());
 					map[i][j].setBuilding(new Settlement());
 					map[i][j].getBuilding().setPlayer(player2);
 				} else {
@@ -192,6 +192,7 @@ public class Game {
 					currentPlayer.setHorses(currentPlayer.getHorses() - horseCost);
 					if (item instanceof Building) {
 						map[i][j].setBuilding((Building)item);
+						map[i][j].getBuilding().setPlayer(currentPlayer);;
 						if (map[i][j].getBuilding() instanceof Barracks) {
 							if (currentPlayer == player1) {
 								map[i][j].setIcon(asset.getP1Barracks());
@@ -225,6 +226,7 @@ public class Game {
 						}
 					} else if (item instanceof Unit) {
 						map[i][j].setUnit((Unit)item);
+						map[i][j].getUnit().setPlayer(currentPlayer);;
 						if (map[i][j].getUnit() instanceof Archer) {
 							if (currentPlayer == player1) {
 								map[i][j].setIcon(asset.getP1Archer());
@@ -275,22 +277,22 @@ public class Game {
 			for (int j = 0; j < MAP_SIZE; j++) {
 				if (gui.getTileSelection() == map[i][j]) {
 					try {
-						if (map[i - 1][j].getBuilding() != null) {
+						if (map[i - 1][j].getBuilding() != null && map[i - 1][j].getBuilding().getPlayer() == currentPlayer) {
 								return true;
 							}
 					} catch (Exception ArrayIndexOutOfBoundsException) {}
 					try {
-						if (map[i + 1][j].getBuilding() != null) {
+						if (map[i + 1][j].getBuilding() != null && map[i + 1][j].getBuilding().getPlayer() == currentPlayer) {
 								return true;
 							}
 					} catch (Exception ArrayIndexOutOfBoundsException) {}
 					try {
-						if (map[i][j - 1].getBuilding() != null) {
+						if (map[i][j - 1].getBuilding() != null && map[i][j - 1].getBuilding().getPlayer() == currentPlayer) {
 								return true;
 							}
 					} catch (Exception ArrayIndexOutOfBoundsException) {}
 					try {
-						if (map[i][j + 1].getBuilding() != null) {
+						if (map[i][j + 1].getBuilding() != null && map[i][j + 1].getBuilding().getPlayer() == currentPlayer) {
 								return true;
 							}
 					} catch (Exception ArrayIndexOutOfBoundsException) {}
@@ -298,6 +300,29 @@ public class Game {
 			}
 		}
 		return false;
+	}
+	public void doEndTurn() {
+		int lumberCount = 0;
+		int quarryCount = 0;
+		int stableCount = 0;
+		for (int i = 0; i < MAP_SIZE; i++) {
+			for (int j = 0; j < MAP_SIZE; j++) {
+				if (map[i][j].getBuilding() instanceof LumberMill &&
+				   map[i][j].getBuilding().getPlayer() == currentPlayer) {
+					lumberCount++;
+				} else if (map[i][j].getBuilding() instanceof Quarry &&
+						  map[i][j].getBuilding().getPlayer() == currentPlayer) {
+					quarryCount++;
+				} else if (map[i][j].getBuilding() instanceof Stable &&
+						  map[i][j].getBuilding().getPlayer() == currentPlayer) {
+					stableCount++;
+				}
+			}
+		}
+		currentPlayer.setMarks(currentPlayer.getMarks() + 10);
+		currentPlayer.setLumber(currentPlayer.getLumber() + (10 * lumberCount));
+		currentPlayer.setStone(currentPlayer.getStone() + (10 * quarryCount));
+		currentPlayer.setHorses(currentPlayer.getHorses() + (10 * stableCount));
 	}
 	public boolean handleWin() {
 		if (map[MAP_SIZE - (MAP_SIZE - 1)][MAP_SIZE - (MAP_SIZE - 1)].getBuilding().getHealth() == 0 ||
@@ -327,4 +352,5 @@ public class Game {
 	public void setCurrentPlayer(Player currentPlayer) {
 		this.currentPlayer = currentPlayer;
 	}
+	
 }
