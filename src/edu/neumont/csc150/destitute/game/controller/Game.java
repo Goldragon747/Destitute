@@ -151,7 +151,14 @@ public class Game {
 		
 	}
 	public void handleMovement() {
-	
+		Tile lastSelected = gui.getTileSelection();
+		for (int i = 0; i < MAP_SIZE; i++) {
+			for (int j = 0; j < MAP_SIZE; j++) {
+				if (gui.getTileSelection() == map[i][j]) {
+					//map[i][j]
+				}
+			}
+		}
 	}
 	public void handleAttacking() {
 		
