@@ -1,6 +1,10 @@
 package edu.neumont.csc150.destitute.game.view;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+
+import edu.neumont.csc150.destitute.game.model.Player;
+import edu.neumont.csc150.destitute.game.model.tiles.Tile;
 
 public class Assets{
 	private ImageIcon water;
@@ -421,4 +425,5 @@ public class Assets{
 	public ImageIcon getP2RoadTopRight() {
 		return p2RoadTopRight;
 	}
+
 }

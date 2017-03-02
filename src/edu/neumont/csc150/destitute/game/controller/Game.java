@@ -218,11 +218,7 @@ public class Game {
 								map[i][j].setIcon(asset.getP2Stable());
 							}
 						} else if (map[i][j].getBuilding() instanceof Road) {
-							if (currentPlayer == player1) {
-								map[i][j].setIcon(asset.getP1RoadAll());
-							} else {
-								map[i][j].setIcon(asset.getP2RoadAll());
-							}
+							gui.getCorrectRoad();
 						}
 					} else if (item instanceof Unit) {
 						map[i][j].setUnit((Unit)item);

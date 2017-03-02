@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -16,9 +17,11 @@ import javax.swing.border.LineBorder;
 
 import edu.neumont.csc150.destitute.game.controller.Game;
 import edu.neumont.csc150.destitute.game.model.buildings.Barracks;
+import edu.neumont.csc150.destitute.game.model.buildings.Building;
 import edu.neumont.csc150.destitute.game.model.buildings.LumberMill;
 import edu.neumont.csc150.destitute.game.model.buildings.Quarry;
 import edu.neumont.csc150.destitute.game.model.buildings.Road;
+import edu.neumont.csc150.destitute.game.model.buildings.Settlement;
 import edu.neumont.csc150.destitute.game.model.buildings.Stable;
 import edu.neumont.csc150.destitute.game.model.tiles.Grass;
 import edu.neumont.csc150.destitute.game.model.tiles.Horse;
@@ -467,6 +470,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 		if (game.handleBuildingBuildings(Resource.Grass, road.getMarkCost() , road.getLumberCost(), road.getStoneCost(), road.getHorseCost())) {
 			game.handlePurchase(road, road.getMarkCost() , road.getLumberCost(), road.getStoneCost(), road.getHorseCost());
 		}
+		getCorrectRoad();
 		updateResources();
 	}
 
@@ -547,4 +551,103 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 	public JButton getTileSelection() {
 		return tileSelection;
 	}
+	public void getCorrectRoad() {
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map.length; j++) {
+				boolean isPlayersRoad = map[i][j].getBuilding() instanceof Building && map[i][j].getBuilding().getPlayer() == game.getCurrentPlayer();
+				boolean isPlayerRoadNorth = false;
+				boolean isPlayerRoadSouth = false;
+				boolean isPlayerRoadEast = false;
+				boolean isPlayerRoadWest = false;
+				try {
+					isPlayerRoadNorth = map[i - 1][j].getBuilding() instanceof Building && map[i - 1][j].getBuilding().getPlayer() == game.getCurrentPlayer();
+				} catch(Exception ArrayIndexOutOfBoundsException){};
+				try {
+					isPlayerRoadSouth = map[i + 1][j].getBuilding() instanceof Building && map[i + 1][j].getBuilding().getPlayer() == game.getCurrentPlayer();
+				} catch(Exception ArrayIndexOutOfBoundsException){};
+				try {
+					isPlayerRoadEast = map[i][j + 1].getBuilding() instanceof Building && map[i][j + 1].getBuilding().getPlayer() == game.getCurrentPlayer();
+				} catch(Exception ArrayIndexOutOfBoundsException){};
+				try {
+					isPlayerRoadWest = map[i][j - 1].getBuilding() instanceof Building && map[i][j - 1].getBuilding().getPlayer() == game.getCurrentPlayer();
+				} catch(Exception ArrayIndexOutOfBoundsException){};
+				if (game.getCurrentPlayer() == game.getPlayer1()) {
+					if (isPlayersRoad && map[i][j].getBuilding() instanceof Road) {
+						if (isPlayerRoadNorth && isPlayerRoadSouth && isPlayerRoadEast && isPlayerRoadWest) {
+							map[i][j].setIcon(game.getAsset().getP1RoadAll());
+						} else if (isPlayerRoadNorth && isPlayerRoadSouth && isPlayerRoadEast) {
+							map[i][j].setIcon(game.getAsset().getP1RoadTopBottomRight());
+						} else if (isPlayerRoadNorth && isPlayerRoadSouth && isPlayerRoadWest) {
+							map[i][j].setIcon(game.getAsset().getP1RoadTopLeftBottom());
+						} else if (isPlayerRoadNorth && isPlayerRoadWest && isPlayerRoadEast) {
+							map[i][j].setIcon(game.getAsset().getP1RoadTopLeftRight());
+						} else if (isPlayerRoadWest && isPlayerRoadSouth && isPlayerRoadEast) {
+							map[i][j].setIcon(game.getAsset().getP1RoadLeftBottomRight());
+						} else if (isPlayerRoadNorth && isPlayerRoadSouth) {
+							map[i][j].setIcon(game.getAsset().getP1RoadTopBottom());
+						} else if (isPlayerRoadNorth && isPlayerRoadEast) {
+							map[i][j].setIcon(game.getAsset().getP1RoadTopRight());
+						} else if (isPlayerRoadNorth && isPlayerRoadWest) {
+							map[i][j].setIcon(game.getAsset().getP1RoadTopLeft());
+						} else if (isPlayerRoadSouth && isPlayerRoadEast) {
+							map[i][j].setIcon(game.getAsset().getP1RoadBottomRight());
+						} else if (isPlayerRoadSouth && isPlayerRoadWest) {
+							map[i][j].setIcon(game.getAsset().getP1RoadLeftBottom());
+						} else if (isPlayerRoadEast && isPlayerRoadWest) {
+							map[i][j].setIcon(game.getAsset().getP1RoadLeftRight());
+						} else if (isPlayerRoadNorth) {
+							map[i][j].setIcon(game.getAsset().getP1RoadTopBottom());
+						} else if (isPlayerRoadSouth) {
+							map[i][j].setIcon(game.getAsset().getP1RoadTopBottom());
+						} else if (isPlayerRoadWest) {
+							map[i][j].setIcon(game.getAsset().getP1RoadLeftRight());
+						} else if (isPlayerRoadEast) {
+							map[i][j].setIcon(game.getAsset().getP1RoadLeftRight());
+						} else {
+							map[i][j].setIcon(game.getAsset().getP1RoadAll());
+						}
+					}
+				} else {
+					if (isPlayersRoad && map[i][j].getBuilding() instanceof Road) {
+						if (isPlayerRoadNorth && isPlayerRoadSouth && isPlayerRoadEast && isPlayerRoadWest) {
+							map[i][j].setIcon(game.getAsset().getP2RoadAll());
+						} else if (isPlayerRoadNorth && isPlayerRoadSouth && isPlayerRoadEast) {
+							map[i][j].setIcon(game.getAsset().getP2RoadTopBottomRight());
+						} else if (isPlayerRoadNorth && isPlayerRoadSouth && isPlayerRoadWest) {
+							map[i][j].setIcon(game.getAsset().getP2RoadTopLeftBottom());
+						} else if (isPlayerRoadNorth && isPlayerRoadWest && isPlayerRoadEast) {
+							map[i][j].setIcon(game.getAsset().getP2RoadTopLeftRight());
+						} else if (isPlayerRoadWest && isPlayerRoadSouth && isPlayerRoadEast) {
+							map[i][j].setIcon(game.getAsset().getP2RoadLeftBottomRight());
+						} else if (isPlayerRoadNorth && isPlayerRoadSouth) {
+							map[i][j].setIcon(game.getAsset().getP2RoadTopBottom());
+						} else if (isPlayerRoadNorth && isPlayerRoadEast) {
+							map[i][j].setIcon(game.getAsset().getP2RoadTopRight());
+						} else if (isPlayerRoadNorth && isPlayerRoadWest) {
+							map[i][j].setIcon(game.getAsset().getP2RoadTopLeft());
+						} else if (isPlayerRoadSouth && isPlayerRoadEast) {
+							map[i][j].setIcon(game.getAsset().getP2RoadBottomRight());
+						} else if (isPlayerRoadSouth && isPlayerRoadWest) {
+							map[i][j].setIcon(game.getAsset().getP2RoadLeftBottom());
+						} else if (isPlayerRoadEast && isPlayerRoadWest) {
+							map[i][j].setIcon(game.getAsset().getP2RoadLeftRight());
+						} else if (isPlayerRoadNorth) {
+							map[i][j].setIcon(game.getAsset().getP2RoadTopBottom());
+						} else if (isPlayerRoadSouth) {
+							map[i][j].setIcon(game.getAsset().getP2RoadTopBottom());
+						} else if (isPlayerRoadWest) {
+							map[i][j].setIcon(game.getAsset().getP2RoadLeftRight());
+						} else if (isPlayerRoadEast) {
+							map[i][j].setIcon(game.getAsset().getP2RoadLeftRight());
+						} else {
+							map[i][j].setIcon(game.getAsset().getP2RoadAll());
+						}
+					}
+				}
+			}
+		}
+		
+		
+	}
 }
+
