@@ -525,7 +525,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 	}
 
 	private void endTurnKeyPressed(java.awt.event.KeyEvent evt) {
-
+		
 	}
 
 	@Override
