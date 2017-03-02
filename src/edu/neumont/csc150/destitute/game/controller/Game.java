@@ -156,6 +156,21 @@ public class Game {
 	public void handleAttacking() {
 		
 	}
+	public boolean hasBuildingAdjacent() {
+		for (int i = 0; i < MAP_SIZE; i++) {
+			for (int j = 0; j < MAP_SIZE; j++) {
+				if (gui.getTileSelection() == map[i][j]) {
+					if (map[i - 1][j].getBuilding() != null ||
+						map[i + 1][j].getBuilding() != null ||
+						map[i][j - 1].getBuilding() != null ||
+						map[i][j + 1].getBuilding() != null) {
+						return true;
+					}
+				} 
+			}
+		}
+		return false;
+	}
 	public boolean handleWin() {
 		if (map[MAP_SIZE - (MAP_SIZE - 1)][MAP_SIZE - (MAP_SIZE - 1)].getBuilding().getHealth() == 0 ||
 			map[MAP_SIZE - 2][MAP_SIZE - 2].getBuilding().getHealth() == 0) {
