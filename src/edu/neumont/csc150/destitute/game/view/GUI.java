@@ -564,4 +564,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 			}
 		}
 	}
+	public JButton getTileSelection() {
+		return tileSelection;
+	}
 }
