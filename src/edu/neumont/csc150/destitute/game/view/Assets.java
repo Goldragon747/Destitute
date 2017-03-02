@@ -93,17 +93,17 @@ public class Assets{
 		p1RoadTopLeftRight = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_top_left_right.png");
 		p1RoadTopRight = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_top_right.png");
 
-		p2RoadAll = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_all.png");
-		p2RoadBottomRight = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_bottom_right.png");
-		p2RoadLeftBottom = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_left_bottom.png");
-		p2RoadLeftBottomRight = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_bottom_right.png");
-		p2RoadLeftRight = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_left_right.png");
-		p2RoadTopBottom = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_bottom.png");
-		p2RoadTopBottomRight = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_bottom_right.png");
-		p2RoadTopLeft = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_left.png");
-		p2RoadTopLeftBottom = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_left_bottom.png");
-		p2RoadTopLeftRight = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_left_right.png");
-		p2RoadTopRight = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_right.png");
+		p2RoadAll = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_all.png");
+		p2RoadBottomRight = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_bottom_right.png");
+		p2RoadLeftBottom = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_left_bottom.png");
+		p2RoadLeftBottomRight = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_bottom_right.png");
+		p2RoadLeftRight = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_left_right.png");
+		p2RoadTopBottom = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_bottom.png");
+		p2RoadTopBottomRight = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_bottom_right.png");
+		p2RoadTopLeft = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_left.png");
+		p2RoadTopLeftBottom = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_left_bottom.png");
+		p2RoadTopLeftRight = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_left_right.png");
+		p2RoadTopRight = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_right.png");
 	} 
 
 	/**

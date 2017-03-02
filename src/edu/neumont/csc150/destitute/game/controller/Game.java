@@ -2,14 +2,27 @@ package edu.neumont.csc150.destitute.game.controller;
 
 import java.util.Random;
 
+import edu.neumont.csc150.destitute.game.model.Buyable;
 import edu.neumont.csc150.destitute.game.model.Player;
+import edu.neumont.csc150.destitute.game.model.buildings.Barracks;
+import edu.neumont.csc150.destitute.game.model.buildings.Building;
+import edu.neumont.csc150.destitute.game.model.buildings.LumberMill;
+import edu.neumont.csc150.destitute.game.model.buildings.Quarry;
+import edu.neumont.csc150.destitute.game.model.buildings.Road;
 import edu.neumont.csc150.destitute.game.model.buildings.Settlement;
+import edu.neumont.csc150.destitute.game.model.buildings.Stable;
 import edu.neumont.csc150.destitute.game.model.tiles.Grass;
 import edu.neumont.csc150.destitute.game.model.tiles.Horse;
 import edu.neumont.csc150.destitute.game.model.tiles.Lumber;
+import edu.neumont.csc150.destitute.game.model.tiles.Resource;
 import edu.neumont.csc150.destitute.game.model.tiles.Stone;
 import edu.neumont.csc150.destitute.game.model.tiles.Tile;
 import edu.neumont.csc150.destitute.game.model.tiles.Water;
+import edu.neumont.csc150.destitute.game.model.units.Archer;
+import edu.neumont.csc150.destitute.game.model.units.HorseRider;
+import edu.neumont.csc150.destitute.game.model.units.Hunter;
+import edu.neumont.csc150.destitute.game.model.units.Unit;
+import edu.neumont.csc150.destitute.game.model.units.Warrior;
 import edu.neumont.csc150.destitute.game.view.Assets;
 import edu.neumont.csc150.destitute.game.view.GUI;
 import edu.neumont.csc150.destitute.game.view.UserInteractions;
@@ -22,7 +35,7 @@ public class Game {
 	private Player player2 = new Player();
 	private Player currentPlayer = new Player();
 	
-	private final int MAP_SIZE = 15;
+	private final int MAP_SIZE = 10;
 	private Assets asset;
 	private Tile[][] map = new Tile[MAP_SIZE][MAP_SIZE];
 	
@@ -147,11 +160,105 @@ public class Game {
 	public void PlayerTurns() {
 		
 	}
-	public void handleBuilding() {
-		
+	public boolean handleBuildingBuildings(Resource tileName,int markCost, int lumberCost, int stoneCost, int horseCost) {
+		Tile currentTile = (Tile)gui.getTileSelection();
+		if (currentTile.getResourceName().equals(tileName)) {
+			if (currentTile.isPassable()) {
+				if (currentPlayer.getMarks() >= markCost &&
+					currentPlayer.getStone() >= stoneCost &&
+					currentPlayer.getLumber() >= lumberCost &&
+					currentPlayer.getHorses() >= horseCost) {
+					if (hasBuildingAdjacent()) {
+						return true;
+					}
+				} else {
+					gui.setTurnEventBox("Cannot afford. This costs: " + markCost + " Marks, " + lumberCost + " Lumber, " + stoneCost + " Stone, and " + horseCost + " Horses.");
+				}
+			} else {
+				gui.setTurnEventBox("Cannot build. A " + currentTile.getUnit().getName() + " is on that tile.");
+			}
+		} else {
+			gui.setTurnEventBox("You can only build this on a " + tileName + " Tile");
+		}
+		return false;
+	}
+	public void handlePurchase(Buyable item, int markCost, int lumberCost, int stoneCost, int horseCost) {
+		for (int i = 0; i < MAP_SIZE; i++) {
+			for (int j = 0; j < MAP_SIZE; j++) {
+				if (map[i][j] == gui.getTileSelection()) {
+					currentPlayer.setMarks(currentPlayer.getMarks() - markCost);
+					currentPlayer.setLumber(currentPlayer.getLumber() - lumberCost);
+					currentPlayer.setStone(currentPlayer.getStone() - stoneCost);
+					currentPlayer.setHorses(currentPlayer.getHorses() - horseCost);
+					if (item instanceof Building) {
+						map[i][j].setBuilding((Building)item);
+						if (map[i][j].getBuilding() instanceof Barracks) {
+							if (currentPlayer == player1) {
+								map[i][j].setIcon(asset.getP1Barracks());
+							} else {
+								map[i][j].setIcon(asset.getP2Barracks());
+							}
+						} else if (map[i][j].getBuilding() instanceof LumberMill) {
+							if (currentPlayer == player1) {
+								map[i][j].setIcon(asset.getP1Lumbermill());
+							} else {
+								map[i][j].setIcon(asset.getP2Lumbermill());
+							}
+						} else if (map[i][j].getBuilding() instanceof Quarry) {
+							if (currentPlayer == player1) {
+								map[i][j].setIcon(asset.getP1Quarry());
+							} else {
+								map[i][j].setIcon(asset.getP2Quarry());
+							}
+						} else if (map[i][j].getBuilding() instanceof Stable) {
+							if (currentPlayer == player1) {
+								map[i][j].setIcon(asset.getP1Stable());
+							} else {
+								map[i][j].setIcon(asset.getP2Stable());
+							}
+						} else if (map[i][j].getBuilding() instanceof Road) {
+							if (currentPlayer == player1) {
+								map[i][j].setIcon(asset.getP1RoadAll());
+							} else {
+								map[i][j].setIcon(asset.getP2RoadAll());
+							}
+						}
+					} else if (item instanceof Unit) {
+						map[i][j].setUnit((Unit)item);
+						if (map[i][j].getUnit() instanceof Archer) {
+							if (currentPlayer == player1) {
+								map[i][j].setIcon(asset.getP1Archer());
+							} else {
+								map[i][j].setIcon(asset.getP2Archer());
+							}
+						} else if (map[i][j].getUnit() instanceof Warrior) {
+							if (currentPlayer == player1) {
+								map[i][j].setIcon(asset.getP1Warrior());
+							} else {
+								map[i][j].setIcon(asset.getP2Warrior());
+							}
+						} else if (map[i][j].getUnit() instanceof HorseRider) {
+							if (currentPlayer == player1) {
+								map[i][j].setIcon(asset.getP1Rider());
+							} else {
+								map[i][j].setIcon(asset.getP2Rider());
+							}
+						} else if (map[i][j].getUnit() instanceof Hunter) {
+							if (currentPlayer == player1) {
+								map[i][j].setIcon(asset.getP1Hunter());
+							} else {
+								map[i][j].setIcon(asset.getP2Hunter());
+							}
+						}
+					}
+					
+					
+				}
+			}
+		}
 	}
 	public void handleMovement() {
-		Tile lastSelected = gui.getTileSelection();
+		Tile lastSelected = (Tile)gui.getTileSelection();
 		for (int i = 0; i < MAP_SIZE; i++) {
 			for (int j = 0; j < MAP_SIZE; j++) {
 				if (gui.getTileSelection() == map[i][j]) {
@@ -167,12 +274,26 @@ public class Game {
 		for (int i = 0; i < MAP_SIZE; i++) {
 			for (int j = 0; j < MAP_SIZE; j++) {
 				if (gui.getTileSelection() == map[i][j]) {
-					if (map[i - 1][j].getBuilding() != null ||
-						map[i + 1][j].getBuilding() != null ||
-						map[i][j - 1].getBuilding() != null ||
-						map[i][j + 1].getBuilding() != null) {
-						return true;
-					}
+					try {
+						if (map[i - 1][j].getBuilding() != null) {
+								return true;
+							}
+					} catch (Exception ArrayIndexOutOfBoundsException) {}
+					try {
+						if (map[i + 1][j].getBuilding() != null) {
+								return true;
+							}
+					} catch (Exception ArrayIndexOutOfBoundsException) {}
+					try {
+						if (map[i][j - 1].getBuilding() != null) {
+								return true;
+							}
+					} catch (Exception ArrayIndexOutOfBoundsException) {}
+					try {
+						if (map[i][j + 1].getBuilding() != null) {
+								return true;
+							}
+					} catch (Exception ArrayIndexOutOfBoundsException) {}
 				} 
 			}
 		}
