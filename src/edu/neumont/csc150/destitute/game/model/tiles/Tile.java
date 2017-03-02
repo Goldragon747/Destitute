@@ -7,18 +7,13 @@ import edu.neumont.csc150.destitute.game.model.buildings.Building;
 import edu.neumont.csc150.destitute.game.model.units.Unit;
 
 public abstract class Tile extends JButton{
-	private Player player;
+	
 	private Unit unit;
 	private Building building;
 	private Resource type;
 	private boolean passable;
 	//TODO ICON
-	public Player getPlayer() {
-		return player;
-	}
-	public void setPlayer(Player player) {
-		this.player = player;
-	}
+	
 	public Unit getUnit() {
 		return unit;
 	}

@@ -20,6 +20,7 @@ public class Game {
 	private UserInteractions UI;
 	private Player player1 = new Player();
 	private Player player2 = new Player();
+	private Player currentPlayer = new Player();
 	
 	private final int MAP_SIZE = 15;
 	private Assets asset;
@@ -32,6 +33,7 @@ public class Game {
 	private final int TOTAL_HORSE_PER_SIDE = (MAP_SIZE / 4);
 	
 	public void run(){
+		currentPlayer = player1;
 		asset = new Assets(MAP_SIZE);
 		initializeMapArray();
 		gui = new GUI(this, map, MAP_SIZE);
@@ -70,12 +72,12 @@ public class Game {
 					map[i][j] = new Grass();
 					map[i][j].setIcon(asset.getGrass());
 					map[i][j].setBuilding(new Settlement());
-					map[i][j].setPlayer(player1);
+					map[i][j].getBuilding().setPlayer(player1);
 				} else if ((i == MAP_SIZE - 2 && j == MAP_SIZE - 2)) {
 					map[i][j] = new Grass();
 					map[i][j].setIcon(asset.getGrass());
 					map[i][j].setBuilding(new Settlement());
-					map[i][j].setPlayer(player2);
+					map[i][j].getBuilding().setPlayer(player2);
 				} else {
 					map[i][j] = new Grass();
 					map[i][j].setIcon(asset.getGrass());
@@ -175,5 +177,11 @@ public class Game {
 	}
 	public Player getPlayer2() {
 		return player2;
+	}
+	public Player getCurrentPlayer() {
+		return currentPlayer;
+	}
+	public void setCurrentPlayer(Player currentPlayer) {
+		this.currentPlayer = currentPlayer;
 	}
 }

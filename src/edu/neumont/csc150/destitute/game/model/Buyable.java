@@ -2,6 +2,7 @@ package edu.neumont.csc150.destitute.game.model;
 
 public abstract class Buyable {
 	private String name;
+	private Player player;
 	private int health;
 	private int markCost;
 	private int lumberCost;
@@ -50,5 +51,11 @@ public abstract class Buyable {
 	}
 	public void setMoveSpeed(int moveSpeed) {
 		this.moveSpeed = moveSpeed;
+	}
+	public Player getPlayer() {
+		return player;
+	}
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 }

@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
 import edu.neumont.csc150.destitute.game.controller.Game;
+import edu.neumont.csc150.destitute.game.model.buildings.LumberMill;
 import edu.neumont.csc150.destitute.game.model.tiles.Grass;
 import edu.neumont.csc150.destitute.game.model.tiles.Horse;
 import edu.neumont.csc150.destitute.game.model.tiles.Lumber;
@@ -56,7 +57,6 @@ public class GUI extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JLabel lumberLabel;
     private javax.swing.JLabel consoleCommandsLabel;
     private javax.swing.JLabel horsesLabel;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JPanel playerMenuPanel;
     private javax.swing.JPanel boardPanel;
     private javax.swing.JScrollPane jScrollPane1;
@@ -77,7 +77,6 @@ public class GUI extends javax.swing.JFrame implements ActionListener{
 		boardPanel = new javax.swing.JPanel();
 		//Labels
 		playerTurnLabel = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
         marksLabel = new javax.swing.JLabel();
         stoneLabel = new javax.swing.JLabel();
         lumberLabel = new javax.swing.JLabel();
@@ -115,14 +114,11 @@ public class GUI extends javax.swing.JFrame implements ActionListener{
         playerTurnLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         playerTurnLabel.setText("Player 1");
         playerTurnLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel20.setText("Thing");
 
         marksLabel.setText("1000");
         marksLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("Marks"));
 
-        stoneLabel.setText("10");
+        stoneLabel.setText(game.getCurrentPlayer().getStone() +"");
         stoneLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("Stone"));
 
         lumberLabel.setText("10");
@@ -196,7 +192,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener{
         archerButton.setText("Archer");
         archerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                archerActionPerformed(evt);
             }
         });
 
@@ -207,7 +203,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener{
         endTurnButton.setText("End Turn");
         endTurnButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                endTurnActionPerformed(evt);
             }
         });
         endTurnButton.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -383,7 +379,26 @@ public class GUI extends javax.swing.JFrame implements ActionListener{
 	}
 	
     private void lumberMillButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
-       
+    	LumberMill lumby = new LumberMill();
+    	int markCost = lumby.getMarkCost();
+    	for(int i = 0; i < MAP_SIZE; i++) {
+			for(int j = 0; j < MAP_SIZE; j++) {
+				
+				if(tileSelection == map[i][j] && map[i][j].isPassable()){
+					if(game.getCurrentPlayer().getMarks() >= markCost){
+						map[i][j].setBuilding(lumby);
+						map[i][j].setIcon(game.getAsset().getP1Lumbermill());
+						game.getCurrentPlayer().setMarks((game.getCurrentPlayer().getMarks() - markCost));
+					}
+					else{
+						setTurnEventBox("You do not have enough Marks");
+					}
+				}
+				else{
+					setTurnEventBox("This tile is not buildable, move your unit or choose a non-watertile.");
+				}
+			}
+    	}
     }                                        
     private void barracksButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
@@ -411,11 +426,18 @@ public class GUI extends javax.swing.JFrame implements ActionListener{
         // TODO add your
     }                                     
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
+    private void endTurnActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        if(game.getCurrentPlayer() == game.getPlayer1()){
+        	game.setCurrentPlayer(game.getPlayer2());
+        	playerTurnLabel.setText("Player 2");
+        }
+        else{
+        	game.setCurrentPlayer(game.getPlayer1());
+        	playerTurnLabel.setText("Player 1");
+        }
     }                                         
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void archerActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
     }                                        
 
