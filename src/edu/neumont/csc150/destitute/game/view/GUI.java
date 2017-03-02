@@ -15,6 +15,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
+import com.sun.glass.events.KeyEvent;
+
 import edu.neumont.csc150.destitute.game.controller.Game;
 import edu.neumont.csc150.destitute.game.model.buildings.Barracks;
 import edu.neumont.csc150.destitute.game.model.buildings.Building;
@@ -531,7 +533,9 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 	}
 
 	private void endTurnKeyPressed(java.awt.event.KeyEvent evt) {
-		
+		if(evt.getKeyChar() == KeyEvent.VK_SPACE){
+			
+		}
 	}
 
 	@Override
