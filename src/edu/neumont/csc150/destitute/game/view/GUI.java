@@ -454,6 +454,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 		if (game.handleBuildingBuildings(Resource.Lumber, lumberMill.getMarkCost() , lumberMill.getLumberCost(), lumberMill.getStoneCost(), lumberMill.getHorseCost())) {
 			game.handlePurchase(lumberMill, lumberMill.getMarkCost() , lumberMill.getLumberCost(), lumberMill.getStoneCost(), lumberMill.getHorseCost());
 		}
+		getCorrectRoad();
 		updateResources();
 	}
 
@@ -462,6 +463,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 		if (game.handleBuildingBuildings(Resource.Grass, barrack.getMarkCost() , barrack.getLumberCost(), barrack.getStoneCost(), barrack.getHorseCost())) {
 			game.handlePurchase(barrack, barrack.getMarkCost() , barrack.getLumberCost(), barrack.getStoneCost(), barrack.getHorseCost());
 		}
+		getCorrectRoad();
 		updateResources();
 	}
 
@@ -487,6 +489,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 		if (game.handleBuildingBuildings(Resource.Stone, quarry.getMarkCost() , quarry.getLumberCost(), quarry.getStoneCost(), quarry.getHorseCost())) {
 			game.handlePurchase(quarry, quarry.getMarkCost() , quarry.getLumberCost(), quarry.getStoneCost(), quarry.getHorseCost());
 		}
+		getCorrectRoad();
 		updateResources();
 	}
 
@@ -495,6 +498,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 		if (game.handleBuildingBuildings(Resource.Horse, stable.getMarkCost() , stable.getLumberCost(), stable.getStoneCost(), stable.getHorseCost())) {
 			game.handlePurchase(stable, stable.getMarkCost() , stable.getLumberCost(), stable.getStoneCost(), stable.getHorseCost());
 		}
+		getCorrectRoad();
 		updateResources();
 	}
 
@@ -517,6 +521,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 			game.setCurrentPlayer(game.getPlayer1());
 			playerTurnLabel.setText("Player 1");
 		}
+		getCorrectRoad();
 		updateResources();
 	}
 
@@ -583,6 +588,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener {
 							map[i][j].setIcon(game.getAsset().getP1RoadTopLeftRight());
 						} else if (isPlayerRoadWest && isPlayerRoadSouth && isPlayerRoadEast) {
 							map[i][j].setIcon(game.getAsset().getP1RoadLeftBottomRight());
+							System.out.println("safsaf");
 						} else if (isPlayerRoadNorth && isPlayerRoadSouth) {
 							map[i][j].setIcon(game.getAsset().getP1RoadTopBottom());
 						} else if (isPlayerRoadNorth && isPlayerRoadEast) {
