@@ -8,6 +8,6 @@ public class HorseRider extends Unit {
 		super.setCurrentMovement(2);
 		super.setMarkCost(40);   
 		super.setHorseCost(15);
-		
+		super.setAttackDamage(1);
 	}
 }

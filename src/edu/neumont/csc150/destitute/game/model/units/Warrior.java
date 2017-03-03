@@ -10,6 +10,7 @@ public class Warrior extends Unit{
 		super.setStoneCost(30); 
 		super.setTotalMovement(1);
 		super.setCurrentMovement(1); 
+		super.setAttackDamage(2);
 	}
 	
 }
