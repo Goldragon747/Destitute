@@ -531,21 +531,25 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	private void hunterButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		Hunter hunter = new Hunter();
 		game.handlePurchaseOfUnit(hunter, hunter.getMarkCost() , hunter.getLumberCost(), hunter.getStoneCost(), hunter.getHorseCost());
+		updateResources();
 	}
 	
 	private void archerActionPerformed(java.awt.event.ActionEvent evt) {
 		Archer archer = new Archer();
 		game.handlePurchaseOfUnit(archer, archer.getMarkCost() , archer.getLumberCost(), archer.getStoneCost(), archer.getHorseCost());
+		updateResources();
 	}
 	
 	private void calvaryButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		HorseRider horseRider = new HorseRider();
 		game.handlePurchaseOfUnit(horseRider, horseRider.getMarkCost() , horseRider.getLumberCost(), horseRider.getStoneCost(), horseRider.getHorseCost());
+		updateResources();
 	}
 
 	private void warriorButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		Warrior warrior = new Warrior();
 		game.handlePurchaseOfUnit(warrior, warrior.getMarkCost() , warrior.getLumberCost(), warrior.getStoneCost(), warrior.getHorseCost());
+		updateResources();
 	}
 
 	
@@ -674,7 +678,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 						map[i][j].setIcon(game.getAsset().getHorse());
 					} else if(map[i][j] instanceof Grass){
 						map[i][j].setIcon(game.getAsset().getGrass());
-					}
+					} //TODO fix road updating bug
 				}
 			}
 		}

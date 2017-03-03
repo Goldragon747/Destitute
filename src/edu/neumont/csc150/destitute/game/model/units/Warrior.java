@@ -11,6 +11,8 @@ public class Warrior extends Unit{
 		super.setTotalMovement(1);
 		super.setCurrentMovement(1); 
 		super.setAttackDamage(2);
+		super.setCurrentAttacks(1);
+		super.setTotalAttacks(1);
 	}
 	
 }

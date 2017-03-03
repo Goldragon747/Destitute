@@ -9,5 +9,7 @@ public class Archer extends Unit {
 		super.setMarkCost(40);   
 		super.setLumberCost(40);
 		super.setAttackDamage(1);
+		super.setCurrentAttacks(1);
+		super.setTotalAttacks(1);
 	}
 }

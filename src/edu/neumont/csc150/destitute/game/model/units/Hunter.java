@@ -8,5 +8,7 @@ public class Hunter extends Unit {
 		super.setTotalMovement(1);
 		super.setCurrentMovement(1);
 		super.setAttackDamage(1);
+		super.setCurrentAttacks(1);
+		super.setTotalAttacks(1);
 	}
 }

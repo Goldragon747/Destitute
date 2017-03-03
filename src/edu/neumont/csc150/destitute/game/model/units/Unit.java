@@ -6,6 +6,8 @@ public abstract class Unit extends Buyable{
 	private int currentMovement;
 	private int totalMovement;
 	private int attackDamage;
+	private int totalAttacks;
+	private int currentAttacks;
 	/**
 	 * @return the currentMovement
 	 */
@@ -41,5 +43,17 @@ public abstract class Unit extends Buyable{
 	 */
 	public void setAttackDamage(int attackDamage) {
 		this.attackDamage = attackDamage;
+	}
+	public int getTotalAttacks() {
+		return totalAttacks;
+	}
+	public void setTotalAttacks(int totalAttacks) {
+		this.totalAttacks = totalAttacks;
+	}
+	public int getCurrentAttacks() {
+		return currentAttacks;
+	}
+	public void setCurrentAttacks(int currentAttacks) {
+		this.currentAttacks = currentAttacks;
 	}
 }

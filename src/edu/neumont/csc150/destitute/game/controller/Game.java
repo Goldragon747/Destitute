@@ -18,6 +18,7 @@ import edu.neumont.csc150.destitute.game.model.tiles.Resource;
 import edu.neumont.csc150.destitute.game.model.tiles.Stone;
 import edu.neumont.csc150.destitute.game.model.tiles.Tile;
 import edu.neumont.csc150.destitute.game.model.tiles.Water;
+import edu.neumont.csc150.destitute.game.model.units.Archer;
 import edu.neumont.csc150.destitute.game.model.units.Hunter;
 import edu.neumont.csc150.destitute.game.model.units.Unit;
 import edu.neumont.csc150.destitute.game.view.Assets;
@@ -89,8 +90,6 @@ public class Game {
 					map[i][j] = new Grass();
 					map[i][j].setIcon(asset.getGrass());
 				}
-				System.out.println("i: " + i + " J: " + j + "   " + map[i][j].getResourceName());
-				System.out.println("-------------------------------------------------");
 			}
 		}
 		do {
@@ -141,12 +140,6 @@ public class Game {
 		} while (!(lumberInTopMap == TOTAL_LUMBER_PER_SIDE && lumberInBottomMap == TOTAL_LUMBER_PER_SIDE
 				&& stoneInTopMap == TOTAL_STONE_PER_SIDE && stoneInBottomMap == TOTAL_STONE_PER_SIDE
 				&& horseInTopMap == TOTAL_HORSE_PER_SIDE && horseInBottomMap == TOTAL_HORSE_PER_SIDE));
-		for (int m = 0; m < MAP_SIZE; m++) {
-			for (int n = 0; n < MAP_SIZE; n++) {
-				map[m][n].setActionCommand(m + " " + n);
-				System.out.println("k: " + m + " L: " + n + "   " + map[m][n].getResourceName());
-			}
-		}
 	}
 
 	public void handleUILogic() {
@@ -266,35 +259,46 @@ public class Game {
 				if (map[i][j].getUnit() != null) {
 					if (map[i][j].getUnit().getCurrentMovement() > 0) {
 						if (gui.getUnitSelection() == map[i][j].getUnit()) {
-							if (gui.getTileSelection() == map[i - 1][j]) {
-								map[i][j].getUnit().setCurrentMovement(map[i][j].getUnit().getCurrentMovement() - 1);
-								map[i - 1][j].setUnit(map[i][j].getUnit());
-								map[i][j].setUnit(null);
-								gui.setTileSelection(null);
-								gui.setUnitSelection(null);
-								gui.refreshMapTileIcons();
-							} else if (gui.getTileSelection() == map[i + 1][j]) {
-								map[i][j].getUnit().setCurrentMovement(map[i][j].getUnit().getCurrentMovement() - 1);
-								map[i + 1][j].setUnit(map[i][j].getUnit());
-								map[i][j].setUnit(null);
-								gui.setTileSelection(null);
-								gui.setUnitSelection(null);
-								gui.refreshMapTileIcons();
-							} else if (gui.getTileSelection() == map[i][j - 1]) {
-								map[i][j].getUnit().setCurrentMovement(map[i][j].getUnit().getCurrentMovement() - 1);
-								map[i][j - 1].setUnit(map[i][j].getUnit());
-								map[i][j].setUnit(null);
-								gui.setTileSelection(null);
-								gui.setUnitSelection(null);
-								gui.refreshMapTileIcons();
-							} else if (gui.getTileSelection() == map[i][j + 1]) {
-								map[i][j].getUnit().setCurrentMovement(map[i][j].getUnit().getCurrentMovement() - 1);
-								map[i][j + 1].setUnit(map[i][j].getUnit());
-								map[i][j].setUnit(null);
-								gui.setTileSelection(null);
-								gui.setUnitSelection(null);
-								gui.refreshMapTileIcons();
-							}
+							try{
+								if (gui.getTileSelection() == map[i - 1][j]) {
+									map[i][j].getUnit().setCurrentMovement(map[i][j].getUnit().getCurrentMovement() - 1);
+									map[i - 1][j].setUnit(map[i][j].getUnit());
+									map[i][j].setUnit(null);
+									gui.setTileSelection(null);
+									gui.setUnitSelection(null);
+									gui.refreshMapTileIcons();
+								} 
+							} catch (Exception ArrayIndexOutOfBoundsException){}
+							try{
+								if (gui.getTileSelection() == map[i + 1][j]) {
+									map[i][j].getUnit().setCurrentMovement(map[i][j].getUnit().getCurrentMovement() - 1);
+									map[i + 1][j].setUnit(map[i][j].getUnit());
+									map[i][j].setUnit(null);
+									gui.setTileSelection(null);
+									gui.setUnitSelection(null);
+									gui.refreshMapTileIcons();
+								}
+							} catch (Exception ArrayIndexOutOfBoundsException){}
+							try{
+								if (gui.getTileSelection() == map[i][j - 1]) {
+									map[i][j].getUnit().setCurrentMovement(map[i][j].getUnit().getCurrentMovement() - 1);
+									map[i][j - 1].setUnit(map[i][j].getUnit());
+									map[i][j].setUnit(null);
+									gui.setTileSelection(null);
+									gui.setUnitSelection(null);
+									gui.refreshMapTileIcons();
+								}
+							} catch (Exception ArrayIndexOutOfBoundsException){}
+							try{
+								if (gui.getTileSelection() == map[i][j + 1]) {
+									map[i][j].getUnit().setCurrentMovement(map[i][j].getUnit().getCurrentMovement() - 1);
+									map[i][j + 1].setUnit(map[i][j].getUnit());
+									map[i][j].setUnit(null);
+									gui.setTileSelection(null);
+									gui.setUnitSelection(null);
+									gui.refreshMapTileIcons();
+								}
+							} catch (Exception ArrayIndexOutOfBoundsException){}
 						}
 					}
 				}
@@ -304,6 +308,7 @@ public class Game {
 
 	public void tryHandleAttack() {
 		boolean valid = false;
+		boolean archer = false;
 		Unit attacker = null;
 		Unit defender = null;
 		for (int i = 0; i < MAP_SIZE; i++) {
@@ -313,6 +318,9 @@ public class Game {
 				}
 				if (map[i][j].getUnit() != null) {
 					if (map[i][j].getUnit() == gui.getUnitSelection()) {
+						if (map[i][j].getUnit() instanceof Archer) {
+							archer = true;
+						}
 						attacker = map[i][j].getUnit();
 					}
 				}
@@ -338,12 +346,51 @@ public class Game {
 							map[i][j + 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
 							valid = true;
 						}
+						if (archer) {
+							if (map[i - 1][j + 1].getUnit() != null && map[i - 1][j + 1].getUnit() == defender &&
+								map[i - 1][j + 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
+								valid = true;
+							}
+							if (map[i + 1][j + 1].getUnit() != null && map[i + 1][j + 1].getUnit() == defender &&
+								map[i + 1][j + 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
+								valid = true;
+							}
+							if (map[i][j + 2].getUnit() != null && map[i][j + 2].getUnit() == defender &&
+								map[i][j + 2].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
+								valid = true;
+							}
+							if (map[i][j - 2].getUnit() != null && map[i][j - 2].getUnit() == defender &&
+								map[i][j - 2].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
+								valid = true;
+							}
+							if (map[i][j + 1].getUnit() != null && map[i][j + 1].getUnit() == defender &&
+								map[i][j + 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
+								valid = true;
+							}
+							if (map[i - 1][j - 1].getUnit() != null && map[i - 1][j - 1].getUnit() == defender &&
+								map[i - 1][j - 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
+								valid = true;
+							}
+							if (map[i + 1][j - 1].getUnit() != null && map[i + 1][j - 1].getUnit() == defender &&
+								map[i + 1][j - 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
+								valid = true;
+							}
+							if (map[i + 2][j].getUnit() != null && map[i + 2][j].getUnit() == defender &&
+								map[i + 2][j].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
+								valid = true;
+							}
+							if (map[i - 2][j].getUnit() != null && map[i - 2][j].getUnit() == defender &&
+								map[i - 2][j].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
+								valid = true;
+							}
+						}
 					}
 				}
 			}
 		}
-		if (valid) {
+		if (valid && attacker.getCurrentAttacks() >= 0) {
 			defender.setHealth(defender.getHealth() - attacker.getAttackDamage());
+			attacker.setAttackDamage(attacker.getAttackDamage() - 1);
 			if (defender.getHealth() <= 0) {
 				defender = null;
 			}
@@ -351,6 +398,10 @@ public class Game {
 				for (int j = 0; j < MAP_SIZE; j++) {
 					if (map[i][j] == gui.getTileSelection()) {
 						map[i][j].setUnit(defender);
+						gui.refreshMapTileIcons();
+					}
+					if (map[i][j].getUnit() == gui.getUnitSelection()) {
+						map[i][j].setUnit(attacker);
 						gui.refreshMapTileIcons();
 					}
 				}
