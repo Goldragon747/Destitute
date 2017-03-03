@@ -104,14 +104,23 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		consoleCommandsLabel = new javax.swing.JLabel();
 		// Buttons
 		lumberMillButton = new javax.swing.JButton();
+		lumberMillButton.setIcon(game.getAsset().getP1Lumbermill());
 		quarryButton = new javax.swing.JButton();
+		quarryButton.setIcon(game.getAsset().getP1Quarry());
 		stableButton = new javax.swing.JButton();
+		stableButton.setIcon(game.getAsset().getP1Stable());
 		barracksButton = new javax.swing.JButton();
+		barracksButton.setIcon(game.getAsset().getP1Barracks());
 		roadButton = new javax.swing.JButton();
+		roadButton.setIcon(game.getAsset().getP1RoadAll());
 		hunterButton = new javax.swing.JButton();
+		hunterButton.setIcon(game.getAsset().getP1Hunter());
 		warriorButton = new javax.swing.JButton();
+		warriorButton.setIcon(game.getAsset().getP1Warrior());
 		calvaryButton = new javax.swing.JButton();
+		calvaryButton.setIcon(game.getAsset().getP1Rider());
 		archerButton = new javax.swing.JButton();
+		archerButton.setIcon(game.getAsset().getP1Archer());
 		endTurnButton = new javax.swing.JButton();
 		// Scroll Pane
 		jScrollPane1 = new javax.swing.JScrollPane();
@@ -466,9 +475,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	private void endTurn(){
 		tileSelection = null;
 		unitSelection = null;
-		updateResources();
 		game.doEndTurn();
-		
 		if (game.getCurrentPlayer() == game.getPlayer1()) {
 			game.setCurrentPlayer(game.getPlayer2());
 			playerTurnLabel.setText("Player 2");
@@ -580,15 +587,9 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 					map[i][j].setBorder(BorderFactory.createLineBorder(Color.RED, 4));
 					game.tryHandleAttack();
 				} else if (e.getSource() == map[i][j] && map[i][j].getUnit() != null) {
-					if (map[i][j].getUnit() == unitSelection && unitSelection.getPlayer() == game.getCurrentPlayer() && tileSelection != null) {
-						System.out.println("I MADE IT current p:" + game.getCurrentPlayer().getPlayerName() + " selected p: " + unitSelection.getPlayer().getPlayerName());
-						game.tryHandleMovement();
-						tileSelection = null;
-					} else {
-						unitSelection = map[i][j].getUnit();
-						tileSelection = null;
-						map[i][j].setBorder(BorderFactory.createLineBorder(Color.ORANGE, 4));
-					}
+					unitSelection = map[i][j].getUnit();
+					tileSelection = null;
+					map[i][j].setBorder(BorderFactory.createLineBorder(Color.ORANGE, 4));
 				} else if (e.getSource() == map[i][j] && !(map[i][j] instanceof Water) && (map[i][j].getUnit() == null)) {
 					tileSelection = map[i][j];
 					map[i][j].setBorder(BorderFactory.createLineBorder(Color.RED, 4));
