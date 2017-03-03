@@ -584,6 +584,8 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		
 		for (int i = 0; i < MAP_SIZE; i++) {
 			for (int j = 0; j < MAP_SIZE; j++) {
 				map[i][j].setBorder(new LineBorder(Color.GRAY));
