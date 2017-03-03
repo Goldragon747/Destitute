@@ -8,7 +8,8 @@ public class Warrior extends Unit{
 		super.setHealth(4);      
 		super.setMarkCost(30);   
 		super.setStoneCost(30); 
-		super.setMoveSpeed(1); 
+		super.setTotalMovement(1);
+		super.setCurrentMovement(1); 
 	}
 	
 }

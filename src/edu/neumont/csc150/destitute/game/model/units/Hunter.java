@@ -5,6 +5,8 @@ public class Hunter extends Unit {
 		super.setName("Hunter");
 		super.setHealth(1);      
 		super.setMarkCost(10);    
-		super.setMoveSpeed(1); 
+		super.setTotalMovement(1);
+		super.setCurrentMovement(1);
+		super.setAttackDamage(1);
 	}
 }

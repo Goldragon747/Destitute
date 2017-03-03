@@ -4,11 +4,12 @@ public class Player {
 private String playerName;
 private int marks, stone, lumber, horses;
 
-public Player(){
+public Player(String playerName){
 	this.marks = 50;
 	this.stone = 0;
 	this.lumber = 20;
 	this.horses = 0;
+	this.playerName = playerName;
 }
 public int getMarks() {
 	return marks;

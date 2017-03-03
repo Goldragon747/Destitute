@@ -33,7 +33,11 @@ import edu.neumont.csc150.destitute.game.model.tiles.Resource;
 import edu.neumont.csc150.destitute.game.model.tiles.Stone;
 import edu.neumont.csc150.destitute.game.model.tiles.Tile;
 import edu.neumont.csc150.destitute.game.model.tiles.Water;
+import edu.neumont.csc150.destitute.game.model.units.Archer;
+import edu.neumont.csc150.destitute.game.model.units.HorseRider;
 import edu.neumont.csc150.destitute.game.model.units.Hunter;
+import edu.neumont.csc150.destitute.game.model.units.Unit;
+import edu.neumont.csc150.destitute.game.model.units.Warrior;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -50,6 +54,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	private Tile[][] map;
 	private final int MAP_SIZE;
 	private Tile tileSelection;
+	private Unit unitSelection;
 	private javax.swing.JButton lumberMillButton;
 	private javax.swing.JButton endTurnButton;
 	private javax.swing.JButton quarryButton;
@@ -459,6 +464,8 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 
 	}
 	private void endTurn(){
+		tileSelection = null;
+		unitSelection = null;
 		updateResources();
 		game.doEndTurn();
 		
@@ -472,20 +479,38 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		getCorrectRoad();
 		updateResources();
 	}
-
+//---------------------------------------------------\\ BUILDINGS //---------------------------------------------------\\
 	private void lumberMillButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		LumberMill lumberMill = new LumberMill();
 		if (game.handleBuildingBuildings(Resource.Lumber, lumberMill.getMarkCost() , lumberMill.getLumberCost(), lumberMill.getStoneCost(), lumberMill.getHorseCost())) {
-			game.handlePurchase(lumberMill, lumberMill.getMarkCost() , lumberMill.getLumberCost(), lumberMill.getStoneCost(), lumberMill.getHorseCost());
+			game.handlePurchaseOfBuilding(lumberMill, lumberMill.getMarkCost() , lumberMill.getLumberCost(), lumberMill.getStoneCost(), lumberMill.getHorseCost());
 		}
 		getCorrectRoad();
 		updateResources();
 	}
-
+	
+	private void quarryButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		Quarry quarry = new Quarry();
+		if (game.handleBuildingBuildings(Resource.Stone, quarry.getMarkCost() , quarry.getLumberCost(), quarry.getStoneCost(), quarry.getHorseCost())) {
+			game.handlePurchaseOfBuilding(quarry, quarry.getMarkCost() , quarry.getLumberCost(), quarry.getStoneCost(), quarry.getHorseCost());
+		}
+		getCorrectRoad();
+		updateResources();
+	}
+	
+	private void stableButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		Stable stable = new Stable();
+		if (game.handleBuildingBuildings(Resource.Horse, stable.getMarkCost() , stable.getLumberCost(), stable.getStoneCost(), stable.getHorseCost())) {
+			game.handlePurchaseOfBuilding(stable, stable.getMarkCost() , stable.getLumberCost(), stable.getStoneCost(), stable.getHorseCost());
+		}
+		getCorrectRoad();
+		updateResources();
+	}
+	
 	private void barracksButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		Barracks barrack = new Barracks();
 		if (game.handleBuildingBuildings(Resource.Grass, barrack.getMarkCost() , barrack.getLumberCost(), barrack.getStoneCost(), barrack.getHorseCost())) {
-			game.handlePurchase(barrack, barrack.getMarkCost() , barrack.getLumberCost(), barrack.getStoneCost(), barrack.getHorseCost());
+			game.handlePurchaseOfBuilding(barrack, barrack.getMarkCost() , barrack.getLumberCost(), barrack.getStoneCost(), barrack.getHorseCost());
 		}
 		getCorrectRoad();
 		updateResources();
@@ -494,42 +519,40 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	private void roadButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		Road road = new Road();
 		if (game.handleBuildingBuildings(Resource.Grass, road.getMarkCost() , road.getLumberCost(), road.getStoneCost(), road.getHorseCost())) {
-			game.handlePurchase(road, road.getMarkCost() , road.getLumberCost(), road.getStoneCost(), road.getHorseCost());
+			game.handlePurchaseOfBuilding(road, road.getMarkCost() , road.getLumberCost(), road.getStoneCost(), road.getHorseCost());
 		}
 		getCorrectRoad();
 		updateResources();
 	}
+//---------------------------------------------------\\ --------- //---------------------------------------------------\\
+	
 
+//---------------------------------------------------\\ UNITS //---------------------------------------------------\\
+	private void hunterButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		Hunter hunter = new Hunter();
+		game.handlePurchaseOfUnit(hunter, hunter.getMarkCost() , hunter.getLumberCost(), hunter.getStoneCost(), hunter.getHorseCost());
+	}
+	
+	private void archerActionPerformed(java.awt.event.ActionEvent evt) {
+		Archer archer = new Archer();
+		game.handlePurchaseOfUnit(archer, archer.getMarkCost() , archer.getLumberCost(), archer.getStoneCost(), archer.getHorseCost());
+	}
+	
 	private void calvaryButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+		HorseRider horseRider = new HorseRider();
+		game.handlePurchaseOfUnit(horseRider, horseRider.getMarkCost() , horseRider.getLumberCost(), horseRider.getStoneCost(), horseRider.getHorseCost());
 	}
 
 	private void warriorButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+		Warrior warrior = new Warrior();
+		game.handlePurchaseOfUnit(warrior, warrior.getMarkCost() , warrior.getLumberCost(), warrior.getStoneCost(), warrior.getHorseCost());
 	}
 
-	private void quarryButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		Quarry quarry = new Quarry();
-		if (game.handleBuildingBuildings(Resource.Stone, quarry.getMarkCost() , quarry.getLumberCost(), quarry.getStoneCost(), quarry.getHorseCost())) {
-			game.handlePurchase(quarry, quarry.getMarkCost() , quarry.getLumberCost(), quarry.getStoneCost(), quarry.getHorseCost());
-		}
-		getCorrectRoad();
-		updateResources();
-	}
+	
+//---------------------------------------------------\\ ----- //---------------------------------------------------\\
+	
 
-	private void stableButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		Stable stable = new Stable();
-		if (game.handleBuildingBuildings(Resource.Horse, stable.getMarkCost() , stable.getLumberCost(), stable.getStoneCost(), stable.getHorseCost())) {
-			game.handlePurchase(stable, stable.getMarkCost() , stable.getLumberCost(), stable.getStoneCost(), stable.getHorseCost());
-		}
-		getCorrectRoad();
-		updateResources();
-	}
-
-	private void hunterButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		Hunter hunter = new Hunter();
-		game.handlePurchase(hunter, hunter.getMarkCost() , hunter.getLumberCost(), hunter.getStoneCost(), hunter.getHorseCost());
-	}
+	
 
 	private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {
 		// TODO add your
@@ -537,10 +560,6 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	
 	private void endTurnActionPerformed(java.awt.event.ActionEvent evt) {
 		endTurn();
-	}
-
-	private void archerActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
 	}
 
 	private void endTurnKeyPressed(java.awt.event.KeyEvent evt) {
@@ -552,9 +571,29 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		for (int i = 0; i < MAP_SIZE; i++) {
 			for (int j = 0; j < MAP_SIZE; j++) {
 				map[i][j].setBorder(new LineBorder(Color.GRAY));
-				if (e.getSource() == map[i][j] && !(map[i][j] instanceof Water)) {
+				if (e.getSource() == map[i][j] && unitSelection != null && map[i][j].getUnit() != null && map[i][j].getUnit().getPlayer() != game.getCurrentPlayer()) {
 					tileSelection = map[i][j];
 					map[i][j].setBorder(BorderFactory.createLineBorder(Color.RED, 4));
+					game.tryHandleAttack();
+				} else if (e.getSource() == map[i][j] && map[i][j].getUnit() != null) {
+					if (map[i][j].getUnit() == unitSelection && unitSelection.getPlayer() == game.getCurrentPlayer() && tileSelection != null) {
+						System.out.println("I MADE IT current p:" + game.getCurrentPlayer().getPlayerName() + " selected p: " + unitSelection.getPlayer().getPlayerName());
+						game.tryHandleMovement();
+						tileSelection = null;
+					} else {
+						unitSelection = map[i][j].getUnit();
+						tileSelection = null;
+						map[i][j].setBorder(BorderFactory.createLineBorder(Color.ORANGE, 4));
+					}
+				} else if (e.getSource() == map[i][j] && !(map[i][j] instanceof Water) && (map[i][j].getUnit() == null)) {
+					tileSelection = map[i][j];
+					map[i][j].setBorder(BorderFactory.createLineBorder(Color.RED, 4));
+					if (unitSelection != null) {
+						if (unitSelection.getPlayer() == game.getCurrentPlayer()) {
+							game.tryHandleMovement();
+							unitSelection = null;
+						}
+					}
 				}
 			}
 		}
@@ -566,9 +605,79 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		stoneLabel.setText(game.getCurrentPlayer().getStone() + "");
 		horsesLabel.setText(game.getCurrentPlayer().getHorses() + "");
 	}
-
-	public JButton getTileSelection() {
-		return tileSelection;
+	
+	public void refreshMapTileIcons() {
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map.length; j++) {
+				if (map[i][j].getUnit() != null) {
+					if (map[i][j].getUnit().getPlayer() == game.getPlayer1()) {
+						if (map[i][j].getUnit() instanceof Hunter) {
+							map[i][j].setIcon(game.getAsset().getP1Hunter());
+						} else if (map[i][j].getUnit() instanceof Archer) {
+							map[i][j].setIcon(game.getAsset().getP1Archer());
+						} else if (map[i][j].getUnit() instanceof HorseRider) {
+							map[i][j].setIcon(game.getAsset().getP1Rider());
+						} else if (map[i][j].getUnit() instanceof Warrior) {
+							map[i][j].setIcon(game.getAsset().getP1Warrior());
+						} 
+					} else {
+						if (map[i][j].getUnit() instanceof Hunter) {
+							map[i][j].setIcon(game.getAsset().getP2Hunter());
+						} else if (map[i][j].getUnit() instanceof Archer) {
+							map[i][j].setIcon(game.getAsset().getP2Archer());
+						} else if (map[i][j].getUnit() instanceof HorseRider) {
+							map[i][j].setIcon(game.getAsset().getP2Rider());
+						} else if (map[i][j].getUnit() instanceof Warrior) {
+							map[i][j].setIcon(game.getAsset().getP2Warrior());
+						} else if(map[i][j] instanceof Lumber){
+							map[i][j].setIcon(game.getAsset().getLumber());
+						} else if(map[i][j] instanceof Stone){
+							map[i][j].setIcon(game.getAsset().getStone());
+						} else if(map[i][j] instanceof Horse){
+							map[i][j].setIcon(game.getAsset().getHorse());
+						} else if(map[i][j] instanceof Grass){
+							map[i][j].setIcon(game.getAsset().getGrass());
+						}
+					}
+				} else if (map[i][j].getBuilding() != null) {
+					if (map[i][j].getBuilding().getPlayer() == game.getPlayer1()) {
+						if(map[i][j].getBuilding() instanceof Settlement){
+							map[i][j].setIcon(game.getAsset().getP1Settlement());
+						} else if(map[i][j].getBuilding() instanceof Barracks){
+							map[i][j].setIcon(game.getAsset().getP1Barracks());
+						} else if(map[i][j].getBuilding() instanceof LumberMill){
+							map[i][j].setIcon(game.getAsset().getP1Lumbermill());
+						} else if(map[i][j].getBuilding() instanceof Quarry){
+							map[i][j].setIcon(game.getAsset().getP1Quarry());
+						} else if(map[i][j].getBuilding() instanceof Stable){
+							map[i][j].setIcon(game.getAsset().getP1Stable());
+						} 
+					} else {
+						if(map[i][j].getBuilding() instanceof Settlement){
+							map[i][j].setIcon(game.getAsset().getP2Settlement());
+						} else if(map[i][j].getBuilding() instanceof Barracks){
+							map[i][j].setIcon(game.getAsset().getP2Barracks());
+						} else if(map[i][j].getBuilding() instanceof LumberMill){
+							map[i][j].setIcon(game.getAsset().getP2Lumbermill());
+						} else if(map[i][j].getBuilding() instanceof Quarry){
+							map[i][j].setIcon(game.getAsset().getP2Quarry());
+						} else if(map[i][j].getBuilding() instanceof Stable){
+							map[i][j].setIcon(game.getAsset().getP2Stable());
+						}
+					}
+				} else {
+					if(map[i][j] instanceof Lumber){
+						map[i][j].setIcon(game.getAsset().getLumber());
+					} else if(map[i][j] instanceof Stone){
+						map[i][j].setIcon(game.getAsset().getStone());
+					} else if(map[i][j] instanceof Horse){
+						map[i][j].setIcon(game.getAsset().getHorse());
+					} else if(map[i][j] instanceof Grass){
+						map[i][j].setIcon(game.getAsset().getGrass());
+					}
+				}
+			}
+		}
 	}
 	public void getCorrectRoad() {
 		for (int i = 0; i < map.length; i++) {
@@ -602,7 +711,6 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 							map[i][j].setIcon(game.getAsset().getP1RoadTopLeftRight());
 						} else if (isPlayerRoadWest && isPlayerRoadSouth && isPlayerRoadEast) {
 							map[i][j].setIcon(game.getAsset().getP1RoadLeftBottomRight());
-							System.out.println("safsaf");
 						} else if (isPlayerRoadNorth && isPlayerRoadSouth) {
 							map[i][j].setIcon(game.getAsset().getP1RoadTopBottom());
 						} else if (isPlayerRoadNorth && isPlayerRoadEast) {
@@ -688,5 +796,18 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		// TODO Auto-generated method stub
 		
 	}
+	public JButton getTileSelection() {
+		return tileSelection;
+	}
+	public void setTileSelection(Tile tile) {
+		this.tileSelection = tile;
+	}
+	public Unit getUnitSelection() {
+		return unitSelection;
+	}
+	public void setUnitSelection(Unit unit) {
+		this.unitSelection = unit;
+	}
+
 }
 
