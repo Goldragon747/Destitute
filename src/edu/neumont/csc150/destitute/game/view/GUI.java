@@ -475,6 +475,11 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	private void endTurn(){
 		tileSelection = null;
 		unitSelection = null;
+		for (int i = 0; i < MAP_SIZE; i++) {
+			for (int j = 0; j < MAP_SIZE; j++) {
+				map[i][j].setBorder(new LineBorder(Color.GRAY));
+			}
+		}
 		game.doEndTurn();
 		if (game.getCurrentPlayer() == game.getPlayer1()) {
 			game.setCurrentPlayer(game.getPlayer2());
