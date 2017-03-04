@@ -78,11 +78,13 @@ public class Game {
 					map[i][j].setIcon(asset.getWater());
 				} else if ((i == MAP_SIZE - (MAP_SIZE - 1) && j == MAP_SIZE - (MAP_SIZE - 1))) {
 					map[i][j] = new Grass();
+					map[i][j].setFog(false);
 					map[i][j].setIcon(asset.getP1Settlement());
 					map[i][j].setBuilding(new Settlement());
 					map[i][j].getBuilding().setPlayer(player1);
 				} else if ((i == MAP_SIZE - 2 && j == MAP_SIZE - 2)) {
 					map[i][j] = new Grass();
+					map[i][j].setFog(false);
 					map[i][j].setIcon(asset.getP2Settlement());
 					map[i][j].setBuilding(new Settlement());
 					map[i][j].getBuilding().setPlayer(player2);
@@ -220,6 +222,8 @@ public class Game {
 					}
 				} 
 			}
+			gui.checkForExplored();
+			gui.refreshMapTileIcons();
 		}
 		if (valid == false) {
 			gui.setTurnEventBox(
@@ -306,6 +310,8 @@ public class Game {
 				}
 			}
 		}
+		gui.checkForExplored();
+		gui.refreshMapTileIcons();
 	}
 
 	public void tryHandleAttack() {

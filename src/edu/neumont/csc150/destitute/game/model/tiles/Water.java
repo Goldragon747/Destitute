@@ -6,5 +6,6 @@ public class Water extends Tile{
 	public Water(){
 		super.setResourceName(Resource.Water);
 		super.setPassable(false);
+		super.setFog(false);
 	}
 }

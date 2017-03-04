@@ -12,7 +12,7 @@ public abstract class Tile extends JButton{
 	private Building building;
 	private Resource type;
 	private boolean passable;
-	//TODO ICON
+	private boolean fog;
 	
 	public Unit getUnit() {
 		return unit;
@@ -43,5 +43,11 @@ public abstract class Tile extends JButton{
 	}
 	public void setType(Resource type) {
 		this.type = type;
+	}
+	public boolean isFog() {
+		return fog;
+	}
+	public void setFog(boolean fog) {
+		this.fog = fog;
 	}
 }

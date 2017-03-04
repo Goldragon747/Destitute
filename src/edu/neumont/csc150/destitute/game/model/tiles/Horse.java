@@ -6,5 +6,6 @@ public class Horse extends Tile{
 	public Horse() {
 		super.setResourceName(Resource.Horse);
 		super.setPassable(true);
+		super.setFog(true);
 	}
 }

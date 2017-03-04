@@ -450,6 +450,9 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				map[i][j].setPreferredSize(new Dimension(1196 / MAP_SIZE, 1196 / MAP_SIZE));
 				map[i][j].setBorder(new LineBorder(Color.GRAY));
 				map[i][j].addActionListener(this);
+				if (map[i][j].isFog()) {
+					map[i][j].setIcon(game.getAsset().getFog());
+				}
 				if (map[i][j] instanceof Grass) {
 					map[i][j].setBackground(Color.green);
 				} else if (map[i][j] instanceof Lumber) {
@@ -463,8 +466,59 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				}
 
 			}
+			checkForExplored();
 		}
 		pack();
+	}
+
+	public void checkForExplored() {
+		for (int i = 0; i < MAP_SIZE; i++) {
+			for (int j = 0; j < MAP_SIZE; j++) {
+				boolean explored = ((map[i][j].getBuilding() != null) || (map[i][j].getUnit() != null));
+				if (explored) {
+					try{
+						map[i - 1][j].setFog(false);
+					} catch (Exception ArrayIndexOutOfBoundsException){}
+					try{
+						map[i + 1][j].setFog(false);
+					} catch (Exception ArrayIndexOutOfBoundsException){}
+					try{
+						map[i][j - 1].setFog(false);
+					} catch (Exception ArrayIndexOutOfBoundsException){}
+					try{
+						map[i][j + 1].setFog(false);
+					} catch (Exception ArrayIndexOutOfBoundsException){}
+					try{
+						map[i - 1][j + 1].setFog(false);
+					} catch (Exception ArrayIndexOutOfBoundsException){}
+					try{
+						map[i + 1][j + 1].setFog(false);
+					} catch (Exception ArrayIndexOutOfBoundsException){}
+					try{
+						map[i][j + 2].setFog(false);
+					} catch (Exception ArrayIndexOutOfBoundsException){}
+					try{
+						map[i][j - 2].setFog(false);
+					} catch (Exception ArrayIndexOutOfBoundsException){}
+					try{
+						map[i][j + 1].setFog(false);
+					} catch (Exception ArrayIndexOutOfBoundsException){}
+					try{
+						map[i - 1][j - 1].setFog(false);
+					} catch (Exception ArrayIndexOutOfBoundsException){}
+					try{
+						map[i + 1][j - 1].setFog(false);
+					} catch (Exception ArrayIndexOutOfBoundsException){}
+					try{
+						map[i + 2][j].setFog(false);
+					} catch (Exception ArrayIndexOutOfBoundsException){}
+					try{
+						map[i - 2][j].setFog(false);
+					} catch (Exception ArrayIndexOutOfBoundsException){}
+				}
+			}
+		}
+		refreshMapTileIcons();
 	}
 
 	public void setTurnEventBox(String s) {
@@ -621,27 +675,65 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	public void refreshMapTileIcons() {
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map.length; j++) {
-				if (map[i][j].getUnit() != null) {
-					if (map[i][j].getUnit().getPlayer() == game.getPlayer1()) {
-						if (map[i][j].getUnit() instanceof Hunter) {
-							map[i][j].setIcon(game.getAsset().getP1Hunter());
-						} else if (map[i][j].getUnit() instanceof Archer) {
-							map[i][j].setIcon(game.getAsset().getP1Archer());
-						} else if (map[i][j].getUnit() instanceof HorseRider) {
-							map[i][j].setIcon(game.getAsset().getP1Rider());
-						} else if (map[i][j].getUnit() instanceof Warrior) {
-							map[i][j].setIcon(game.getAsset().getP1Warrior());
-						} 
+				if (!map[i][j].isFog()) {
+					if (map[i][j].getUnit() != null) {
+						if (map[i][j].getUnit().getPlayer() == game.getPlayer1()) {
+							if (map[i][j].getUnit() instanceof Hunter) {
+								map[i][j].setIcon(game.getAsset().getP1Hunter());
+							} else if (map[i][j].getUnit() instanceof Archer) {
+								map[i][j].setIcon(game.getAsset().getP1Archer());
+							} else if (map[i][j].getUnit() instanceof HorseRider) {
+								map[i][j].setIcon(game.getAsset().getP1Rider());
+							} else if (map[i][j].getUnit() instanceof Warrior) {
+								map[i][j].setIcon(game.getAsset().getP1Warrior());
+							} 
+						} else {
+							if (map[i][j].getUnit() instanceof Hunter) {
+								map[i][j].setIcon(game.getAsset().getP2Hunter());
+							} else if (map[i][j].getUnit() instanceof Archer) {
+								map[i][j].setIcon(game.getAsset().getP2Archer());
+							} else if (map[i][j].getUnit() instanceof HorseRider) {
+								map[i][j].setIcon(game.getAsset().getP2Rider());
+							} else if (map[i][j].getUnit() instanceof Warrior) {
+								map[i][j].setIcon(game.getAsset().getP2Warrior());
+							} else if(map[i][j] instanceof Lumber){
+								map[i][j].setIcon(game.getAsset().getLumber());
+							} else if(map[i][j] instanceof Stone){
+								map[i][j].setIcon(game.getAsset().getStone());
+							} else if(map[i][j] instanceof Horse){
+								map[i][j].setIcon(game.getAsset().getHorse());
+							} else if(map[i][j] instanceof Grass){
+								map[i][j].setIcon(game.getAsset().getGrass());
+							}
+						}
+					} else if (map[i][j].getBuilding() != null) {
+						if (map[i][j].getBuilding().getPlayer() == game.getPlayer1()) {
+							if(map[i][j].getBuilding() instanceof Settlement){
+								map[i][j].setIcon(game.getAsset().getP1Settlement());
+							} else if(map[i][j].getBuilding() instanceof Barracks){
+								map[i][j].setIcon(game.getAsset().getP1Barracks());
+							} else if(map[i][j].getBuilding() instanceof LumberMill){
+								map[i][j].setIcon(game.getAsset().getP1Lumbermill());
+							} else if(map[i][j].getBuilding() instanceof Quarry){
+								map[i][j].setIcon(game.getAsset().getP1Quarry());
+							} else if(map[i][j].getBuilding() instanceof Stable){
+								map[i][j].setIcon(game.getAsset().getP1Stable());
+							} 
+						} else {
+							if(map[i][j].getBuilding() instanceof Settlement){
+								map[i][j].setIcon(game.getAsset().getP2Settlement());
+							} else if(map[i][j].getBuilding() instanceof Barracks){
+								map[i][j].setIcon(game.getAsset().getP2Barracks());
+							} else if(map[i][j].getBuilding() instanceof LumberMill){
+								map[i][j].setIcon(game.getAsset().getP2Lumbermill());
+							} else if(map[i][j].getBuilding() instanceof Quarry){
+								map[i][j].setIcon(game.getAsset().getP2Quarry());
+							} else if(map[i][j].getBuilding() instanceof Stable){
+								map[i][j].setIcon(game.getAsset().getP2Stable());
+							}
+						}
 					} else {
-						if (map[i][j].getUnit() instanceof Hunter) {
-							map[i][j].setIcon(game.getAsset().getP2Hunter());
-						} else if (map[i][j].getUnit() instanceof Archer) {
-							map[i][j].setIcon(game.getAsset().getP2Archer());
-						} else if (map[i][j].getUnit() instanceof HorseRider) {
-							map[i][j].setIcon(game.getAsset().getP2Rider());
-						} else if (map[i][j].getUnit() instanceof Warrior) {
-							map[i][j].setIcon(game.getAsset().getP2Warrior());
-						} else if(map[i][j] instanceof Lumber){
+						if(map[i][j] instanceof Lumber){
 							map[i][j].setIcon(game.getAsset().getLumber());
 						} else if(map[i][j] instanceof Stone){
 							map[i][j].setIcon(game.getAsset().getStone());
@@ -649,47 +741,12 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 							map[i][j].setIcon(game.getAsset().getHorse());
 						} else if(map[i][j] instanceof Grass){
 							map[i][j].setIcon(game.getAsset().getGrass());
-						}
+						} //TODO fix road updating bug
 					}
-				} else if (map[i][j].getBuilding() != null) {
-					if (map[i][j].getBuilding().getPlayer() == game.getPlayer1()) {
-						if(map[i][j].getBuilding() instanceof Settlement){
-							map[i][j].setIcon(game.getAsset().getP1Settlement());
-						} else if(map[i][j].getBuilding() instanceof Barracks){
-							map[i][j].setIcon(game.getAsset().getP1Barracks());
-						} else if(map[i][j].getBuilding() instanceof LumberMill){
-							map[i][j].setIcon(game.getAsset().getP1Lumbermill());
-						} else if(map[i][j].getBuilding() instanceof Quarry){
-							map[i][j].setIcon(game.getAsset().getP1Quarry());
-						} else if(map[i][j].getBuilding() instanceof Stable){
-							map[i][j].setIcon(game.getAsset().getP1Stable());
-						} 
-					} else {
-						if(map[i][j].getBuilding() instanceof Settlement){
-							map[i][j].setIcon(game.getAsset().getP2Settlement());
-						} else if(map[i][j].getBuilding() instanceof Barracks){
-							map[i][j].setIcon(game.getAsset().getP2Barracks());
-						} else if(map[i][j].getBuilding() instanceof LumberMill){
-							map[i][j].setIcon(game.getAsset().getP2Lumbermill());
-						} else if(map[i][j].getBuilding() instanceof Quarry){
-							map[i][j].setIcon(game.getAsset().getP2Quarry());
-						} else if(map[i][j].getBuilding() instanceof Stable){
-							map[i][j].setIcon(game.getAsset().getP2Stable());
-						}
-					}
-				} else {
-					if(map[i][j] instanceof Lumber){
-						map[i][j].setIcon(game.getAsset().getLumber());
-					} else if(map[i][j] instanceof Stone){
-						map[i][j].setIcon(game.getAsset().getStone());
-					} else if(map[i][j] instanceof Horse){
-						map[i][j].setIcon(game.getAsset().getHorse());
-					} else if(map[i][j] instanceof Grass){
-						map[i][j].setIcon(game.getAsset().getGrass());
-					} //TODO fix road updating bug
 				}
 			}
 		}
+		getCorrectRoad();
 	}
 	public void getCorrectRoad() {
 		for (int i = 0; i < map.length; i++) {
@@ -781,7 +838,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 							map[i][j].setIcon(game.getAsset().getP2RoadLeftRight());
 						} else {
 							map[i][j].setIcon(game.getAsset().getP2RoadAll());
-						} // TODO player2 road top bottom right fix
+						}
 					}
 				}
 			}
