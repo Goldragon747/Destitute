@@ -781,7 +781,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 							map[i][j].setIcon(game.getAsset().getP2RoadLeftRight());
 						} else {
 							map[i][j].setIcon(game.getAsset().getP2RoadAll());
-						}
+						} // TODO player2 road top bottom right fix
 					}
 				}
 			}
