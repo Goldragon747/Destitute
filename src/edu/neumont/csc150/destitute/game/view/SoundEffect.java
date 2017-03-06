@@ -5,7 +5,8 @@ import java.net.URL;
 import javax.sound.sampled.*;
 
 public enum SoundEffect {
-Hold("hold.wav")
+
+
 
 
 }
