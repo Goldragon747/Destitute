@@ -6,5 +6,6 @@ public class Stone extends Tile{
 	public Stone(){
 		super.setResourceName(Resource.Stone);
 		super.setPassable(true);
+		super.setFog(true);
 	}
 }

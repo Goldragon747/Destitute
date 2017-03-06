@@ -6,5 +6,6 @@ public class Grass extends Tile{
 	public Grass() {
 		super.setResourceName(Resource.Grass);
 		super.setPassable(true);
+		super.setFog(true);
 	}
 }

@@ -12,6 +12,7 @@ public class Assets{
 	private ImageIcon stone;
 	private ImageIcon lumber;
 	private ImageIcon horse;
+	private ImageIcon fog;
 	
 	private ImageIcon p1Archer;
 	private ImageIcon p1Barracks;
@@ -64,6 +65,7 @@ public class Assets{
 		lumber = new ImageIcon("Assets\\resource\\" + mapsize + "x" + mapsize + "\\lumber.png");
 		stone = new ImageIcon("Assets\\resource\\" + mapsize + "x" + mapsize + "\\stone.png");
 		horse = new ImageIcon("Assets\\resource\\" + mapsize + "x" + mapsize + "\\horse.png");
+		fog = new ImageIcon("Assets\\resource\\" + mapsize + "x" + mapsize + "\\fog.png");
 		
 		p1Archer = new ImageIcon("Assets\\player1\\" + mapsize + "x" + mapsize + "\\p1_archer.png");
 		p1Barracks = new ImageIcon("Assets\\player1\\" + mapsize + "x" + mapsize + "\\p1_barracks.png");
@@ -103,7 +105,7 @@ public class Assets{
 		p2RoadLeftBottomRight = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_left_bottom_right.png");
 		p2RoadLeftRight = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_left_right.png");
 		p2RoadTopBottom = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_bottom.png");
-		p2RoadTopBottomRight = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_bottom_right.png");
+		p2RoadTopBottomRight = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_bottom_right.png");
 		p2RoadTopLeft = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_left.png");
 		p2RoadTopLeftBottom = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_left_bottom.png");
 		p2RoadTopLeftRight = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_left_right.png");
@@ -426,4 +428,7 @@ public class Assets{
 		return p2RoadTopRight;
 	}
 
+	public ImageIcon getFog() {
+		return fog;
+	}
 }

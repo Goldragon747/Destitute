@@ -6,5 +6,6 @@ public class Lumber extends Tile{
 	public Lumber() {
 		super.setResourceName(Resource.Lumber);
 		super.setPassable(true);
+		super.setFog(true);
 	}
 }
