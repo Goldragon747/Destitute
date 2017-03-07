@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
@@ -277,7 +278,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		jButton8.setPreferredSize(new java.awt.Dimension(119, 119));
 		jButton8.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				calvaryButtonActionPerformed(evt);
+				horseRiderButtonActionPerformed(evt);
 			}
 		});
 
@@ -890,6 +891,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				barrack.getStoneCost(), barrack.getHorseCost())) {
 			game.handlePurchaseOfBuilding(barrack, barrack.getMarkCost(), barrack.getLumberCost(),
 					barrack.getStoneCost(), barrack.getHorseCost());
+			game.getAsset().barracksCreationMusic();
 		}
 		getCorrectRoad();
 		updateResources();
@@ -897,10 +899,14 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 
 	private void roadButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		Road road = new Road();
+		int pMoney = game.getCurrentPlayer().getMarks();
 		if (game.handleBuildingBuildings(Resource.Grass, road.getMarkCost(), road.getLumberCost(), road.getStoneCost(),
 				road.getHorseCost())) {
 			game.handlePurchaseOfBuilding(road, road.getMarkCost(), road.getLumberCost(), road.getStoneCost(),
 					road.getHorseCost());
+			if(pMoney > game.getCurrentPlayer().getMarks()){
+			game.getAsset().roadCreationMusic();
+			}
 		}
 		getCorrectRoad();
 		updateResources();
@@ -924,10 +930,14 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		updateResources();
 	}
 
-	private void calvaryButtonActionPerformed(java.awt.event.ActionEvent evt) {
+	private void horseRiderButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		int pMoney = game.getCurrentPlayer().getMarks();
 		HorseRider horseRider = new HorseRider();
 		game.handlePurchaseOfUnit(horseRider, horseRider.getMarkCost(), horseRider.getLumberCost(),
 				horseRider.getStoneCost(), horseRider.getHorseCost());
+		if(pMoney > game.getCurrentPlayer().getMarks()){
+			game.getAsset().horseRiderCreationMusic();
+		}
 		updateResources();
 	}
 
@@ -944,6 +954,12 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		titleJPanel2.setVisible(false);
 		jPanel1.setVisible(true);
 		boardPanel.setVisible(true);
+		try {
+			game.getAsset().backgroundMusic();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }                                             
 
     private void titleJButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                              
