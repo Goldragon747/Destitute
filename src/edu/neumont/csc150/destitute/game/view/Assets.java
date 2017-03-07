@@ -1,5 +1,6 @@
 package edu.neumont.csc150.destitute.game.view;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -649,8 +650,28 @@ public class Assets{
 	}
 	
 	//---------------------------------------GENERAL------------------------------------------//
+	public void stopMusic(){
+		AudioPlayer.player.stop();
+	}
 	public void backgroundMusic() throws IOException{
 		String filename = "Assets\\Music\\Background\\main.wav";
+	    InputStream in = null;
+	    try {
+	        in = new FileInputStream(filename);
+	    } catch (FileNotFoundException ex) {
+	        System.out.println("File not found");
+	    }
+	    try {
+	        AudioStream s = new AudioStream(in);
+	        
+	        AudioPlayer.player.start(s);
+	    } catch (IOException ex) {
+	        System.out.println(ex.getMessage());
+	    }
+	    
+	}
+	public void titleScreenMusic() throws IOException{
+		File filename = new File("Assets\\Music\\TitleScreen\\main.wav");
 	    InputStream in = null;
 	    try {
 	        in = new FileInputStream(filename);
@@ -695,7 +716,6 @@ public class Assets{
 	    }
 	    try {
 	        AudioStream s = new AudioStream(in);
-	        AudioData MD;
 	        AudioPlayer.player.start(s);
 	    } catch (IOException ex) {
 	        System.out.println(ex.getMessage());
@@ -736,7 +756,6 @@ public class Assets{
 	    }
 	    try {
 	        AudioStream s = new AudioStream(in);
-	        AudioData MD;
 	        AudioPlayer.player.start(s);
 	    } catch (IOException ex) {
 	        System.out.println(ex.getMessage());
@@ -753,7 +772,6 @@ public class Assets{
 	    }
 	    try {
 	        AudioStream s = new AudioStream(in);
-	        AudioData MD;
 	        AudioPlayer.player.start(s);
 	    } catch (IOException ex) {
 	        System.out.println(ex.getMessage());
@@ -763,8 +781,8 @@ public class Assets{
 		
 	}
 	public void warriorCreationMusic(){
-		
-		String filename = "Assets\\Music\\Road\\main.wav";
+		//TODO put real sound
+		String filename = "Assets\\Music\\Warrior\\main.wav";
 	    InputStream in = null;
 	    try {
 	        in = new FileInputStream(filename);
