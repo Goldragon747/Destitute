@@ -653,7 +653,7 @@ public class Assets{
 	
 	//---------------------------------------GENERAL------------------------------------------//
 	public void stopMusic(){
-		AudioPlayer.player.stop();
+		AudioPlayer.player.destroy();
 	}
 	public void backgroundMusic() throws IOException{
 		String filename = "Assets\\Music\\Background\\main.wav";
@@ -673,7 +673,7 @@ public class Assets{
 	    
 	}
 	public void titleScreenMusic() throws IOException{
-		File filename = new File("Assets\\Music\\TitleScreen\\main.wav");
+		String filename = "Assets\\Music\\TitleScreen\\main.wav";
 	    InputStream in = null;
 	    try {
 	        in = new FileInputStream(filename);

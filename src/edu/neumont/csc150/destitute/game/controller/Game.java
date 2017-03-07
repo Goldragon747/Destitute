@@ -2,7 +2,6 @@ package edu.neumont.csc150.destitute.game.controller;
 
 import java.util.Random;
 
-import javax.swing.Timer;
 
 import edu.neumont.csc150.destitute.game.model.Buyable;
 import edu.neumont.csc150.destitute.game.model.Player;
