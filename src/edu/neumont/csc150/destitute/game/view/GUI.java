@@ -83,7 +83,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	private javax.swing.JLabel jLabel7;
 	private javax.swing.JLabel jLabel8;
 	private javax.swing.JLabel jLabel9;
-	private javax.swing.JPanel jPanel1;
+	private javax.swing.JLabel jPanel1;
 	private javax.swing.JPanel boardPanel;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JScrollPane jScrollPane2;
@@ -135,7 +135,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 
 	private void initComponents() {
 		jScrollPane2 = new javax.swing.JScrollPane();
-		jPanel1 = new javax.swing.JPanel();
+		jPanel1 = new javax.swing.JLabel();
 		playerTurnLabel = new javax.swing.JLabel();
 		jLabel2 = new javax.swing.JLabel();
 		jLabel4 = new javax.swing.JLabel();
@@ -176,7 +176,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Destitute");
 		setPreferredSize(new java.awt.Dimension(2596, 1320));
-
+		jPanel1.setIcon(game.getAsset().getMenuBackground());
 		jPanel1.setPreferredSize(new java.awt.Dimension(584, 1300));
 
 		playerTurnLabel.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
@@ -279,6 +279,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 
 		jButton10.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
 		jButton10.setText("End Turn");
+		jButton10.setForeground(Color.white);
 		jButton10.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				endTurnActionPerformed(evt);
@@ -751,6 +752,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
         pack();
 	}
 	public void player1BuyIcons(){
+		jButton10.setBackground(new Color(81,97,251));
 		jLabel3.setIcon(game.getAsset().getMarkIcon()); 
 		jLabel5.setIcon(game.getAsset().getLumberIcon());
 		jLabel7.setIcon(game.getAsset().getStoneIcon());
@@ -766,6 +768,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		jButton1.setIcon(game.getAsset().getBuyIconP1Lumbermill());
 	}
 	public void player2BuyIcons(){
+		jButton10.setBackground(new Color(205,42,21));
 		jLabel3.setIcon(game.getAsset().getMarkIcon()); 
 		jLabel5.setIcon(game.getAsset().getLumberIcon());
 		jLabel7.setIcon(game.getAsset().getStoneIcon());
