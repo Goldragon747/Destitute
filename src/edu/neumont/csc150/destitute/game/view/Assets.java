@@ -105,11 +105,16 @@ public class Assets{
 	private String titleScreenMusic;
 	private String warriorMusic;
 	private String backgroundMusic;
+	private String horseRiderMusic;
+	private String archerCreationMusic;
 
 	public Assets(int mapsize) {
 		titleScreenMusic = "Assets\\Music\\TitleScreen\\main.wav";
 		warriorMusic = "Assets\\Music\\Warrior\\main.wav";
-		setBackgroundMusic("Assets\\Music\\Background\\main.wav");
+		backgroundMusic = "Assets\\Music\\Background\\main.wav";
+		horseRiderMusic = "Assets\\Music\\HorseRider\\main.wav";
+		archerCreationMusic =  "Assets\\Music\\Archer\\main.wav";
+		
 
 		titleScreen = new ImageIcon("Assets\\Backgrounds\\titlescreen.png");
 		mainBackground = new ImageIcon("Assets\\Backgrounds\\mainbackground.png");
@@ -712,7 +717,8 @@ public class Assets{
 			e.printStackTrace();
 			throw new RuntimeException("Sound: Line Unavailable Exception Error: " + e);
 		}
-		AudioPlayer.player.destroy();	}
+		}
+		
 
 	public void play() {
 		clip.start();
@@ -775,21 +781,6 @@ public class Assets{
 	
 
 	// ---------------------------------------UNITS------------------------------------------//
-	public void horseRiderCreationMusic() {
-		String filename = "Assets\\Music\\HorseRider\\main.wav";
-		InputStream in = null;
-		try {
-			in = new FileInputStream(filename);
-		} catch (FileNotFoundException ex) {
-			System.out.println("File not found");
-		}
-		try {
-			AudioStream s = new AudioStream(in);
-			AudioPlayer.player.start(s);
-		} catch (IOException ex) {
-			System.out.println(ex.getMessage());
-		}
-	}
 
 	public void archerCreationMusic() {
 		String filename = "Assets\\Music\\Archer\\main.wav";
@@ -834,7 +825,12 @@ public class Assets{
 	public String getBackgroundMusic() {
 		return backgroundMusic;
 	}
-
+	public String getHorseRiderMusic() {
+		return horseRiderMusic;
+	}
+	public String getArcherCreationMusic() {
+		return archerCreationMusic;
+	}
 	
 
 	

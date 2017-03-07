@@ -963,8 +963,9 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		game.handlePurchaseOfUnit(archer, archer.getMarkCost(), archer.getLumberCost(), archer.getStoneCost(),
 				archer.getHorseCost());
 		if(pMoney > game.getCurrentPlayer().getMarks()){
-			game.getAsset().archerCreationMusic();
-			}
+			game.getAsset().Song(game.getAsset().getArcherCreationMusic());
+			game.getAsset().play();
+		}
 		updateResources();
 	}
 
@@ -974,7 +975,8 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		game.handlePurchaseOfUnit(horseRider, horseRider.getMarkCost(), horseRider.getLumberCost(),
 				horseRider.getStoneCost(), horseRider.getHorseCost());
 		if(pMoney > game.getCurrentPlayer().getMarks()){
-			game.getAsset().horseRiderCreationMusic();
+			game.getAsset().Song(game.getAsset().getHorseRiderMusic());
+			game.getAsset().play();
 		}
 		updateResources();
 	}
@@ -985,7 +987,8 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		game.handlePurchaseOfUnit(warrior, warrior.getMarkCost(), warrior.getLumberCost(), warrior.getStoneCost(),
 				warrior.getHorseCost());
 		if(pMoney > game.getCurrentPlayer().getMarks()){
-			game.getAsset().Song("Assets\\Music\\Warrior\\main.wav");
+			game.getAsset().Song(game.getAsset().getWarriorMusic());
+			game.getAsset().play();
 		}
 		updateResources();
 	}
@@ -997,7 +1000,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		jPanel1.setVisible(true);
 		boardPanel.setVisible(true);
 		game.getAsset().stop();
-		game.getAsset().Song("Assets\\Music\\Background\\main.wav");
+		game.getAsset().Song(game.getAsset().getBackgroundMusic());
 		game.getAsset().loop();
     }                                             
 
