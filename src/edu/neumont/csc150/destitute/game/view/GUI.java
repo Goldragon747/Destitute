@@ -1096,9 +1096,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 								map[i][j].setIcon(game.getAsset().getP1Quarry());
 							} else if (map[i][j].getBuilding() instanceof Stable) {
 								map[i][j].setIcon(game.getAsset().getP1Stable());
-							} else if (map[i][j].getBuilding() instanceof Road) {
-								getCorrectRoad();
-							}
+							} 
 						} else {
 							if (map[i][j].getBuilding() instanceof Settlement) {
 								map[i][j].setIcon(game.getAsset().getP2Settlement());
@@ -1110,9 +1108,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 								map[i][j].setIcon(game.getAsset().getP2Quarry());
 							} else if (map[i][j].getBuilding() instanceof Stable) {
 								map[i][j].setIcon(game.getAsset().getP2Stable());
-							} else if (map[i][j].getBuilding() instanceof Road) {
-								getCorrectRoad();
-							}
+							} 
 						}
 					} else {
 						if (map[i][j] instanceof Lumber) {
@@ -1128,7 +1124,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				}
 			}
 		}
-		
+		getCorrectRoad();
 	}
 
 	public void getCorrectRoad() {
@@ -1165,7 +1161,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				}
 				;
 				if (game.getCurrentPlayer() == game.getPlayer1()) {
-					if (isPlayersRoad && map[i][j].getBuilding() instanceof Road) {
+					if (isPlayersRoad && map[i][j].getBuilding() instanceof Road && map[i][j].getUnit() == null) {
 						if (isPlayerRoadNorth && isPlayerRoadSouth && isPlayerRoadEast && isPlayerRoadWest) {
 							map[i][j].setIcon(game.getAsset().getP1RoadAll());
 						} else if (isPlayerRoadNorth && isPlayerRoadSouth && isPlayerRoadEast) {

@@ -69,6 +69,9 @@ public class Assets{
 	private ImageIcon p2RoadTopRight;
 	
 	private ImageIcon markIcon;
+	private ImageIcon lumberIcon;
+	private ImageIcon stoneIcon;
+	private ImageIcon horsesIcon;
 	
 
 	public Assets(int mapsize) {
@@ -123,6 +126,8 @@ public class Assets{
 		p2RoadTopLeftBottom = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_left_bottom.png");
 		p2RoadTopLeftRight = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_left_right.png");
 		p2RoadTopRight = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_right.png");
+	
+		
 	} 
 
 	/**
