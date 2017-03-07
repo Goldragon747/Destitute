@@ -5,25 +5,32 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.BooleanControl;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 
 import sun.audio.AudioData;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 
-public class Assets{
+public class Assets {
 	private ImageIcon titleScreen;
 	private ImageIcon mainBackground;
 	private ImageIcon menuBackground;
-	
+
 	private ImageIcon water;
 	private ImageIcon grass;
 	private ImageIcon stone;
 	private ImageIcon lumber;
 	private ImageIcon horse;
 	private ImageIcon fog;
-	
+
 	private ImageIcon p1Archer;
 	private ImageIcon p1Barracks;
 	private ImageIcon p1Hunter;
@@ -33,7 +40,7 @@ public class Assets{
 	private ImageIcon p1Settlement;
 	private ImageIcon p1Stable;
 	private ImageIcon p1Warrior;
-	
+
 	private ImageIcon p2Archer;
 	private ImageIcon p2Barracks;
 	private ImageIcon p2Hunter;
@@ -43,7 +50,7 @@ public class Assets{
 	private ImageIcon p2Settlement;
 	private ImageIcon p2Stable;
 	private ImageIcon p2Warrior;
-	
+
 	private ImageIcon p1RoadAll;
 	private ImageIcon p1RoadBottomRight;
 	private ImageIcon p1RoadLeftBottom;
@@ -67,7 +74,7 @@ public class Assets{
 	private ImageIcon p2RoadTopLeftBottom;
 	private ImageIcon p2RoadTopLeftRight;
 	private ImageIcon p2RoadTopRight;
-	
+
 	private ImageIcon markIcon;
 	private ImageIcon lumberIcon;
 	private ImageIcon stoneIcon;
@@ -77,36 +84,44 @@ public class Assets{
 	private ImageIcon buyIconP1Archer;
 	private ImageIcon buyIconP1Warrior;
 	private ImageIcon buyIconP1HorseRider;
-	
+
 	private ImageIcon buyIconP1Lumbermill;
 	private ImageIcon buyIconP1Barracks;
 	private ImageIcon buyIconP1Quarry;
 	private ImageIcon buyIconP1Road;
 	private ImageIcon buyIconP1Stable;
-	
+
 	private ImageIcon buyIconP2Hunter;
 	private ImageIcon buyIconP2Archer;
 	private ImageIcon buyIconP2Warrior;
 	private ImageIcon buyIconP2HorseRider;
-	
+
 	private ImageIcon buyIconP2Lumbermill;
 	private ImageIcon buyIconP2Barracks;
 	private ImageIcon buyIconP2Quarry;
 	private ImageIcon buyIconP2Road;
 	private ImageIcon buyIconP2Stable;
 
+	private String titleScreenMusic;
+	private String warriorMusic;
+	private String backgroundMusic;
+
 	public Assets(int mapsize) {
+		titleScreenMusic = "Assets\\Music\\TitleScreen\\main.wav";
+		warriorMusic = "Assets\\Music\\Warrior\\main.wav";
+		setBackgroundMusic("Assets\\Music\\Background\\main.wav");
+
 		titleScreen = new ImageIcon("Assets\\Backgrounds\\titlescreen.png");
 		mainBackground = new ImageIcon("Assets\\Backgrounds\\mainbackground.png");
 		menuBackground = new ImageIcon("Assets\\Backgrounds\\menubackground.png");
-		
+
 		water = new ImageIcon("Assets\\resource\\" + mapsize + "x" + mapsize + "\\water.png");
 		grass = new ImageIcon("Assets\\resource\\" + mapsize + "x" + mapsize + "\\grass.png");
 		lumber = new ImageIcon("Assets\\resource\\" + mapsize + "x" + mapsize + "\\lumber.png");
 		stone = new ImageIcon("Assets\\resource\\" + mapsize + "x" + mapsize + "\\stone.png");
 		horse = new ImageIcon("Assets\\resource\\" + mapsize + "x" + mapsize + "\\horse.png");
 		fog = new ImageIcon("Assets\\resource\\" + mapsize + "x" + mapsize + "\\fog.png");
-		
+
 		p1Archer = new ImageIcon("Assets\\player1\\" + mapsize + "x" + mapsize + "\\p1_archer.png");
 		p1Barracks = new ImageIcon("Assets\\player1\\" + mapsize + "x" + mapsize + "\\p1_barracks.png");
 		p1Hunter = new ImageIcon("Assets\\player1\\" + mapsize + "x" + mapsize + "\\p1_hunter.png");
@@ -116,7 +131,7 @@ public class Assets{
 		p1Settlement = new ImageIcon("Assets\\player1\\" + mapsize + "x" + mapsize + "\\p1_settlement.png");
 		p1Stable = new ImageIcon("Assets\\player1\\" + mapsize + "x" + mapsize + "\\p1_stable.png");
 		p1Warrior = new ImageIcon("Assets\\player1\\" + mapsize + "x" + mapsize + "\\p1_warrior.png");
-		
+
 		p2Archer = new ImageIcon("Assets\\player2\\" + mapsize + "x" + mapsize + "\\p2_archer.png");
 		p2Barracks = new ImageIcon("Assets\\player2\\" + mapsize + "x" + mapsize + "\\p2_barracks.png");
 		p2Hunter = new ImageIcon("Assets\\player2\\" + mapsize + "x" + mapsize + "\\p2_hunter.png");
@@ -126,58 +141,77 @@ public class Assets{
 		p2Settlement = new ImageIcon("Assets\\player2\\" + mapsize + "x" + mapsize + "\\p2_settlement.png");
 		p2Stable = new ImageIcon("Assets\\player2\\" + mapsize + "x" + mapsize + "\\p2_stable.png");
 		p2Warrior = new ImageIcon("Assets\\player2\\" + mapsize + "x" + mapsize + "\\p2_warrior.png");
-		
+
 		p1RoadAll = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_all.png");
-		p1RoadBottomRight = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_bottom_right.png");
-		p1RoadLeftBottom = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_left_bottom.png");
-		p1RoadLeftBottomRight = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_left_bottom_right.png");
-		p1RoadLeftRight = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_left_right.png");
-		p1RoadTopBottom = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_top_bottom.png");
-		p1RoadTopBottomRight = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_top_bottom_right.png");
+		p1RoadBottomRight = new ImageIcon(
+				"Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_bottom_right.png");
+		p1RoadLeftBottom = new ImageIcon(
+				"Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_left_bottom.png");
+		p1RoadLeftBottomRight = new ImageIcon(
+				"Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_left_bottom_right.png");
+		p1RoadLeftRight = new ImageIcon(
+				"Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_left_right.png");
+		p1RoadTopBottom = new ImageIcon(
+				"Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_top_bottom.png");
+		p1RoadTopBottomRight = new ImageIcon(
+				"Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_top_bottom_right.png");
 		p1RoadTopLeft = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_top_left.png");
-		p1RoadTopLeftBottom = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_top_left_bottom.png");
-		p1RoadTopLeftRight = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_top_left_right.png");
-		p1RoadTopRight = new ImageIcon("Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_top_right.png");
+		p1RoadTopLeftBottom = new ImageIcon(
+				"Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_top_left_bottom.png");
+		p1RoadTopLeftRight = new ImageIcon(
+				"Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_top_left_right.png");
+		p1RoadTopRight = new ImageIcon(
+				"Assets\\player1\\roads\\" + mapsize + "x" + mapsize + "\\p1_road_top_right.png");
 
 		p2RoadAll = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_all.png");
-		p2RoadBottomRight = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_bottom_right.png");
-		p2RoadLeftBottom = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_left_bottom.png");
-		p2RoadLeftBottomRight = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_left_bottom_right.png");
-		p2RoadLeftRight = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_left_right.png");
-		p2RoadTopBottom = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_bottom.png");
-		p2RoadTopBottomRight = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_bottom_right.png");
+		p2RoadBottomRight = new ImageIcon(
+				"Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_bottom_right.png");
+		p2RoadLeftBottom = new ImageIcon(
+				"Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_left_bottom.png");
+		p2RoadLeftBottomRight = new ImageIcon(
+				"Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_left_bottom_right.png");
+		p2RoadLeftRight = new ImageIcon(
+				"Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_left_right.png");
+		p2RoadTopBottom = new ImageIcon(
+				"Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_bottom.png");
+		p2RoadTopBottomRight = new ImageIcon(
+				"Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_bottom_right.png");
 		p2RoadTopLeft = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_left.png");
-		p2RoadTopLeftBottom = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_left_bottom.png");
-		p2RoadTopLeftRight = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_left_right.png");
-		p2RoadTopRight = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_right.png");
-	
+		p2RoadTopLeftBottom = new ImageIcon(
+				"Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_left_bottom.png");
+		p2RoadTopLeftRight = new ImageIcon(
+				"Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_left_right.png");
+		p2RoadTopRight = new ImageIcon(
+				"Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_right.png");
+
 		markIcon = new ImageIcon("Assets\\Icons\\mark_icon.png");
 		lumberIcon = new ImageIcon("Assets\\Icons\\lumber_icon.png");
 		stoneIcon = new ImageIcon("Assets\\Icons\\stone_icon.png");
 		horsesIcon = new ImageIcon("Assets\\Icons\\horse_icon.png");
-		
+
 		buyIconP1Hunter = new ImageIcon("Assets\\Icons\\p1_hunter.png");
 		buyIconP1Archer = new ImageIcon("Assets\\Icons\\p1_archer.png");
 		buyIconP1Warrior = new ImageIcon("Assets\\Icons\\p1_warrior.png");
 		buyIconP1HorseRider = new ImageIcon("Assets\\Icons\\p1_rider.png");
-		
+
 		buyIconP1Lumbermill = new ImageIcon("Assets\\Icons\\p1_lumbermill.png");
 		buyIconP1Barracks = new ImageIcon("Assets\\Icons\\p1_barracks.png");
 		buyIconP1Quarry = new ImageIcon("Assets\\Icons\\p1_quarry.png");
 		buyIconP1Road = new ImageIcon("Assets\\Icons\\p1_road.png");
 		buyIconP1Stable = new ImageIcon("Assets\\Icons\\p1_stable.png");
-		
+
 		buyIconP2Hunter = new ImageIcon("Assets\\Icons\\p2_hunter.png");
 		buyIconP2Archer = new ImageIcon("Assets\\Icons\\p2_archer.png");
 		buyIconP2Warrior = new ImageIcon("Assets\\Icons\\p2_warrior.png");
 		buyIconP2HorseRider = new ImageIcon("Assets\\Icons\\p2_rider.png");
-		
+
 		buyIconP2Lumbermill = new ImageIcon("Assets\\Icons\\p2_lumbermill.png");
 		buyIconP2Barracks = new ImageIcon("Assets\\Icons\\p2_barracks.png");
 		buyIconP2Quarry = new ImageIcon("Assets\\Icons\\p2_quarry.png");
 		buyIconP2Road = new ImageIcon("Assets\\Icons\\p2_road.png");
 		buyIconP2Stable = new ImageIcon("Assets\\Icons\\p2_stable.png");
-	} 
+	}
+
 	/**
 	 * @return the markIcon
 	 */
@@ -331,6 +365,7 @@ public class Assets{
 	public ImageIcon getBuyIconP2Stable() {
 		return buyIconP2Stable;
 	}
+
 	/**
 	 * @return the water
 	 */
@@ -491,7 +526,6 @@ public class Assets{
 	public ImageIcon getP2Warrior() {
 		return p2Warrior;
 	}
-	
 
 	/**
 	 * @return the p1RoadAll
@@ -650,162 +684,159 @@ public class Assets{
 	public ImageIcon getFog() {
 		return fog;
 	}
-	
-	//---------------------------------------GENERAL------------------------------------------//
-	public void stopMusic(){
+
+	// ---------------------------------------GENERAL------------------------------------------//
+	private Clip clip;
+
+	public void Song(String fileName) {
+		try {
+			File file = new File(fileName);
+			if (file.exists()) {
+				AudioInputStream sound = AudioSystem.getAudioInputStream(file);
+
+				clip = AudioSystem.getClip();
+				clip.open(sound);
+			} else {
+				throw new RuntimeException("Sound: file not found: " + fileName);
+			}
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Sound: Malformed URL: " + e);
+		} catch (UnsupportedAudioFileException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Sound: Unsupported Audio File: " + e);
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Sound: Input/Output Error: " + e);
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Sound: Line Unavailable Exception Error: " + e);
+		}
 	}
-	public void backgroundMusic() throws IOException{
-		String filename = "Assets\\Music\\Background\\main.wav";
-	    InputStream in = null;
-	    try {
-	        in = new FileInputStream(filename);
-	    } catch (FileNotFoundException ex) {
-	        System.out.println("File not found");
-	    }
-	    try {
-	        AudioStream s = new AudioStream(in);
-	        
-	        AudioPlayer.player.start(s);
-	    } catch (IOException ex) {
-	        System.out.println(ex.getMessage());
-	    }
-	    
+
+	public void play() {
+		clip.start();
+		clip.setFramePosition(0);	
 	}
-	public void titleScreenMusic() throws IOException{
-		String filename = "Assets\\Music\\TitleScreen\\main.wav";
-	    InputStream in = null;
-	    try {
-	        in = new FileInputStream(filename);
-	    } catch (FileNotFoundException ex) {
-	        System.out.println("File not found");
-	    }
-	    try {
-	        AudioStream s = new AudioStream(in);
-	        
-	        AudioPlayer.player.start(s);
-	    } catch (IOException ex) {
-	        System.out.println(ex.getMessage());
-	    }
-	    
+
+	public void loop() {
+		clip.loop(Clip.LOOP_CONTINUOUSLY);
 	}
-	
-	//---------------------------------------BUILDINGS------------------------------------------//
-	public void lumberMillCreationMusic(){
+
+	public void stop() {
+		BooleanControl mute = (BooleanControl) clip.getControl(BooleanControl.Type.MUTE);
+		mute.setValue(true);
+		clip.loop(0);
+		clip.flush();
+	}
+
+	// ---------------------------------------BUILDINGS------------------------------------------//
+	public void lumberMillCreationMusic() {
 		String filename = "Assets\\Music\\LumberMill\\main.wav";
-	    InputStream in = null;
-	    try {
-	        in = new FileInputStream(filename);
-	    } catch (FileNotFoundException ex) {
-	        System.out.println("File not found");
-	    }
-	    try {
-	        AudioStream s = new AudioStream(in);
-	        AudioData MD;
-	        AudioPlayer.player.start(s);
-	    } catch (IOException ex) {
-	        System.out.println(ex.getMessage());
-	    }
+		InputStream in = null;
+		try {
+			in = new FileInputStream(filename);
+		} catch (FileNotFoundException ex) {
+			System.out.println("File not found");
+		}
+		try {
+			AudioStream s = new AudioStream(in);
+			AudioData MD;
+			AudioPlayer.player.start(s);
+		} catch (IOException ex) {
+			System.out.println(ex.getMessage());
+		}
 	}
-	
-	public void barracksCreationMusic(){
+
+	public void barracksCreationMusic() {
 		String filename = "Assets\\Music\\Barracks\\main.wav";
-	    InputStream in = null;
-	    try {
-	        in = new FileInputStream(filename);
-	    } catch (FileNotFoundException ex) {
-	        System.out.println("File not found");
-	    }
-	    try {
-	        AudioStream s = new AudioStream(in);
-	        AudioPlayer.player.start(s);
-	    } catch (IOException ex) {
-	        System.out.println(ex.getMessage());
-	    }
+		InputStream in = null;
+		try {
+			in = new FileInputStream(filename);
+		} catch (FileNotFoundException ex) {
+			System.out.println("File not found");
+		}
+		try {
+			AudioStream s = new AudioStream(in);
+			AudioPlayer.player.start(s);
+		} catch (IOException ex) {
+			System.out.println(ex.getMessage());
+		}
 	}
-	public void quarryCreationMusic(){
-		//TODO
+
+	public void quarryCreationMusic() {
+		// TODO
 	}
+
+	public void stableCreationMusic() {
+
+	}
+
 	
-	public void stableCreationMusic(){
-		
-	}
-	public void roadCreationMusic(){
-		String filename = "Assets\\Music\\Road\\main.wav";
-	    InputStream in = null;
-	    try {
-	        in = new FileInputStream(filename);
-	    } catch (FileNotFoundException ex) {
-	        System.out.println("File not found");
-	    }
-	    try {
-	        AudioStream s = new AudioStream(in);
-	        AudioPlayer.player.start(s);
-	    } catch (IOException ex) {
-	        System.out.println(ex.getMessage());
-	    }
-	}
-	
-	
-	//---------------------------------------UNITS------------------------------------------//
-	public void horseRiderCreationMusic(){
+
+	// ---------------------------------------UNITS------------------------------------------//
+	public void horseRiderCreationMusic() {
 		String filename = "Assets\\Music\\HorseRider\\main.wav";
-	    InputStream in = null;
-	    try {
-	        in = new FileInputStream(filename);
-	    } catch (FileNotFoundException ex) {
-	        System.out.println("File not found");
-	    }
-	    try {
-	        AudioStream s = new AudioStream(in);
-	        AudioPlayer.player.start(s);
-	    } catch (IOException ex) {
-	        System.out.println(ex.getMessage());
-	    }
+		InputStream in = null;
+		try {
+			in = new FileInputStream(filename);
+		} catch (FileNotFoundException ex) {
+			System.out.println("File not found");
+		}
+		try {
+			AudioStream s = new AudioStream(in);
+			AudioPlayer.player.start(s);
+		} catch (IOException ex) {
+			System.out.println(ex.getMessage());
+		}
 	}
-	
-	public void archerCreationMusic(){
+
+	public void archerCreationMusic() {
 		String filename = "Assets\\Music\\Archer\\main.wav";
-	    InputStream in = null;
-	    try {
-	        in = new FileInputStream(filename);
-	    } catch (FileNotFoundException ex) {
-	        System.out.println("File not found");
-	    }
-	    try {
-	        AudioStream s = new AudioStream(in);
-	        AudioPlayer.player.start(s);
-	    } catch (IOException ex) {
-	        System.out.println(ex.getMessage());
-	    }
+		InputStream in = null;
+		try {
+			in = new FileInputStream(filename);
+		} catch (FileNotFoundException ex) {
+			System.out.println("File not found");
+		}
+		try {
+			AudioStream s = new AudioStream(in);
+			AudioPlayer.player.start(s);
+		} catch (IOException ex) {
+			System.out.println(ex.getMessage());
+		}
 	}
-	public void hunterCreationMusic(){
-		
-	}
-	public void warriorCreationMusic(){
-		//TODO put real sound
-		String filename = "Assets\\Music\\Warrior\\main.wav";
-	    InputStream in = null;
-	    try {
-	        in = new FileInputStream(filename);
-	    } catch (FileNotFoundException ex) {
-	        System.out.println("File not found");
-	    }
-	    try {
-	        AudioStream s = new AudioStream(in);
-	        AudioPlayer.player.start(s);
-	    } catch (IOException ex) {
-	        System.out.println(ex.getMessage());
-	    }
+
+	public void hunterCreationMusic() {
+
 	}
 
 	public ImageIcon getTitleScreen() {
 		return titleScreen;
 	}
+
 	public ImageIcon getMainBackround() {
 		return mainBackground;
 	}
+
 	public ImageIcon getMenuBackground() {
 		return menuBackground;
 	}
+
+	public String getTitleScreenMusic() {
+		return titleScreenMusic;
+	}
+
+	public String getWarriorMusic() {
+		return warriorMusic;
+	}
+
+	public String getBackgroundMusic() {
+		return backgroundMusic;
+	}
+
+	
+
+	
 
 }
