@@ -66,7 +66,9 @@ public class Assets{
 	private ImageIcon p2RoadTopLeft;
 	private ImageIcon p2RoadTopLeftBottom;
 	private ImageIcon p2RoadTopLeftRight;
-	private ImageIcon p2RoadTopRight;	
+	private ImageIcon p2RoadTopRight;
+	
+	private ImageIcon markIcon;
 	
 
 	public Assets(int mapsize) {

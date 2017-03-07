@@ -1050,7 +1050,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	}
 
 	public void refreshMapTileIcons() {
-		getCorrectRoad();
+		
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map.length; j++) {
 				if (!map[i][j].isFog()) {
@@ -1096,6 +1096,8 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 								map[i][j].setIcon(game.getAsset().getP1Quarry());
 							} else if (map[i][j].getBuilding() instanceof Stable) {
 								map[i][j].setIcon(game.getAsset().getP1Stable());
+							} else if (map[i][j].getBuilding() instanceof Road) {
+								getCorrectRoad();
 							}
 						} else {
 							if (map[i][j].getBuilding() instanceof Settlement) {
@@ -1108,6 +1110,8 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 								map[i][j].setIcon(game.getAsset().getP2Quarry());
 							} else if (map[i][j].getBuilding() instanceof Stable) {
 								map[i][j].setIcon(game.getAsset().getP2Stable());
+							} else if (map[i][j].getBuilding() instanceof Road) {
+								getCorrectRoad();
 							}
 						}
 					} else {
@@ -1124,6 +1128,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				}
 			}
 		}
+		
 	}
 
 	public void getCorrectRoad() {
