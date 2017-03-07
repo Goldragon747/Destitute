@@ -947,6 +947,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	// ---------------------------------------------------\\ UNITS
 	// //---------------------------------------------------\\
 	private void hunterButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		
 		Hunter hunter = new Hunter();
 		game.handlePurchaseOfUnit(hunter, hunter.getMarkCost(), hunter.getLumberCost(), hunter.getStoneCost(),
 				hunter.getHorseCost());
@@ -954,9 +955,13 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	}
 
 	private void archerActionPerformed(java.awt.event.ActionEvent evt) {
+		int pMoney = game.getCurrentPlayer().getMarks();
 		Archer archer = new Archer();
 		game.handlePurchaseOfUnit(archer, archer.getMarkCost(), archer.getLumberCost(), archer.getStoneCost(),
 				archer.getHorseCost());
+		if(pMoney > game.getCurrentPlayer().getMarks()){
+			game.getAsset().archerCreationMusic();
+			}
 		updateResources();
 	}
 
