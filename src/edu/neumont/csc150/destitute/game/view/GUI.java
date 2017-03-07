@@ -2,6 +2,7 @@ package edu.neumont.csc150.destitute.game.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -102,7 +103,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	private javax.swing.JButton titleJButton5;
 	private javax.swing.JButton titleJButton6;
 	private javax.swing.JLabel titleJLabel1;
-	private javax.swing.JPanel titleJPanel2;
+	private javax.swing.JLabel titleJPanel2;
 
 	/*
 	 * private javax.swing.JButton lumberMillButton; private javax.swing.JButton
@@ -663,7 +664,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		pack();
 	}
 	public void initTitleScreen() {
-		titleJPanel2 = new javax.swing.JPanel();
+		titleJPanel2 = new javax.swing.JLabel();
         titleJLabel1 = new javax.swing.JLabel();
         titleJButton1 = new javax.swing.JButton();
         titleJButton2 = new javax.swing.JButton();
@@ -674,10 +675,10 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(2596, 1320));
-
+        titleJPanel2.setIcon(game.getAsset().getTitleScreen());
         titleJLabel1.setFont(new java.awt.Font("Tahoma", 0, 200)); // NOI18N
         titleJLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleJLabel1.setText("Destitute");
+        titleJLabel1.setText("");
 
         titleJButton1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         titleJButton1.setText("Play");
@@ -725,7 +726,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
                     .addComponent(titleJButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(titleJButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(titleJButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(1020, 1020, 1020))
+                .addGap(1034, 1034, 1034))
             .addComponent(titleJLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         titleJPanel2Layout.setVerticalGroup(
@@ -757,7 +758,29 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(titleJPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
+        int randomColor = game.getRandomNum(2);
+        if (randomColor == 0) {
+        	titleJButton1.setBackground(new Color(205,42,21));
+            titleJButton2.setBackground(new Color(205,42,21));
+            titleJButton3.setBackground(new Color(205,42,21));
+            titleJButton4.setBackground(new Color(205,42,21));
+            titleJButton5.setBackground(new Color(205,42,21));
+            titleJButton6.setBackground(new Color(205,42,21));
+        } else {
+        	titleJButton1.setBackground(new Color(81,97,251));
+            titleJButton2.setBackground(new Color(81,97,251));
+            titleJButton3.setBackground(new Color(81,97,251));
+            titleJButton4.setBackground(new Color(81,97,251));
+            titleJButton5.setBackground(new Color(81,97,251));
+            titleJButton6.setBackground(new Color(81,97,251));
+        }
+        titleJButton1.setForeground(Color.white);
+        titleJButton2.setForeground(Color.white);
+        titleJButton3.setForeground(Color.white);
+        titleJButton4.setForeground(Color.white);
+        titleJButton5.setForeground(Color.white);
+        titleJButton6.setForeground(Color.white);
+        
         pack();
 	}
 
