@@ -659,7 +659,7 @@ public class Assets{
 	    }
 	    try {
 	        AudioStream s = new AudioStream(in);
-	        AudioData MD;
+	        
 	        AudioPlayer.player.start(s);
 	    } catch (IOException ex) {
 	        System.out.println(ex.getMessage());
@@ -718,7 +718,6 @@ public class Assets{
 	    }
 	    try {
 	        AudioStream s = new AudioStream(in);
-	        AudioData MD;
 	        AudioPlayer.player.start(s);
 	    } catch (IOException ex) {
 	        System.out.println(ex.getMessage());
@@ -765,6 +764,19 @@ public class Assets{
 	}
 	public void warriorCreationMusic(){
 		
+		String filename = "Assets\\Music\\Road\\main.wav";
+	    InputStream in = null;
+	    try {
+	        in = new FileInputStream(filename);
+	    } catch (FileNotFoundException ex) {
+	        System.out.println("File not found");
+	    }
+	    try {
+	        AudioStream s = new AudioStream(in);
+	        AudioPlayer.player.start(s);
+	    } catch (IOException ex) {
+	        System.out.println(ex.getMessage());
+	    }
 	}
 
 	public ImageIcon getTitleScreen() {

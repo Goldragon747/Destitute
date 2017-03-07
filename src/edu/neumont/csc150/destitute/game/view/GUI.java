@@ -3,24 +3,16 @@ package edu.neumont.csc150.destitute.game.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.IOException;
 
 import javax.swing.BorderFactory;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
-
-import com.sun.glass.events.KeyEvent;
 
 import edu.neumont.csc150.destitute.game.controller.Game;
 import edu.neumont.csc150.destitute.game.model.buildings.Barracks;
@@ -983,9 +975,13 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	}
 
 	private void warriorButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		//int pMoney = game.getCurrentPlayer().getMarks();
 		Warrior warrior = new Warrior();
 		game.handlePurchaseOfUnit(warrior, warrior.getMarkCost(), warrior.getLumberCost(), warrior.getStoneCost(),
 				warrior.getHorseCost());
+		//if(pMoney > game.getCurrentPlayer().getMarks()){
+			game.getAsset().warriorCreationMusic();
+		//}
 		updateResources();
 	}
 
