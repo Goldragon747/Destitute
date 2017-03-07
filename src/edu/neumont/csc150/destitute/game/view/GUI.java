@@ -12,6 +12,7 @@ import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.Timer;
 import javax.swing.border.LineBorder;
 
 import edu.neumont.csc150.destitute.game.controller.Game;
@@ -51,6 +52,8 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	private final int MAP_SIZE;
 	private Tile tileSelection;
 	private Unit unitSelection;
+	private Timer gameMusicTimer = new Timer(155000,this);
+	private Timer mainMenuTimer = new Timer(155000,this);
 	private javax.swing.JButton jButton1;
 	private javax.swing.JButton jButton10;
 	private javax.swing.JButton jButton2;
@@ -130,7 +133,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		jPanel1.setVisible(false);
 		boardPanel.setVisible(false);
 		this.setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);
-		System.out.println(titleJPanel2.getWidth() + " " + titleJPanel2.getHeight());
+		startMainMenuMusic();
 	}
 
 	private void initComponents() {
@@ -994,6 +997,9 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		titleJPanel2.setVisible(false);
 		jPanel1.setVisible(true);
 		boardPanel.setVisible(true);
+		stopMainMenuMusic();
+		game.getAsset().stopMusic();
+		startGameMusic();
 		try {
 			game.getAsset().backgroundMusic();
 		} catch (IOException e) {
@@ -1019,7 +1025,20 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		if (e.getSource() == mainMenuTimer) {
+			try {
+				game.getAsset().titleScreenMusic();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+		if (e.getSource() == gameMusicTimer) {
+			try {
+				game.getAsset().backgroundMusic();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
 		for (int i = 0; i < MAP_SIZE; i++) {
 			for (int j = 0; j < MAP_SIZE; j++) {
 				map[i][j].setBorder(new LineBorder(Color.GRAY));
@@ -1240,9 +1259,19 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				}
 			}
 		}
-
 	}
-
+	public void stopGameMusic(){
+		gameMusicTimer.stop();
+	}
+	public void startGameMusic(){
+		gameMusicTimer.start();
+	}
+	public void stopMainMenuMusic(){
+		mainMenuTimer.stop();
+	}
+	public void startMainMenuMusic(){
+		mainMenuTimer.start();
+	}
 	@Override
 	public void keyPressed(java.awt.event.KeyEvent e) {
 
