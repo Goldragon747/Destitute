@@ -53,7 +53,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	private Tile tileSelection;
 	private Unit unitSelection;
 	private Timer gameMusicTimer = new Timer(155000,this);
-	private Timer mainMenuTimer = new Timer(155000,this);
+	private Timer mainMenuTimer = new Timer(54000,this);
 	private javax.swing.JButton jButton1;
 	private javax.swing.JButton jButton10;
 	private javax.swing.JButton jButton2;
@@ -134,6 +134,12 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		boardPanel.setVisible(false);
 		this.setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);
 		startMainMenuMusic();
+		try {
+			game.getAsset().titleScreenMusic();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void initComponents() {
