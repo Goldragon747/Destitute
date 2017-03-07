@@ -19,7 +19,7 @@ import sun.audio.AudioData;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 
-public class Assets {
+public class Assets{
 	private ImageIcon titleScreen;
 	private ImageIcon mainBackground;
 	private ImageIcon menuBackground;
@@ -712,7 +712,7 @@ public class Assets {
 			e.printStackTrace();
 			throw new RuntimeException("Sound: Line Unavailable Exception Error: " + e);
 		}
-	}
+		AudioPlayer.player.destroy();	}
 
 	public void play() {
 		clip.start();
