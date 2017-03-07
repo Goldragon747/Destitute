@@ -13,6 +13,8 @@ import sun.audio.AudioStream;
 
 public class Assets{
 	private ImageIcon titleScreen;
+	private ImageIcon mainBackground;
+	
 	private ImageIcon water;
 	private ImageIcon grass;
 	private ImageIcon stone;
@@ -93,6 +95,7 @@ public class Assets{
 
 	public Assets(int mapsize) {
 		titleScreen = new ImageIcon("Assets\\Backgrounds\\titlescreen.png");
+		mainBackground = new ImageIcon("Assets\\Backgrounds\\mainbackground.png");
 		
 		water = new ImageIcon("Assets\\resource\\" + mapsize + "x" + mapsize + "\\water.png");
 		grass = new ImageIcon("Assets\\resource\\" + mapsize + "x" + mapsize + "\\grass.png");
@@ -767,8 +770,7 @@ public class Assets{
 	public ImageIcon getTitleScreen() {
 		return titleScreen;
 	}
-
-	
-	
-	
+	public ImageIcon getMainBackround() {
+		return mainBackground;
+	}
 }

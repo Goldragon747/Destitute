@@ -129,7 +129,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		this.game = game;
 		this.map = map;
 		this.MAP_SIZE = MAP_SIZE;
-		setContentPane(new JLabel(game.getAsset().getTitleScreen()));
+		setContentPane(new JLabel(game.getAsset().getMainBackround()));
 	    setLayout(new FlowLayout());
 		initComponents();
 		initTitleScreen();
@@ -196,9 +196,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 
 		jLabel4.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
 		jLabel4.setText("Buildings");
-
-		jButton1.setIcon(new javax.swing.ImageIcon(
-				"C:\\Users\\Gabe B\\workspace\\Destitute\\Assets\\player1\\10x10\\p1_lumbermill.png")); // NOI18N
+		player1BuyIcons();
 		jButton1.setMaximumSize(new java.awt.Dimension(119, 119));
 		jButton1.setMinimumSize(new java.awt.Dimension(119, 119));
 		jButton1.setPreferredSize(new java.awt.Dimension(119, 119));
@@ -207,9 +205,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				lumberMillButtonActionPerformed(evt);
 			}
 		});
-
-		jButton2.setIcon(new javax.swing.ImageIcon(
-				"C:\\Users\\Gabe B\\workspace\\Destitute\\Assets\\player1\\10x10\\p1_quarry.png")); // NOI18N
+		
 		jButton2.setActionCommand("Quarry");
 		jButton2.setMaximumSize(new java.awt.Dimension(119, 119));
 		jButton2.setMinimumSize(new java.awt.Dimension(119, 119));
@@ -219,9 +215,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				quarryButtonActionPerformed(evt);
 			}
 		});
-
-		jButton3.setIcon(new javax.swing.ImageIcon(
-				"C:\\Users\\Gabe B\\workspace\\Destitute\\Assets\\player1\\10x10\\p1_stable.png")); // NOI18N
+		
 		jButton3.setMaximumSize(new java.awt.Dimension(119, 119));
 		jButton3.setMinimumSize(new java.awt.Dimension(119, 119));
 		jButton3.setPreferredSize(new java.awt.Dimension(119, 119));
@@ -230,9 +224,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				stableButtonActionPerformed(evt);
 			}
 		});
-
-		jButton4.setIcon(new javax.swing.ImageIcon(
-				"C:\\Users\\Gabe B\\workspace\\Destitute\\Assets\\player1\\10x10\\p1_barracks.png")); // NOI18N
+		
 		jButton4.setToolTipText("");
 		jButton4.setMaximumSize(new java.awt.Dimension(119, 119));
 		jButton4.setMinimumSize(new java.awt.Dimension(119, 119));
@@ -242,9 +234,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				barracksButtonActionPerformed(evt);
 			}
 		});
-
-		jButton5.setIcon(new javax.swing.ImageIcon(
-				"C:\\Users\\Gabe B\\workspace\\Destitute\\Assets\\player1\\roads\\10x10\\p1_road_all.png")); // NOI18N
+		
 		jButton5.setActionCommand("jButton5actionCommand");
 		jButton5.setMaximumSize(new java.awt.Dimension(119, 119));
 		jButton5.setMinimumSize(new java.awt.Dimension(119, 119));
@@ -254,8 +244,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				roadButtonActionPerformed(evt);
 			}
 		});
-		jButton6.setIcon(new javax.swing.ImageIcon(
-				"C:\\Users\\Gabe B\\workspace\\Destitute\\Assets\\player1\\10x10\\p1_hunter.png")); // NOI18N
+		
 		jButton6.setMaximumSize(new java.awt.Dimension(119, 119));
 		jButton6.setMinimumSize(new java.awt.Dimension(119, 119));
 		jButton6.setPreferredSize(new java.awt.Dimension(119, 119));
@@ -264,9 +253,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				hunterButtonActionPerformed(evt);
 			}
 		});
-
-		jButton7.setIcon(new javax.swing.ImageIcon(
-				"C:\\Users\\Gabe B\\workspace\\Destitute\\Assets\\player1\\10x10\\p1_warrior.png")); // NOI18N
+		
 		jButton7.setMaximumSize(new java.awt.Dimension(119, 119));
 		jButton7.setMinimumSize(new java.awt.Dimension(119, 119));
 		jButton7.setPreferredSize(new java.awt.Dimension(119, 119));
@@ -275,9 +262,6 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				warriorButtonActionPerformed(evt);
 			}
 		});
-
-		jButton8.setIcon(new javax.swing.ImageIcon(
-				"C:\\Users\\Gabe B\\workspace\\Destitute\\Assets\\player1\\10x10\\p1_rider.png")); // NOI18N
 		jButton8.setMaximumSize(new java.awt.Dimension(119, 119));
 		jButton8.setMinimumSize(new java.awt.Dimension(119, 119));
 		jButton8.setPreferredSize(new java.awt.Dimension(119, 119));
@@ -287,8 +271,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 			}
 		});
 
-		jButton9.setIcon(new javax.swing.ImageIcon(
-				"C:\\Users\\Gabe B\\workspace\\Destitute\\Assets\\player1\\10x10\\p1_archer.png")); // NOI18N
+		
 		jButton9.setMaximumSize(new java.awt.Dimension(119, 119));
 		jButton9.setMinimumSize(new java.awt.Dimension(119, 119));
 		jButton9.setPreferredSize(new java.awt.Dimension(119, 119));
@@ -377,18 +360,6 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		horsesLabel.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
 		horsesLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		horsesLabel.setText("0");
-
-		jLabel3.setIcon(new javax.swing.ImageIcon(
-				"C:\\Users\\Gabe B\\workspace\\Destitute\\Assets\\player1\\roads\\10x10\\p1_road_all.png")); // NOI18N
-
-		jLabel5.setIcon(new javax.swing.ImageIcon(
-				"C:\\Users\\Gabe B\\workspace\\Destitute\\Assets\\player1\\roads\\10x10\\p1_road_all.png")); // NOI18N
-
-		jLabel7.setIcon(new javax.swing.ImageIcon(
-				"C:\\Users\\Gabe B\\workspace\\Destitute\\Assets\\player1\\roads\\10x10\\p1_road_all.png")); // NOI18N
-
-		jLabel9.setIcon(new javax.swing.ImageIcon(
-				"C:\\Users\\Gabe B\\workspace\\Destitute\\Assets\\player1\\roads\\10x10\\p1_road_all.png")); // NOI18N
 
 		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
 		jPanel1.setLayout(jPanel1Layout);
@@ -787,7 +758,36 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
         
         pack();
 	}
-
+	public void player1BuyIcons(){
+		jLabel3.setIcon(game.getAsset().getMarkIcon()); 
+		jLabel5.setIcon(game.getAsset().getLumberIcon());
+		jLabel7.setIcon(game.getAsset().getStoneIcon());
+		jLabel9.setIcon(game.getAsset().getHorsesIcon());
+		jButton9.setIcon(game.getAsset().getBuyIconP1Archer());
+		jButton8.setIcon(game.getAsset().getBuyIconP1HorseRider());
+		jButton7.setIcon(game.getAsset().getBuyIconP1Warrior());
+		jButton6.setIcon(game.getAsset().getBuyIconP1Hunter());
+		jButton5.setIcon(game.getAsset().getBuyIconP1Road());
+		jButton4.setIcon(game.getAsset().getBuyIconP1Barracks());
+		jButton3.setIcon(game.getAsset().getBuyIconP1Stable());
+		jButton2.setIcon(game.getAsset().getBuyIconP1Quarry());
+		jButton1.setIcon(game.getAsset().getBuyIconP1Lumbermill());
+	}
+	public void player2BuyIcons(){
+		jLabel3.setIcon(game.getAsset().getMarkIcon()); 
+		jLabel5.setIcon(game.getAsset().getLumberIcon());
+		jLabel7.setIcon(game.getAsset().getStoneIcon());
+		jLabel9.setIcon(game.getAsset().getHorsesIcon());
+		jButton9.setIcon(game.getAsset().getBuyIconP2Archer());
+		jButton8.setIcon(game.getAsset().getBuyIconP2HorseRider());
+		jButton7.setIcon(game.getAsset().getBuyIconP2Warrior());
+		jButton6.setIcon(game.getAsset().getBuyIconP2Hunter());
+		jButton5.setIcon(game.getAsset().getBuyIconP2Road());
+		jButton4.setIcon(game.getAsset().getBuyIconP2Barracks());
+		jButton3.setIcon(game.getAsset().getBuyIconP2Stable());
+		jButton2.setIcon(game.getAsset().getBuyIconP2Quarry());
+		jButton1.setIcon(game.getAsset().getBuyIconP2Lumbermill());
+	}
 	public void checkForExplored() {
 		for (int i = 0; i < MAP_SIZE; i++) {
 			for (int j = 0; j < MAP_SIZE; j++) {
@@ -869,9 +869,11 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		if (game.getCurrentPlayer() == game.getPlayer1()) {
 			game.setCurrentPlayer(game.getPlayer2());
 			playerTurnLabel.setText("Player 2");
+			player2BuyIcons();
 		} else {
 			game.setCurrentPlayer(game.getPlayer1());
 			playerTurnLabel.setText("Player 1");
+			player1BuyIcons();
 		}
 		getCorrectRoad();
 		updateResources();
