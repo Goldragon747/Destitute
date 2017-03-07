@@ -981,13 +981,13 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	}
 
 	private void warriorButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		//int pMoney = game.getCurrentPlayer().getMarks();
+		int pMoney = game.getCurrentPlayer().getMarks();
 		Warrior warrior = new Warrior();
 		game.handlePurchaseOfUnit(warrior, warrior.getMarkCost(), warrior.getLumberCost(), warrior.getStoneCost(),
 				warrior.getHorseCost());
-		//if(pMoney > game.getCurrentPlayer().getMarks()){
+		if(pMoney > game.getCurrentPlayer().getMarks()){
 			game.getAsset().warriorCreationMusic();
-		//}
+		}
 		updateResources();
 	}
 
