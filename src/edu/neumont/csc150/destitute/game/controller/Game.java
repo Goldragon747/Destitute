@@ -1,7 +1,8 @@
 package edu.neumont.csc150.destitute.game.controller;
 
 import java.util.Random;
-import java.util.Timer;
+
+import javax.swing.Timer;
 
 import edu.neumont.csc150.destitute.game.model.Buyable;
 import edu.neumont.csc150.destitute.game.model.Player;
@@ -582,9 +583,6 @@ public class Game {
 	public void setCurrentPlayer(Player currentPlayer) {
 		this.currentPlayer = currentPlayer;
 	}
-	public void loopMainMusic(){
-		Timer timer = new Timer();
-		//TODO Make it
-	}
+	
 
 }
