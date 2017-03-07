@@ -5,15 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-import edu.neumont.csc150.destitute.game.model.Player;
-import edu.neumont.csc150.destitute.game.model.tiles.Tile;
 import sun.audio.AudioData;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
-import sun.audio.ContinuousAudioDataStream;
 
 public class Assets{
 	private ImageIcon titleScreen;
@@ -72,10 +68,32 @@ public class Assets{
 	private ImageIcon lumberIcon;
 	private ImageIcon stoneIcon;
 	private ImageIcon horsesIcon;
+
+	private ImageIcon buyIconP1Hunter;
+	private ImageIcon buyIconP1Archer;
+	private ImageIcon buyIconP1Warrior;
+	private ImageIcon buyIconP1HorseRider;
 	
+	private ImageIcon buyIconP1Lumbermill;
+	private ImageIcon buyIconP1Barracks;
+	private ImageIcon buyIconP1Quarry;
+	private ImageIcon buyIconP1Road;
+	private ImageIcon buyIconP1Stable;
+	
+	private ImageIcon buyIconP2Hunter;
+	private ImageIcon buyIconP2Archer;
+	private ImageIcon buyIconP2Warrior;
+	private ImageIcon buyIconP2HorseRider;
+	
+	private ImageIcon buyIconP2Lumbermill;
+	private ImageIcon buyIconP2Barracks;
+	private ImageIcon buyIconP2Quarry;
+	private ImageIcon buyIconP2Road;
+	private ImageIcon buyIconP2Stable;
 
 	public Assets(int mapsize) {
 		titleScreen = new ImageIcon("Assets\\Backgrounds\\titlescreen.png");
+		
 		water = new ImageIcon("Assets\\resource\\" + mapsize + "x" + mapsize + "\\water.png");
 		grass = new ImageIcon("Assets\\resource\\" + mapsize + "x" + mapsize + "\\grass.png");
 		lumber = new ImageIcon("Assets\\resource\\" + mapsize + "x" + mapsize + "\\lumber.png");
@@ -127,9 +145,186 @@ public class Assets{
 		p2RoadTopLeftRight = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_left_right.png");
 		p2RoadTopRight = new ImageIcon("Assets\\player2\\roads\\" + mapsize + "x" + mapsize + "\\p2_road_top_right.png");
 	
+		markIcon = new ImageIcon("Assets\\Icons\\mark_icon.png");
+		lumberIcon = new ImageIcon("Assets\\Icons\\lumber_icon.png");
+		stoneIcon = new ImageIcon("Assets\\Icons\\stone_icon.png");
+		horsesIcon = new ImageIcon("Assets\\Icons\\horse_icon.png");
 		
+		buyIconP1Hunter = new ImageIcon("Assets\\Icons\\p1_hunter.png");
+		buyIconP1Archer = new ImageIcon("Assets\\Icons\\p1_archer.png");
+		buyIconP1Warrior = new ImageIcon("Assets\\Icons\\p1_warrior.png");
+		buyIconP1HorseRider = new ImageIcon("Assets\\Icons\\p1_rider.png");
+		
+		buyIconP1Lumbermill = new ImageIcon("Assets\\Icons\\p1_lumbermill.png");
+		buyIconP1Barracks = new ImageIcon("Assets\\Icons\\p1_barracks.png");
+		buyIconP1Quarry = new ImageIcon("Assets\\Icons\\p1_quarry.png");
+		buyIconP1Road = new ImageIcon("Assets\\Icons\\p1_road.png");
+		buyIconP1Stable = new ImageIcon("Assets\\Icons\\p1_stable.png");
+		
+		buyIconP2Hunter = new ImageIcon("Assets\\Icons\\p2_hunter.png");
+		buyIconP2Archer = new ImageIcon("Assets\\Icons\\p2_archer.png");
+		buyIconP2Warrior = new ImageIcon("Assets\\Icons\\p2_warrior.png");
+		buyIconP2HorseRider = new ImageIcon("Assets\\Icons\\p2_rider.png");
+		
+		buyIconP2Lumbermill = new ImageIcon("Assets\\Icons\\p2_lumbermill.png");
+		buyIconP2Barracks = new ImageIcon("Assets\\Icons\\p2_barracks.png");
+		buyIconP2Quarry = new ImageIcon("Assets\\Icons\\p2_quarry.png");
+		buyIconP2Road = new ImageIcon("Assets\\Icons\\p2_road.png");
+		buyIconP2Stable = new ImageIcon("Assets\\Icons\\p2_stable.png");
 	} 
+	/**
+	 * @return the markIcon
+	 */
+	public ImageIcon getMarkIcon() {
+		return markIcon;
+	}
 
+	/**
+	 * @return the lumberIcon
+	 */
+	public ImageIcon getLumberIcon() {
+		return lumberIcon;
+	}
+
+	/**
+	 * @return the stoneIcon
+	 */
+	public ImageIcon getStoneIcon() {
+		return stoneIcon;
+	}
+
+	/**
+	 * @return the horsesIcon
+	 */
+	public ImageIcon getHorsesIcon() {
+		return horsesIcon;
+	}
+
+	/**
+	 * @return the buyIconP1Hunter
+	 */
+	public ImageIcon getBuyIconP1Hunter() {
+		return buyIconP1Hunter;
+	}
+
+	/**
+	 * @return the buyIconP1Archer
+	 */
+	public ImageIcon getBuyIconP1Archer() {
+		return buyIconP1Archer;
+	}
+
+	/**
+	 * @return the buyIconP1Warrior
+	 */
+	public ImageIcon getBuyIconP1Warrior() {
+		return buyIconP1Warrior;
+	}
+
+	/**
+	 * @return the buyIconP1HorseRider
+	 */
+	public ImageIcon getBuyIconP1HorseRider() {
+		return buyIconP1HorseRider;
+	}
+
+	/**
+	 * @return the buyIconP1Lumbermill
+	 */
+	public ImageIcon getBuyIconP1Lumbermill() {
+		return buyIconP1Lumbermill;
+	}
+
+	/**
+	 * @return the buyIconP1Barracks
+	 */
+	public ImageIcon getBuyIconP1Barracks() {
+		return buyIconP1Barracks;
+	}
+
+	/**
+	 * @return the buyIconP1Quarry
+	 */
+	public ImageIcon getBuyIconP1Quarry() {
+		return buyIconP1Quarry;
+	}
+
+	/**
+	 * @return the buyIconP1Road
+	 */
+	public ImageIcon getBuyIconP1Road() {
+		return buyIconP1Road;
+	}
+
+	/**
+	 * @return the buyIconP1Stable
+	 */
+	public ImageIcon getBuyIconP1Stable() {
+		return buyIconP1Stable;
+	}
+
+	/**
+	 * @return the buyIconP2Hunter
+	 */
+	public ImageIcon getBuyIconP2Hunter() {
+		return buyIconP2Hunter;
+	}
+
+	/**
+	 * @return the buyIconP2Archer
+	 */
+	public ImageIcon getBuyIconP2Archer() {
+		return buyIconP2Archer;
+	}
+
+	/**
+	 * @return the buyIconP2Warrior
+	 */
+	public ImageIcon getBuyIconP2Warrior() {
+		return buyIconP2Warrior;
+	}
+
+	/**
+	 * @return the buyIconP2HorseRider
+	 */
+	public ImageIcon getBuyIconP2HorseRider() {
+		return buyIconP2HorseRider;
+	}
+
+	/**
+	 * @return the buyIconP2Lumbermill
+	 */
+	public ImageIcon getBuyIconP2Lumbermill() {
+		return buyIconP2Lumbermill;
+	}
+
+	/**
+	 * @return the buyIconP2Barracks
+	 */
+	public ImageIcon getBuyIconP2Barracks() {
+		return buyIconP2Barracks;
+	}
+
+	/**
+	 * @return the buyIconP2Quarry
+	 */
+	public ImageIcon getBuyIconP2Quarry() {
+		return buyIconP2Quarry;
+	}
+
+	/**
+	 * @return the buyIconP2Road
+	 */
+	public ImageIcon getBuyIconP2Road() {
+		return buyIconP2Road;
+	}
+
+	/**
+	 * @return the buyIconP2Stable
+	 */
+	public ImageIcon getBuyIconP2Stable() {
+		return buyIconP2Stable;
+	}
 	/**
 	 * @return the water
 	 */

@@ -2,8 +2,10 @@ package edu.neumont.csc150.destitute.game.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
@@ -127,6 +129,8 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		this.game = game;
 		this.map = map;
 		this.MAP_SIZE = MAP_SIZE;
+		setContentPane(new JLabel(game.getAsset().getTitleScreen()));
+	    setLayout(new FlowLayout());
 		initComponents();
 		initTitleScreen();
 		this.setVisible(true);
