@@ -575,6 +575,9 @@ public class Game {
 	public Player getCurrentPlayer() {
 		return currentPlayer;
 	}
+	public int getRandomNum(int max) {
+		return gen.nextInt(max);
+	}
 
 	public void setCurrentPlayer(Player currentPlayer) {
 		this.currentPlayer = currentPlayer;
