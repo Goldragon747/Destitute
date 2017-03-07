@@ -132,7 +132,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		jPanel1.setVisible(false);
 		boardPanel.setVisible(false);
 		this.setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);
-		
+		System.out.println(titleJPanel2.getWidth() + " " + titleJPanel2.getHeight());
 	}
 
 	private void initComponents() {
