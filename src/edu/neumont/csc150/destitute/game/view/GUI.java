@@ -683,7 +683,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
         titleJButton1.setText("Play");
         titleJButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                titleJButton1ActionPerformed(evt);
+                playTitleJButtonActionPerformed(evt);
             }
         });
 
@@ -853,11 +853,15 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	// ---------------------------------------------------\\ BUILDINGS
 	// //---------------------------------------------------\\
 	private void lumberMillButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		int pMoney = game.getCurrentPlayer().getMarks();
 		LumberMill lumberMill = new LumberMill();
 		if (game.handleBuildingBuildings(Resource.Lumber, lumberMill.getMarkCost(), lumberMill.getLumberCost(),
 				lumberMill.getStoneCost(), lumberMill.getHorseCost())) {
 			game.handlePurchaseOfBuilding(lumberMill, lumberMill.getMarkCost(), lumberMill.getLumberCost(),
 					lumberMill.getStoneCost(), lumberMill.getHorseCost());
+			if(pMoney > game.getCurrentPlayer().getMarks()){
+				game.getAsset().lumberMillCreationMusic();
+				}
 		}
 		getCorrectRoad();
 		updateResources();
@@ -886,12 +890,15 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	}
 
 	private void barracksButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		int pMoney = game.getCurrentPlayer().getMarks();
 		Barracks barrack = new Barracks();
 		if (game.handleBuildingBuildings(Resource.Grass, barrack.getMarkCost(), barrack.getLumberCost(),
 				barrack.getStoneCost(), barrack.getHorseCost())) {
 			game.handlePurchaseOfBuilding(barrack, barrack.getMarkCost(), barrack.getLumberCost(),
 					barrack.getStoneCost(), barrack.getHorseCost());
-			game.getAsset().barracksCreationMusic();
+			if(pMoney > game.getCurrentPlayer().getMarks()){
+				game.getAsset().barracksCreationMusic();
+				}
 		}
 		getCorrectRoad();
 		updateResources();
@@ -950,7 +957,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 
 	// ---------------------------------------------------\\ -----
 	// //---------------------------------------------------\\
-	private void titleJButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                              
+	private void playTitleJButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
 		titleJPanel2.setVisible(false);
 		jPanel1.setVisible(true);
 		boardPanel.setVisible(true);
