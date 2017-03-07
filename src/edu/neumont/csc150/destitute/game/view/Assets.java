@@ -653,7 +653,8 @@ public class Assets{
 	
 	//---------------------------------------GENERAL------------------------------------------//
 	public void stopMusic(){
-		AudioPlayer.player.destroy();	}
+		//AudioPlayer.player.destroy();
+	}
 	public void backgroundMusic() throws IOException{
 		String filename = "Assets\\Music\\Background\\main.wav";
 	    InputStream in = null;
