@@ -1050,6 +1050,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	}
 
 	public void refreshMapTileIcons() {
+		getCorrectRoad();
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map.length; j++) {
 				if (!map[i][j].isFog()) {
@@ -1123,7 +1124,6 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				}
 			}
 		}
-		getCorrectRoad();
 	}
 
 	public void getCorrectRoad() {
