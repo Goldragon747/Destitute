@@ -504,8 +504,22 @@ public class Assets{
 		
 	}
 	public void roadCreationMusic(){
-		
+		String filename = "Assets\\Music\\Road\\main.wav";
+	    InputStream in = null;
+	    try {
+	        in = new FileInputStream(filename);
+	    } catch (FileNotFoundException ex) {
+	        System.out.println("File not found");
+	    }
+	    try {
+	        AudioStream s = new AudioStream(in);
+	        AudioData MD;
+	        AudioPlayer.player.start(s);
+	    } catch (IOException ex) {
+	        System.out.println(ex.getMessage());
+	    }
 	}
+	
 	
 	//---------------------------------------UNITS------------------------------------------//
 	public void horseRiderCreationMusic(){
@@ -526,7 +540,20 @@ public class Assets{
 	}
 	
 	public void archerCreationMusic(){
-		
+		String filename = "Assets\\Music\\Archer\\main.wav";
+	    InputStream in = null;
+	    try {
+	        in = new FileInputStream(filename);
+	    } catch (FileNotFoundException ex) {
+	        System.out.println("File not found");
+	    }
+	    try {
+	        AudioStream s = new AudioStream(in);
+	        AudioData MD;
+	        AudioPlayer.player.start(s);
+	    } catch (IOException ex) {
+	        System.out.println(ex.getMessage());
+	    }
 	}
 	public void hunterCreationMusic(){
 		
