@@ -1,10 +1,19 @@
 package edu.neumont.csc150.destitute.game.view;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 import edu.neumont.csc150.destitute.game.model.Player;
 import edu.neumont.csc150.destitute.game.model.tiles.Tile;
+import sun.audio.AudioData;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import sun.audio.ContinuousAudioDataStream;
 
 public class Assets{
 	private ImageIcon water;
@@ -431,4 +440,99 @@ public class Assets{
 	public ImageIcon getFog() {
 		return fog;
 	}
+	
+	//---------------------------------------GENERAL------------------------------------------//
+	public void backgroundMusic() throws IOException{
+		String filename = "Assets\\Music\\Background\\main.wav";
+	    InputStream in = null;
+	    try {
+	        in = new FileInputStream(filename);
+	    } catch (FileNotFoundException ex) {
+	        System.out.println("File not found");
+	    }
+	    try {
+	        AudioStream s = new AudioStream(in);
+	        AudioData MD;
+	        AudioPlayer.player.start(s);
+	    } catch (IOException ex) {
+	        System.out.println(ex.getMessage());
+	    }
+	    
+	}
+	
+	//---------------------------------------BUILDINGS------------------------------------------//
+	public void lumberMillCreationMusic(){
+		String filename = "Assets\\Music\\LumberMill\\main.wav";
+	    InputStream in = null;
+	    try {
+	        in = new FileInputStream(filename);
+	    } catch (FileNotFoundException ex) {
+	        System.out.println("File not found");
+	    }
+	    try {
+	        AudioStream s = new AudioStream(in);
+	        AudioData MD;
+	        AudioPlayer.player.start(s);
+	    } catch (IOException ex) {
+	        System.out.println(ex.getMessage());
+	    }
+	}
+	
+	public void barracksCreationMusic(){
+		String filename = "Assets\\Music\\Barracks\\main.wav";
+	    InputStream in = null;
+	    try {
+	        in = new FileInputStream(filename);
+	    } catch (FileNotFoundException ex) {
+	        System.out.println("File not found");
+	    }
+	    try {
+	        AudioStream s = new AudioStream(in);
+	        AudioData MD;
+	        AudioPlayer.player.start(s);
+	    } catch (IOException ex) {
+	        System.out.println(ex.getMessage());
+	    }
+	}
+	public void quarryCreationMusic(){
+		//TODO
+	}
+	
+	public void stableCreationMusic(){
+		
+	}
+	public void roadCreationMusic(){
+		
+	}
+	
+	//---------------------------------------UNITS------------------------------------------//
+	public void horseRiderCreationMusic(){
+		String filename = "Assets\\Music\\HorseRider\\main.wav";
+	    InputStream in = null;
+	    try {
+	        in = new FileInputStream(filename);
+	    } catch (FileNotFoundException ex) {
+	        System.out.println("File not found");
+	    }
+	    try {
+	        AudioStream s = new AudioStream(in);
+	        AudioData MD;
+	        AudioPlayer.player.start(s);
+	    } catch (IOException ex) {
+	        System.out.println(ex.getMessage());
+	    }
+	}
+	
+	public void archerCreationMusic(){
+		
+	}
+	public void hunterCreationMusic(){
+		
+	}
+	public void warriorCreationMusic(){
+		
+	}
+	
+	
+	
 }
