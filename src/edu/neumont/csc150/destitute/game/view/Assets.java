@@ -16,6 +16,7 @@ import sun.audio.AudioStream;
 import sun.audio.ContinuousAudioDataStream;
 
 public class Assets{
+	private ImageIcon titleScreen;
 	private ImageIcon water;
 	private ImageIcon grass;
 	private ImageIcon stone;
@@ -69,6 +70,7 @@ public class Assets{
 	
 
 	public Assets(int mapsize) {
+		titleScreen = new ImageIcon("Assets\\Backgrounds\\titlescreen.png");
 		water = new ImageIcon("Assets\\resource\\" + mapsize + "x" + mapsize + "\\water.png");
 		grass = new ImageIcon("Assets\\resource\\" + mapsize + "x" + mapsize + "\\grass.png");
 		lumber = new ImageIcon("Assets\\resource\\" + mapsize + "x" + mapsize + "\\lumber.png");
@@ -532,6 +534,11 @@ public class Assets{
 	public void warriorCreationMusic(){
 		
 	}
+
+	public ImageIcon getTitleScreen() {
+		return titleScreen;
+	}
+
 	
 	
 	
