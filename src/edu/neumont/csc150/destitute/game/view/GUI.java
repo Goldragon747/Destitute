@@ -968,6 +968,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		if(pMoney > game.getCurrentPlayer().getMarks()){
 			game.getAsset().Song(game.getAsset().getHunterCreationMusic());
 			game.getAsset().play();
+			
 		}
 		updateResources();
 	}
@@ -980,6 +981,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		if(pMoney > game.getCurrentPlayer().getMarks()){
 			game.getAsset().Song(game.getAsset().getArcherCreationMusic());
 			game.getAsset().play();
+			
 		}
 		updateResources();
 	}
@@ -992,6 +994,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		if(pMoney > game.getCurrentPlayer().getMarks()){
 			game.getAsset().Song(game.getAsset().getHorseRiderMusic());
 			game.getAsset().play();
+			
 		}
 		updateResources();
 	}
@@ -1004,6 +1007,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		if(pMoney > game.getCurrentPlayer().getMarks()){
 			game.getAsset().Song(game.getAsset().getWarriorMusic());
 			game.getAsset().play();
+			
 		}
 		updateResources();
 	}

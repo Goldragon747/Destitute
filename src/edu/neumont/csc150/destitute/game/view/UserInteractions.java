@@ -105,12 +105,7 @@ public class UserInteractions {
 			gui.setTurnEventBox("Player 2 has sealed their fate, fight on!");
 		}
 	}
-	public void Player1StartTurn(){
-		//Probably not going to implement, two lines at every end turn is probably too much
-	}
-	public void Player2StartTurn(){
-		//ditto
-	}
+
 	public void Player1Win(){
 		int ran = gen.nextInt(2);
 		if(ran == 0){
