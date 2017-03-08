@@ -85,14 +85,14 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	private javax.swing.JLabel jLabel8;
 	private javax.swing.JLabel jLabel9;
 	private javax.swing.JLabel jPanel1;
+	private javax.swing.JLabel credits;
+	private javax.swing.JLabel rules;
 	private javax.swing.JPanel boardPanel;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JScrollPane jScrollPane2;
 	private javax.swing.JTextArea turnEventsTextArea;
 	private javax.swing.JTextField consoleCommand;
 	private javax.swing.JButton titleJButton1;
-	private javax.swing.JButton titleJButton2;
-	private javax.swing.JButton titleJButton3;
 	private javax.swing.JButton titleJButton4;
 	private javax.swing.JButton titleJButton5;
 	private javax.swing.JButton titleJButton6;
@@ -125,6 +125,17 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	    setLayout(new FlowLayout());
 		initComponents();
 		initTitleScreen();
+		initCredits();
+		initRules();
+		credits.setVisible(false);
+		rules.setVisible(false);
+		jPanel1.addKeyListener(this);
+		boardPanel.addKeyListener(this);
+		rules.addKeyListener(this);
+		credits.addKeyListener(this);
+		this.setFocusable(true);
+		this.setFocusTraversalKeysEnabled(false);
+		this.addKeyListener(this);
 		this.setVisible(true);
 		this.setResizable(false);
 		jPanel1.setVisible(false);
@@ -180,7 +191,8 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		setTitle("Destitute");
 		setPreferredSize(new java.awt.Dimension(2596, 1320));
 		jPanel1.setIcon(game.getAsset().getMenuBackground());
-		jPanel1.setPreferredSize(new java.awt.Dimension(584, 1300));
+		jPanel1.setPreferredSize(new java.awt.Dimension(605, 1300));
+		
 
 		playerTurnLabel.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
 		playerTurnLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -357,7 +369,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		horsesLabel.setFont(new java.awt.Font("Tahoma", 0, 25)); 
 		horsesLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		horsesLabel.setText("0");
-
+		jPanel1.setBorder(BorderFactory.createLineBorder(new Color(255,255,255),3)); //----------------------------------------------------------------------
 		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
 		jPanel1.setLayout(jPanel1Layout);
 		jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -499,7 +511,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				.addGroup(jPanel1Layout
 						.createSequentialGroup().addGap(267, 267, 267).addComponent(jButton10,
 								javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addGap(0, 0, Short.MAX_VALUE)));
+						.addGap(21, 21, Short.MAX_VALUE)));
 		jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(jPanel1Layout.createSequentialGroup().addContainerGap().addComponent(playerTurnLabel)
 						.addGap(50, 50, 50)
@@ -639,8 +651,6 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		titleJPanel2 = new javax.swing.JLabel();
         titleJLabel1 = new javax.swing.JLabel();
         titleJButton1 = new javax.swing.JButton();
-        titleJButton2 = new javax.swing.JButton();
-        titleJButton3 = new javax.swing.JButton();
         titleJButton4 = new javax.swing.JButton();
         titleJButton5 = new javax.swing.JButton();
         titleJButton6 = new javax.swing.JButton();
@@ -660,23 +670,15 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
                 playTitleJButtonActionPerformed(evt);
             }
         });
-
-        titleJButton2.setFont(new java.awt.Font("Tahoma", 0, 36)); 
-        titleJButton2.setText("Connect to Game");
-        titleJButton2.setFocusable(false);
-        titleJButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                titleJButton2ActionPerformed(evt);
-            }
-        });
-
-        titleJButton3.setFont(new java.awt.Font("Tahoma", 0, 36)); 
-        titleJButton3.setText("Achievments");
-        titleJButton3.setFocusable(false);
         
         titleJButton4.setFont(new java.awt.Font("Tahoma", 0, 36)); 
         titleJButton4.setText("Credits");
         titleJButton4.setFocusable(false);
+        titleJButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                titleJButton4ActionPerformed(evt);
+            }
+        });
         
         titleJButton5.setFont(new java.awt.Font("Tahoma", 0, 36)); 
         titleJButton5.setText("Rules");
@@ -690,7 +692,11 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
         titleJButton6.setFont(new java.awt.Font("Tahoma", 0, 36)); 
         titleJButton6.setText("Exit");
         titleJButton6.setFocusable(false);
-
+        titleJButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                titleJButton6ActionPerformed(evt);
+            }
+        });
         javax.swing.GroupLayout titleJPanel2Layout = new javax.swing.GroupLayout(titleJPanel2);
         titleJPanel2.setLayout(titleJPanel2Layout);
         titleJPanel2Layout.setHorizontalGroup(
@@ -698,12 +704,10 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, titleJPanel2Layout.createSequentialGroup()
                 .addContainerGap(1076, Short.MAX_VALUE)
                 .addGroup(titleJPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(titleJButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(titleJButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-                    .addComponent(titleJButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(titleJButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(titleJButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(titleJButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(titleJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)
+                    .addComponent(titleJButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                    .addComponent(titleJButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                    .addComponent(titleJButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
                 .addGap(1034, 1034, 1034))
             .addComponent(titleJLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -714,10 +718,6 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
                 .addGap(143, 143, 143)
                 .addComponent(titleJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
-                .addComponent(titleJButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(titleJButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
                 .addComponent(titleJButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(titleJButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -739,22 +739,16 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
         int randomColor = game.getRandomNum(2);
         if (randomColor == 0) {
         	titleJButton1.setBackground(new Color(205,42,21));
-            titleJButton2.setBackground(new Color(205,42,21));
-            titleJButton3.setBackground(new Color(205,42,21));
             titleJButton4.setBackground(new Color(205,42,21));
             titleJButton5.setBackground(new Color(205,42,21));
             titleJButton6.setBackground(new Color(205,42,21));
         } else {
         	titleJButton1.setBackground(new Color(81,97,251));
-            titleJButton2.setBackground(new Color(81,97,251));
-            titleJButton3.setBackground(new Color(81,97,251));
             titleJButton4.setBackground(new Color(81,97,251));
             titleJButton5.setBackground(new Color(81,97,251));
             titleJButton6.setBackground(new Color(81,97,251));
         }
         titleJButton1.setForeground(Color.white);
-        titleJButton2.setForeground(Color.white);
-        titleJButton3.setForeground(Color.white);
         titleJButton4.setForeground(Color.white);
         titleJButton5.setForeground(Color.white);
         titleJButton6.setForeground(Color.white);
@@ -763,7 +757,41 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	}
 	
 	public void initCredits() {
-		
+		credits = new javax.swing.JLabel();
+		credits.setPreferredSize(new Dimension(2596,1320));
+		credits.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		credits.setIcon(game.getAsset().getCreditsBackground());
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(credits, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(credits, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pack();
+		//this.add(credits);
+	}
+	
+	public void initRules() {
+		rules = new javax.swing.JLabel();
+		rules.setPreferredSize(new Dimension(2596,1320));
+		rules.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		rules.setIcon(game.getAsset().getRulesBackground());
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(rules, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(rules, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pack();
+		//this.add(rules);
 	}
 	
 	public void player1BuyIcons(){
@@ -999,6 +1027,8 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	// //---------------------------------------------------\\
 	private void playTitleJButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
 		titleJPanel2.setVisible(false);
+		credits.setVisible(false);
+		rules.setVisible(false);
 		jPanel1.setVisible(true);
 		boardPanel.setVisible(true);
 		game.getAsset().stop();
@@ -1006,12 +1036,23 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		game.getAsset().loop();
     }                                             
 
-    private void titleJButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
+    private void titleJButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                              
+    	titleJPanel2.setVisible(false);
+		jPanel1.setVisible(false);
+		boardPanel.setVisible(false);
+		rules.setVisible(false);
+		credits.setVisible(true);
     }                                             
 
     private void titleJButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
+    	titleJPanel2.setVisible(false);
+		jPanel1.setVisible(false);
+		boardPanel.setVisible(false);
+		credits.setVisible(false);
+		rules.setVisible(true);
+    }
+    private void titleJButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                              
+    	System.exit(0);
     }
 	private void endTurnActionPerformed(java.awt.event.ActionEvent evt) {
 		endTurn();
@@ -1280,7 +1321,17 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	}*/
 	@Override
 	public void keyPressed(java.awt.event.KeyEvent e) {
-	
+		int location = e.getKeyCode();
+		if (location == KeyEvent.VK_ESCAPE && !titleJPanel2.isVisible()) {
+			jPanel1.setVisible(false);
+			boardPanel.setVisible(false);
+			credits.setVisible(false);
+			rules.setVisible(false);
+			titleJPanel2.setVisible(true);
+			game.getAsset().stop();
+			game.getAsset().Song(game.getAsset().getTitleScreenMusic());
+			game.getAsset().loop();
+		}
 	}
 
 	@Override
