@@ -16,6 +16,8 @@ public class Assets {
 	private ImageIcon titleScreen;
 	private ImageIcon mainBackground;
 	private ImageIcon menuBackground;
+	private ImageIcon creditsBackground;
+	private ImageIcon rulesBackground;
 
 	private ImageIcon water;
 	private ImageIcon grass;
@@ -129,6 +131,8 @@ public class Assets {
 		titleScreen = new ImageIcon("Assets\\Backgrounds\\titlescreen.png");
 		mainBackground = new ImageIcon("Assets\\Backgrounds\\mainbackground.png");
 		menuBackground = new ImageIcon("Assets\\Backgrounds\\menubackground.png");
+		creditsBackground = new ImageIcon("Assets\\Backgrounds\\credits.png");
+		rulesBackground = new ImageIcon("Assets\\Backgrounds\\rules.png");
 
 		water = new ImageIcon("Assets\\resource\\" + mapsize + "x" + mapsize + "\\water.png");
 		grass = new ImageIcon("Assets\\resource\\" + mapsize + "x" + mapsize + "\\grass.png");
@@ -814,5 +818,14 @@ public class Assets {
 	public String getCheatsMusic() {
 		return cheatsMusic;
 	}
+
+	public ImageIcon getCreditsBackground() {
+		return creditsBackground;
+	}
+
+	public ImageIcon getRulesBackground() {
+		return rulesBackground;
+	}
+
 
 }
