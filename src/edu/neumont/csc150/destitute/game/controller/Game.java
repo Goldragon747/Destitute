@@ -144,15 +144,6 @@ public class Game {
 				&& stoneInTopMap == TOTAL_STONE_PER_SIDE && stoneInBottomMap == TOTAL_STONE_PER_SIDE
 				&& horseInTopMap == TOTAL_HORSE_PER_SIDE && horseInBottomMap == TOTAL_HORSE_PER_SIDE));
 	}
-
-	public void handleUILogic() {
-
-	}
-
-	public void PlayerTurns() {
-
-	}
-
 	public boolean handleBuildingBuildings(Resource tileName, int markCost, int lumberCost, int stoneCost,
 			int horseCost) {
 		try {
@@ -254,7 +245,6 @@ public class Game {
 						currentPlayer.setLumber(currentPlayer.getLumber() - lumberCost);
 						currentPlayer.setStone(currentPlayer.getStone() - stoneCost);
 						currentPlayer.setHorses(currentPlayer.getHorses() - horseCost);
-						//TODO GAAAABEEEE DO THIS. Also please erase this before we present otherwise that would be awkward...
 					}
 				}
 			}

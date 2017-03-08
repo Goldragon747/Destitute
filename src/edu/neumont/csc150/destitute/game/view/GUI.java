@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 
@@ -88,7 +89,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JScrollPane jScrollPane2;
 	private javax.swing.JTextArea turnEventsTextArea;
-	private javax.swing.JTextField jTextField1;
+	private javax.swing.JTextField consoleCommand;
 	private javax.swing.JButton titleJButton1;
 	private javax.swing.JButton titleJButton2;
 	private javax.swing.JButton titleJButton3;
@@ -153,7 +154,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		jScrollPane1 = new javax.swing.JScrollPane();
 		turnEventsTextArea = new javax.swing.JTextArea();
 		jLabel8 = new javax.swing.JLabel();
-		jTextField1 = new javax.swing.JTextField();
+		consoleCommand = new javax.swing.JTextField();
 		jLabel10 = new javax.swing.JLabel();
 		jLabel11 = new javax.swing.JLabel();
 		jLabel12 = new javax.swing.JLabel();
@@ -172,6 +173,8 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		jLabel7 = new javax.swing.JLabel();
 		jLabel9 = new javax.swing.JLabel();
 		boardPanel = new javax.swing.JPanel();
+		
+		consoleCommand.addActionListener(this);
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Destitute");
@@ -277,7 +280,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel6.setText("Turn Events");
 
-		jButton10.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
+		jButton10.setFont(new java.awt.Font("Tahoma", 0, 30));
 		jButton10.setText("End Turn");
 		jButton10.setFocusable(false);
 		jButton10.setForeground(Color.white);
@@ -294,7 +297,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 
 		turnEventsTextArea.setEditable(false);
 		turnEventsTextArea.setColumns(20);
-		turnEventsTextArea.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+		turnEventsTextArea.setFont(new java.awt.Font("Monospaced", 0, 18)); 
 		turnEventsTextArea.setLineWrap(true);
 		turnEventsTextArea.setRows(5);
 		turnEventsTextArea.setText("Welcome to Destitute");
@@ -303,55 +306,55 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel8.setText("Console Commands");
 
-		jLabel10.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+		jLabel10.setFont(new java.awt.Font("Tahoma", 0, 25));
 		jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel10.setText("Warrior");
 
-		jLabel11.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+		jLabel11.setFont(new java.awt.Font("Tahoma", 0, 22)); 
 		jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel11.setText("Lumber Mill");
 
-		jLabel12.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+		jLabel12.setFont(new java.awt.Font("Tahoma", 0, 25)); 
 		jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel12.setText("Hunter");
 
-		jLabel13.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+		jLabel13.setFont(new java.awt.Font("Tahoma", 0, 25)); 
 		jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel13.setText("Stable");
 
-		jLabel14.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+		jLabel14.setFont(new java.awt.Font("Tahoma", 0, 25)); 
 		jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel14.setText("Road");
 
-		jLabel15.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+		jLabel15.setFont(new java.awt.Font("Tahoma", 0, 25)); 
 		jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel15.setText("Quarry");
 
-		jLabel16.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+		jLabel16.setFont(new java.awt.Font("Tahoma", 0, 22));
 		jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel16.setText("Horse Rider");
 
-		jLabel17.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+		jLabel17.setFont(new java.awt.Font("Tahoma", 0, 25)); 
 		jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel17.setText("Barracks");
 
-		jLabel18.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+		jLabel18.setFont(new java.awt.Font("Tahoma", 0, 25)); 
 		jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel18.setText("Archer");
 
-		marksLabel.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+		marksLabel.setFont(new java.awt.Font("Tahoma", 0, 25)); 
 		marksLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		marksLabel.setText("0");
 
-		lumberLabel.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+		lumberLabel.setFont(new java.awt.Font("Tahoma", 0, 25)); 
 		lumberLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		lumberLabel.setText("0");
 
-		stoneLabel.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+		stoneLabel.setFont(new java.awt.Font("Tahoma", 0, 25)); 
 		stoneLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		stoneLabel.setText("0");
 
-		horsesLabel.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+		horsesLabel.setFont(new java.awt.Font("Tahoma", 0, 25)); 
 		horsesLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		horsesLabel.setText("0");
 
@@ -362,7 +365,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 						.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 						.addComponent(playerTurnLabel, javax.swing.GroupLayout.DEFAULT_SIZE,
 								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(jScrollPane1).addComponent(jTextField1)
+						.addComponent(jScrollPane1).addComponent(consoleCommand)
 						.addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING,
 								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
 								Short.MAX_VALUE)
@@ -573,14 +576,14 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 								javax.swing.GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jLabel8)
 						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE,
+						.addComponent(consoleCommand, javax.swing.GroupLayout.PREFERRED_SIZE,
 								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
 						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
 		boardPanel.setBackground(new java.awt.Color(0, 0, 240));
 		boardPanel.setMaximumSize(new java.awt.Dimension(1300, 1300));
 		boardPanel.setMinimumSize(new java.awt.Dimension(1300, 1300));
-		boardPanel.setName(""); // NOI18N
+		boardPanel.setName(""); 
 		boardPanel.setPreferredSize(new java.awt.Dimension(1300, 1300));
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -645,11 +648,11 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(2596, 1320));
         titleJPanel2.setIcon(game.getAsset().getTitleScreen());
-        titleJLabel1.setFont(new java.awt.Font("Tahoma", 0, 200)); // NOI18N
+        titleJLabel1.setFont(new java.awt.Font("Tahoma", 0, 200));
         titleJLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleJLabel1.setText("");
 
-        titleJButton1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        titleJButton1.setFont(new java.awt.Font("Tahoma", 0, 36)); 
         titleJButton1.setText("Play");
         titleJButton1.setFocusable(false);
         titleJButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -658,7 +661,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
             }
         });
 
-        titleJButton2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        titleJButton2.setFont(new java.awt.Font("Tahoma", 0, 36)); 
         titleJButton2.setText("Connect to Game");
         titleJButton2.setFocusable(false);
         titleJButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -667,15 +670,15 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
             }
         });
 
-        titleJButton3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        titleJButton3.setFont(new java.awt.Font("Tahoma", 0, 36)); 
         titleJButton3.setText("Achievments");
         titleJButton3.setFocusable(false);
         
-        titleJButton4.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        titleJButton4.setFont(new java.awt.Font("Tahoma", 0, 36)); 
         titleJButton4.setText("Credits");
         titleJButton4.setFocusable(false);
         
-        titleJButton5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        titleJButton5.setFont(new java.awt.Font("Tahoma", 0, 36)); 
         titleJButton5.setText("Rules");
         titleJButton5.setFocusable(false);
         titleJButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -684,7 +687,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
             }
         });
 
-        titleJButton6.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        titleJButton6.setFont(new java.awt.Font("Tahoma", 0, 36)); 
         titleJButton6.setText("Exit");
         titleJButton6.setFocusable(false);
 
@@ -810,43 +813,11 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 					try {
 						map[i][j + 1].setFog(false);
 					} catch (Exception ArrayIndexOutOfBoundsException) {
-					}/*
-					try {
-						map[i - 1][j + 1].setFog(false);
-					} catch (Exception ArrayIndexOutOfBoundsException) {
 					}
-					try {
-						map[i + 1][j + 1].setFog(false);
-					} catch (Exception ArrayIndexOutOfBoundsException) {
-					}/*
-					try {
-						map[i][j + 2].setFog(false);
-					} catch (Exception ArrayIndexOutOfBoundsException) {
-					}
-					try {
-						map[i][j - 2].setFog(false);
-					} catch (Exception ArrayIndexOutOfBoundsException) {
-					} */
 					try {
 						map[i][j + 1].setFog(false);
 					} catch (Exception ArrayIndexOutOfBoundsException) {
-					}/*
-					try {
-						map[i - 1][j - 1].setFog(false);
-					} catch (Exception ArrayIndexOutOfBoundsException) {
 					}
-					try {
-						map[i + 1][j - 1].setFog(false);
-					} catch (Exception ArrayIndexOutOfBoundsException) {
-					}
-					try {
-						map[i + 2][j].setFog(false);
-					} catch (Exception ArrayIndexOutOfBoundsException) {
-					}
-					try {
-						map[i - 2][j].setFog(false);
-					} catch (Exception ArrayIndexOutOfBoundsException) {
-					}*/
 				}
 			}
 		}
@@ -1047,6 +1018,25 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		String cheatCode = consoleCommand.getText();
+		if(cheatCode.equalsIgnoreCase("show me the money")){
+			int currentMarks = game.getCurrentPlayer().getMarks();
+			int currentLumber = game.getCurrentPlayer().getLumber();
+			int currentStone = game.getCurrentPlayer().getStone();
+			int currentHorses = game.getCurrentPlayer().getHorses();
+			
+			game.getCurrentPlayer().setMarks(currentMarks + 100);
+			game.getCurrentPlayer().setLumber(currentLumber + 100);
+			game.getCurrentPlayer().setStone(currentStone + 100);
+			game.getCurrentPlayer().setHorses(currentHorses + 100);
+			consoleCommand.setText("");
+			game.getAsset().Song(game.getAsset().getCheatsMusic());
+			game.getAsset().play();
+			updateResources();
+		}
+		else{
+			consoleCommand.setText("");
+		}
 		for (int i = 0; i < MAP_SIZE; i++) {
 			for (int j = 0; j < MAP_SIZE; j++) {
 				map[i][j].setBorder(new LineBorder(Color.GRAY));
@@ -1267,9 +1257,13 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 			}
 		}
 	}
+	/*private String getConsoleCommand(){
+		String cheatCode = consoleCommand.getText();
+		return cheatCode;
+	}*/
 	@Override
 	public void keyPressed(java.awt.event.KeyEvent e) {
-
+	
 	}
 
 	@Override
