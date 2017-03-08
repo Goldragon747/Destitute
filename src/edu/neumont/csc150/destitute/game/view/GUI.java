@@ -279,6 +279,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 
 		jButton10.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
 		jButton10.setText("End Turn");
+		jButton10.setFocusable(false);
 		jButton10.setForeground(Color.white);
 		jButton10.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -650,6 +651,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 
         titleJButton1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         titleJButton1.setText("Play");
+        titleJButton1.setFocusable(false);
         titleJButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 playTitleJButtonActionPerformed(evt);
@@ -658,6 +660,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 
         titleJButton2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         titleJButton2.setText("Connect to Game");
+        titleJButton2.setFocusable(false);
         titleJButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 titleJButton2ActionPerformed(evt);
@@ -666,12 +669,15 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 
         titleJButton3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         titleJButton3.setText("Achievments");
-
+        titleJButton3.setFocusable(false);
+        
         titleJButton4.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         titleJButton4.setText("Credits");
-
+        titleJButton4.setFocusable(false);
+        
         titleJButton5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         titleJButton5.setText("Rules");
+        titleJButton5.setFocusable(false);
         titleJButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 titleJButton5ActionPerformed(evt);
@@ -680,6 +686,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 
         titleJButton6.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         titleJButton6.setText("Exit");
+        titleJButton6.setFocusable(false);
 
         javax.swing.GroupLayout titleJPanel2Layout = new javax.swing.GroupLayout(titleJPanel2);
         titleJPanel2.setLayout(titleJPanel2Layout);
@@ -803,7 +810,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 					try {
 						map[i][j + 1].setFog(false);
 					} catch (Exception ArrayIndexOutOfBoundsException) {
-					}
+					}/*
 					try {
 						map[i - 1][j + 1].setFog(false);
 					} catch (Exception ArrayIndexOutOfBoundsException) {
@@ -811,7 +818,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 					try {
 						map[i + 1][j + 1].setFog(false);
 					} catch (Exception ArrayIndexOutOfBoundsException) {
-					}
+					}/*
 					try {
 						map[i][j + 2].setFog(false);
 					} catch (Exception ArrayIndexOutOfBoundsException) {
@@ -819,11 +826,11 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 					try {
 						map[i][j - 2].setFog(false);
 					} catch (Exception ArrayIndexOutOfBoundsException) {
-					}
+					} */
 					try {
 						map[i][j + 1].setFog(false);
 					} catch (Exception ArrayIndexOutOfBoundsException) {
-					}
+					}/*
 					try {
 						map[i - 1][j - 1].setFog(false);
 					} catch (Exception ArrayIndexOutOfBoundsException) {
@@ -839,7 +846,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 					try {
 						map[i - 2][j].setFog(false);
 					} catch (Exception ArrayIndexOutOfBoundsException) {
-					}
+					}*/
 				}
 			}
 		}
@@ -1075,7 +1082,6 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	}
 
 	public void refreshMapTileIcons() {
-		
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map.length; j++) {
 				if (!map[i][j].isFog()) {
