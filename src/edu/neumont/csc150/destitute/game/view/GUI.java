@@ -1039,6 +1039,18 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 			game.getAsset().play();
 			updateResources();
 		}
+		if(cheatCode.equalsIgnoreCase("there is no cow level")){
+			
+		}
+		if(cheatCode.equalsIgnoreCase("godmode")){
+			
+		}
+		if(cheatCode.equalsIgnoreCase("there is no cow level")){
+			
+		}
+		if(cheatCode.equalsIgnoreCase("my other game")){
+			
+		}
 		else{
 			consoleCommand.setText("");
 		}

@@ -124,7 +124,7 @@ public class Assets {
 		hunterCreationMusic = "Assets\\Music\\Hunter\\main.wav";
 		stableCreationMusic = "Assets\\Music\\Stable\\main.wav";
 		buildingDestroyedMusic = "Assets\\Music\\BuildingDestroyed\\main.wav";
-		cheatsMusic = "Assets\\Music\\Cheats\\main.mp3";
+		cheatsMusic = "Assets\\Music\\Cheats\\main.wav";
 		
 		titleScreen = new ImageIcon("Assets\\Backgrounds\\titlescreen.png");
 		mainBackground = new ImageIcon("Assets\\Backgrounds\\mainbackground.png");
