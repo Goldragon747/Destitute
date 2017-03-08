@@ -549,6 +549,10 @@ public class Game {
 							gui.setTurnEventBox(map[k][l].getUnit().getPlayer().getPlayerName() + " is attacking " + 
 							map[k][l].getBuilding().getPlayer().getPlayerName() + "'s " + map[k][l].getBuilding().getName() + "!");
 						} else if (map[k][l].getBuilding() instanceof Settlement && map[k][l].getBuilding().getHealth() <= 0) {
+							map[k][l].setBuilding(null);
+							gui.updateResources();
+							asset.Song(asset.getBuildingDestroyedMusic());
+							asset.play();
 							System.out.println("Someone won!?");
 						} else if (map[k][l].getBuilding().getHealth() <= 0) {
 							map[k][l].setBuilding(null);
