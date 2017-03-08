@@ -274,6 +274,8 @@ public class Game {
 									gui.setTileSelection(null);
 									gui.setUnitSelection(null);
 									gui.refreshMapTileIcons();
+									asset.Song(asset.getMovementMusic());
+									asset.play();
 								} 
 							} catch (Exception ArrayIndexOutOfBoundsException){}
 							try{
@@ -284,6 +286,8 @@ public class Game {
 									gui.setTileSelection(null);
 									gui.setUnitSelection(null);
 									gui.refreshMapTileIcons();
+									asset.Song(asset.getMovementMusic());
+									asset.play();
 								}
 							} catch (Exception ArrayIndexOutOfBoundsException){}
 							try{
@@ -294,6 +298,8 @@ public class Game {
 									gui.setTileSelection(null);
 									gui.setUnitSelection(null);
 									gui.refreshMapTileIcons();
+									asset.Song(asset.getMovementMusic());
+									asset.play();
 								}
 							} catch (Exception ArrayIndexOutOfBoundsException){}
 							try{
@@ -304,6 +310,8 @@ public class Game {
 									gui.setTileSelection(null);
 									gui.setUnitSelection(null);
 									gui.refreshMapTileIcons();
+									asset.Song(asset.getMovementMusic());
+									asset.play();
 								}
 							} catch (Exception ArrayIndexOutOfBoundsException){}
 						}
@@ -544,6 +552,8 @@ public class Game {
 							System.out.println("Someone won!?");
 						} else if (map[k][l].getBuilding().getHealth() <= 0) {
 							map[k][l].setBuilding(null);
+							asset.Song(asset.getBuildingDestroyedMusic());
+							asset.play();
 							gui.updateResources();
 						}
 					}

@@ -107,6 +107,14 @@ public class Assets{
 	private String backgroundMusic;
 	private String horseRiderMusic;
 	private String archerCreationMusic;
+	private String roadCreationMusic;
+	private String barracksCreationMusic;
+	private String lumberMillCreationMusic;
+	private String quarryCreationMusic;
+	private String movementMusic;
+	private String hunterCreationMusic;
+	private String stableCreationMusic;
+	private String buildingDestroyedMusic;
 
 	public Assets(int mapsize) {
 		titleScreenMusic = "Assets\\Music\\TitleScreen\\main.wav";
@@ -114,7 +122,14 @@ public class Assets{
 		backgroundMusic = "Assets\\Music\\Background\\main.wav";
 		horseRiderMusic = "Assets\\Music\\HorseRider\\main.wav";
 		archerCreationMusic =  "Assets\\Music\\Archer\\main.wav";
-		
+		roadCreationMusic = "Assets\\Music\\Road\\main.wav";
+		barracksCreationMusic = "Assets\\Music\\Barracks\\main.wav";
+		lumberMillCreationMusic = "Assets\\Music\\LumberMill\\main.wav";
+		quarryCreationMusic = "Assets\\Music\\Quarry\\main.wav";
+		movementMusic = "Assets\\Music\\Movement\\main.wav";
+		hunterCreationMusic = "Assets\\Music\\Hunter\\main.wav";
+		stableCreationMusic = "Assets\\Music\\Stable\\main.wav";
+		buildingDestroyedMusic = "Assets\\Music\\BuildingDestroyed\\main.wav";
 
 		titleScreen = new ImageIcon("Assets\\Backgrounds\\titlescreen.png");
 		mainBackground = new ImageIcon("Assets\\Backgrounds\\mainbackground.png");
@@ -737,38 +752,7 @@ public class Assets{
 	}
 
 	// ---------------------------------------BUILDINGS------------------------------------------//
-	public void lumberMillCreationMusic() {
-		String filename = "Assets\\Music\\LumberMill\\main.wav";
-		InputStream in = null;
-		try {
-			in = new FileInputStream(filename);
-		} catch (FileNotFoundException ex) {
-			System.out.println("File not found");
-		}
-		try {
-			AudioStream s = new AudioStream(in);
-			AudioData MD;
-			AudioPlayer.player.start(s);
-		} catch (IOException ex) {
-			System.out.println(ex.getMessage());
-		}
-	}
-
-	public void barracksCreationMusic() {
-		String filename = "Assets\\Music\\Barracks\\main.wav";
-		InputStream in = null;
-		try {
-			in = new FileInputStream(filename);
-		} catch (FileNotFoundException ex) {
-			System.out.println("File not found");
-		}
-		try {
-			AudioStream s = new AudioStream(in);
-			AudioPlayer.player.start(s);
-		} catch (IOException ex) {
-			System.out.println(ex.getMessage());
-		}
-	}
+	
 
 	public void quarryCreationMusic() {
 		// TODO
@@ -781,23 +765,6 @@ public class Assets{
 	
 
 	// ---------------------------------------UNITS------------------------------------------//
-
-	public void archerCreationMusic() {
-		String filename = "Assets\\Music\\Archer\\main.wav";
-		InputStream in = null;
-		try {
-			in = new FileInputStream(filename);
-		} catch (FileNotFoundException ex) {
-			System.out.println("File not found");
-		}
-		try {
-			AudioStream s = new AudioStream(in);
-			AudioPlayer.player.start(s);
-		} catch (IOException ex) {
-			System.out.println(ex.getMessage());
-		}
-	}
-
 	public void hunterCreationMusic() {
 
 	}
@@ -831,7 +798,30 @@ public class Assets{
 	public String getArcherCreationMusic() {
 		return archerCreationMusic;
 	}
-	
+	public String getRoadCreationMusic() {
+		return roadCreationMusic;
+	}
+	public String getBarracksCreationMusic() {
+		return barracksCreationMusic;
+	}
+	public String getLumberMillCreationMusic() {
+		return lumberMillCreationMusic;
+	}
+	public String getQuarryCreationMusic() {
+		return quarryCreationMusic;
+	}
+	public String getMovementMusic() {
+		return movementMusic;
+	}
+	public String getHunterCreationMusic() {
+		return hunterCreationMusic;
+	}
+	public String getStableCreationMusic() {
+		return stableCreationMusic;
+	}
+	public String getBuildingDestroyedMusic() {
+		return buildingDestroyedMusic;
+	}
 
 	
 

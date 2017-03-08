@@ -12,7 +12,6 @@ import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.Timer;
 import javax.swing.border.LineBorder;
 
 import edu.neumont.csc150.destitute.game.controller.Game;
@@ -885,7 +884,8 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 			game.handlePurchaseOfBuilding(lumberMill, lumberMill.getMarkCost(), lumberMill.getLumberCost(),
 					lumberMill.getStoneCost(), lumberMill.getHorseCost());
 			if(pMoney > game.getCurrentPlayer().getMarks()){
-				game.getAsset().lumberMillCreationMusic();
+				game.getAsset().Song(game.getAsset().getLumberMillCreationMusic());
+				game.getAsset().play();
 				}
 		}
 		getCorrectRoad();
@@ -893,22 +893,32 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	}
 
 	private void quarryButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		int pMoney = game.getCurrentPlayer().getMarks();
 		Quarry quarry = new Quarry();
 		if (game.handleBuildingBuildings(Resource.Stone, quarry.getMarkCost(), quarry.getLumberCost(),
 				quarry.getStoneCost(), quarry.getHorseCost())) {
 			game.handlePurchaseOfBuilding(quarry, quarry.getMarkCost(), quarry.getLumberCost(), quarry.getStoneCost(),
 					quarry.getHorseCost());
+			if(pMoney > game.getCurrentPlayer().getMarks()){
+				game.getAsset().Song(game.getAsset().getQuarryCreationMusic());
+				game.getAsset().play();
+			}
 		}
 		getCorrectRoad();
 		updateResources();
 	}
 
 	private void stableButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		int pMoney = game.getCurrentPlayer().getMarks();
 		Stable stable = new Stable();
 		if (game.handleBuildingBuildings(Resource.Horse, stable.getMarkCost(), stable.getLumberCost(),
 				stable.getStoneCost(), stable.getHorseCost())) {
 			game.handlePurchaseOfBuilding(stable, stable.getMarkCost(), stable.getLumberCost(), stable.getStoneCost(),
 					stable.getHorseCost());
+			if(pMoney > game.getCurrentPlayer().getMarks()){
+				game.getAsset().Song(game.getAsset().getStableCreationMusic());
+				game.getAsset().play();
+			}
 		}
 		getCorrectRoad();
 		updateResources();
@@ -922,8 +932,9 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 			game.handlePurchaseOfBuilding(barrack, barrack.getMarkCost(), barrack.getLumberCost(),
 					barrack.getStoneCost(), barrack.getHorseCost());
 			if(pMoney > game.getCurrentPlayer().getMarks()){
-				game.getAsset().barracksCreationMusic();
-				}
+				game.getAsset().Song(game.getAsset().getBarracksCreationMusic());
+				game.getAsset().play();
+			}
 		}
 		getCorrectRoad();
 		updateResources();
@@ -937,7 +948,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 			game.handlePurchaseOfBuilding(road, road.getMarkCost(), road.getLumberCost(), road.getStoneCost(),
 					road.getHorseCost());
 			if(pMoney > game.getCurrentPlayer().getMarks()){
-			game.getAsset().Song("Assets\\Music\\Road\\main.wav");
+			game.getAsset().Song(game.getAsset().getRoadCreationMusic());
 			game.getAsset().play();
 			}
 		}
@@ -950,10 +961,14 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	// ---------------------------------------------------\\ UNITS
 	// //---------------------------------------------------\\
 	private void hunterButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		
+		int pMoney = game.getCurrentPlayer().getMarks();
 		Hunter hunter = new Hunter();
 		game.handlePurchaseOfUnit(hunter, hunter.getMarkCost(), hunter.getLumberCost(), hunter.getStoneCost(),
 				hunter.getHorseCost());
+		if(pMoney > game.getCurrentPlayer().getMarks()){
+			game.getAsset().Song(game.getAsset().getHunterCreationMusic());
+			game.getAsset().play();
+		}
 		updateResources();
 	}
 
