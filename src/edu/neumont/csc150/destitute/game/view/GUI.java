@@ -761,6 +761,11 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
         
         pack();
 	}
+	
+	public void initCredits() {
+		
+	}
+	
 	public void player1BuyIcons(){
 		jButton10.setBackground(new Color(81,97,251));
 		jLabel3.setIcon(game.getAsset().getMarkIcon()); 

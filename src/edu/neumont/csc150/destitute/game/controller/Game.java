@@ -440,7 +440,7 @@ public class Game {
 				}
 			}
 		}
-		if (valid && attacker.getCurrentAttacks() >= 0) {
+		if (valid && attacker.getCurrentAttacks() > 0) {
 			System.out.println("made it to step 7 attacker health:" + attacker.getHealth() + " attacker attacks left: " + attacker.getCurrentAttacks());
 			System.out.println("defender health : " + defender.getHealth());
 			defender.setHealth(defender.getHealth() - attacker.getAttackDamage());
