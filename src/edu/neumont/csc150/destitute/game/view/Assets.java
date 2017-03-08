@@ -1,10 +1,7 @@
 package edu.neumont.csc150.destitute.game.view;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 
 import javax.sound.sampled.AudioInputStream;
@@ -15,11 +12,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 
-import sun.audio.AudioData;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
-
-public class Assets{
+public class Assets {
 	private ImageIcon titleScreen;
 	private ImageIcon mainBackground;
 	private ImageIcon menuBackground;
@@ -115,13 +108,14 @@ public class Assets{
 	private String hunterCreationMusic;
 	private String stableCreationMusic;
 	private String buildingDestroyedMusic;
+	private String cheatsMusic;
 
 	public Assets(int mapsize) {
 		titleScreenMusic = "Assets\\Music\\TitleScreen\\main.wav";
 		warriorMusic = "Assets\\Music\\Warrior\\main.wav";
 		backgroundMusic = "Assets\\Music\\Background\\main.wav";
 		horseRiderMusic = "Assets\\Music\\HorseRider\\main.wav";
-		archerCreationMusic =  "Assets\\Music\\Archer\\main.wav";
+		archerCreationMusic = "Assets\\Music\\Archer\\main.wav";
 		roadCreationMusic = "Assets\\Music\\Road\\main.wav";
 		barracksCreationMusic = "Assets\\Music\\Barracks\\main.wav";
 		lumberMillCreationMusic = "Assets\\Music\\LumberMill\\main.wav";
@@ -130,7 +124,8 @@ public class Assets{
 		hunterCreationMusic = "Assets\\Music\\Hunter\\main.wav";
 		stableCreationMusic = "Assets\\Music\\Stable\\main.wav";
 		buildingDestroyedMusic = "Assets\\Music\\BuildingDestroyed\\main.wav";
-
+		cheatsMusic = "Assets\\Music\\Cheats\\main.wav";
+		
 		titleScreen = new ImageIcon("Assets\\Backgrounds\\titlescreen.png");
 		mainBackground = new ImageIcon("Assets\\Backgrounds\\mainbackground.png");
 		menuBackground = new ImageIcon("Assets\\Backgrounds\\menubackground.png");
@@ -705,7 +700,6 @@ public class Assets{
 		return fog;
 	}
 
-	// ---------------------------------------GENERAL------------------------------------------//
 	private Clip clip;
 
 	public void Song(String fileName) {
@@ -732,12 +726,11 @@ public class Assets{
 			e.printStackTrace();
 			throw new RuntimeException("Sound: Line Unavailable Exception Error: " + e);
 		}
-		}
-		
+	}
 
 	public void play() {
 		clip.start();
-		clip.setFramePosition(0);	
+		clip.setFramePosition(0);
 	}
 
 	public void loop() {
@@ -751,21 +744,7 @@ public class Assets{
 		clip.flush();
 	}
 
-	// ---------------------------------------BUILDINGS------------------------------------------//
-	
-
-	public void quarryCreationMusic() {
-		// TODO
-	}
-
 	public void stableCreationMusic() {
-
-	}
-
-	
-
-	// ---------------------------------------UNITS------------------------------------------//
-	public void hunterCreationMusic() {
 
 	}
 
@@ -792,37 +771,48 @@ public class Assets{
 	public String getBackgroundMusic() {
 		return backgroundMusic;
 	}
+
 	public String getHorseRiderMusic() {
 		return horseRiderMusic;
 	}
+
 	public String getArcherCreationMusic() {
 		return archerCreationMusic;
 	}
+
 	public String getRoadCreationMusic() {
 		return roadCreationMusic;
 	}
+
 	public String getBarracksCreationMusic() {
 		return barracksCreationMusic;
 	}
+
 	public String getLumberMillCreationMusic() {
 		return lumberMillCreationMusic;
 	}
+
 	public String getQuarryCreationMusic() {
 		return quarryCreationMusic;
 	}
+
 	public String getMovementMusic() {
 		return movementMusic;
 	}
+
 	public String getHunterCreationMusic() {
 		return hunterCreationMusic;
 	}
+
 	public String getStableCreationMusic() {
 		return stableCreationMusic;
 	}
+
 	public String getBuildingDestroyedMusic() {
 		return buildingDestroyedMusic;
 	}
-
-	
+	public String getCheatsMusic() {
+		return cheatsMusic;
+	}
 
 }
