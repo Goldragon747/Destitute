@@ -111,7 +111,11 @@ public class Assets {
 	private String stableCreationMusic;
 	private String buildingDestroyedMusic;
 	private String cheatsMusic;
+	private String victoryMusic;
 
+	/*
+	 * Gives the file paths to the Strings and Image Icons
+	 */
 	public Assets(int mapsize) {
 		titleScreenMusic = "Assets\\Music\\TitleScreen\\main.wav";
 		warriorMusic = "Assets\\Music\\Warrior\\main.wav";
@@ -127,6 +131,7 @@ public class Assets {
 		stableCreationMusic = "Assets\\Music\\Stable\\main.wav";
 		buildingDestroyedMusic = "Assets\\Music\\BuildingDestroyed\\main.wav";
 		cheatsMusic = "Assets\\Music\\Cheats\\main.wav";
+		victoryMusic = "Assets\\Music\\Victory\\main.wav";
 		
 		titleScreen = new ImageIcon("Assets\\Backgrounds\\titlescreen.png");
 		mainBackground = new ImageIcon("Assets\\Backgrounds\\mainbackground.png");
@@ -705,6 +710,7 @@ public class Assets {
 	}
 
 	private Clip clip;
+	private Clip clip2;
 
 	public void Song(String fileName) {
 		try {
@@ -731,6 +737,32 @@ public class Assets {
 			throw new RuntimeException("Sound: Line Unavailable Exception Error: " + e);
 		}
 	}
+	
+	public void SongBackground(String fileName) {
+		try {
+			File file = new File(fileName);
+			if (file.exists()) {
+				AudioInputStream sound = AudioSystem.getAudioInputStream(file);
+
+				clip2 = AudioSystem.getClip();
+				clip2.open(sound);
+			} else {
+				throw new RuntimeException("Sound: file not found: " + fileName);
+			}
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Sound: Malformed URL: " + e);
+		} catch (UnsupportedAudioFileException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Sound: Unsupported Audio File: " + e);
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Sound: Input/Output Error: " + e);
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Sound: Line Unavailable Exception Error: " + e);
+		}
+	}
 
 	public void play() {
 		clip.start();
@@ -740,16 +772,33 @@ public class Assets {
 	public void loop() {
 		clip.loop(Clip.LOOP_CONTINUOUSLY);
 	}
-
 	public void stop() {
+		clip.setFramePosition(clip.getFrameLength() - 1);
 		BooleanControl mute = (BooleanControl) clip.getControl(BooleanControl.Type.MUTE);
 		mute.setValue(true);
 		clip.loop(0);
 		clip.flush();
 	}
 
-	public void stableCreationMusic() {
+	public void stopBG() {
+		try{
+		clip2.setFramePosition(clip2.getFrameLength() - 1);
+		BooleanControl mute = (BooleanControl) clip2.getControl(BooleanControl.Type.MUTE);
+		mute.setValue(true);
+		clip2.loop(0);
+		clip2.flush();
+		}
+		catch(NullPointerException e){
+			System.out.println("There was no BG music playing silly");
+		}
+	}
+	public void playBG() {
+		clip2.start();
+		clip2.setFramePosition(0);
+	}
 
+	public void loopBG() {
+		clip2.loop(Clip.LOOP_CONTINUOUSLY);
 	}
 
 	public ImageIcon getTitleScreen() {
@@ -825,6 +874,9 @@ public class Assets {
 
 	public ImageIcon getRulesBackground() {
 		return rulesBackground;
+	}
+	public String getVictoryMusic() {
+		return victoryMusic;
 	}
 
 

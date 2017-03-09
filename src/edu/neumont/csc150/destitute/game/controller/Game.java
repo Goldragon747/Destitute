@@ -2,7 +2,6 @@ package edu.neumont.csc150.destitute.game.controller;
 
 import java.util.Random;
 
-
 import edu.neumont.csc150.destitute.game.model.Buyable;
 import edu.neumont.csc150.destitute.game.model.Player;
 import edu.neumont.csc150.destitute.game.model.buildings.Barracks;
@@ -26,14 +25,13 @@ import edu.neumont.csc150.destitute.game.view.Assets;
 import edu.neumont.csc150.destitute.game.view.GUI;
 import edu.neumont.csc150.destitute.game.view.UserInteractions;
 
-
 public class Game {
 	private GUI gui;
 	private UserInteractions UI;
 	private Player player1 = new Player("Player1");
 	private Player player2 = new Player("Player2");
 	private Player currentPlayer;
-
+	private boolean win = false;
 	private final int MAP_SIZE = 10;
 	private Assets asset;
 	private Tile[][] map = new Tile[MAP_SIZE][MAP_SIZE];
@@ -43,7 +41,9 @@ public class Game {
 	private final int TOTAL_LUMBER_PER_SIDE = (MAP_SIZE / 2);
 	private final int TOTAL_STONE_PER_SIDE = (MAP_SIZE / 3);
 	private final int TOTAL_HORSE_PER_SIDE = (MAP_SIZE / 4);
-
+	/*
+	 * Runs the game
+	 */
 	public void run() {
 		currentPlayer = player1;
 		asset = new Assets(MAP_SIZE);
@@ -51,7 +51,9 @@ public class Game {
 		gui = new GUI(this, map, MAP_SIZE);
 		UI = new UserInteractions(this.gui);
 	}
-
+	/*
+	 * Initializes the map
+	 */
 	public void initializeMapArray() {
 		int lumberInTopMap = 0;
 		int stoneInTopMap = 0;
@@ -144,6 +146,9 @@ public class Game {
 				&& stoneInTopMap == TOTAL_STONE_PER_SIDE && stoneInBottomMap == TOTAL_STONE_PER_SIDE
 				&& horseInTopMap == TOTAL_HORSE_PER_SIDE && horseInBottomMap == TOTAL_HORSE_PER_SIDE));
 	}
+/*
+ * Handles if you can buy a building
+ */
 	public boolean handleBuildingBuildings(Resource tileName, int markCost, int lumberCost, int stoneCost,
 			int horseCost) {
 		try {
@@ -156,8 +161,8 @@ public class Game {
 							return true;
 						}
 					} else {
-						gui.setTurnEventBox("Cannot afford. This costs: " + markCost + " Marks, " + lumberCost + " Lumber, "
-								+ stoneCost + " Stone, and " + horseCost + " Horses.");
+						gui.setTurnEventBox("Cannot afford. This costs: " + markCost + " Marks, " + lumberCost
+								+ " Lumber, " + stoneCost + " Stone, and " + horseCost + " Horses.");
 					}
 				} else {
 					gui.setTurnEventBox("Cannot build. A " + currentTile.getUnit().getName() + " is on that tile.");
@@ -165,10 +170,13 @@ public class Game {
 			} else {
 				gui.setTurnEventBox("You can only build this on a " + tileName + " Tile");
 			}
-		} catch (Exception NullPointerException){}
-			return false;
+		} catch (Exception NullPointerException) {
+		}
+		return false;
 	}
-
+/*
+ * Handles the purchase of a building
+ */
 	public void handlePurchaseOfBuilding(Buyable item, int markCost, int lumberCost, int stoneCost, int horseCost) {
 		boolean valid = false;
 		Tile currentTile = (Tile) gui.getTileSelection();
@@ -212,7 +220,7 @@ public class Game {
 							gui.getCorrectRoad();
 						}
 					}
-				} 
+				}
 			}
 			gui.checkForExplored();
 			gui.refreshMapTileIcons();
@@ -222,14 +230,19 @@ public class Game {
 					"You already have a " + ((Tile) gui.getTileSelection()).getBuilding().getName() + " there!");
 		}
 	}
+/*
+ * handles purchasinng a unig
+ */
 	public void handlePurchaseOfUnit(Buyable item, int markCost, int lumberCost, int stoneCost, int horseCost) {
 		boolean valid = false;
 		Tile currentTile = (Tile) gui.getTileSelection();
 		for (int i = 0; i < MAP_SIZE; i++) {
 			for (int j = 0; j < MAP_SIZE; j++) {
-				if (currentPlayer.getMarks() >= markCost && currentPlayer.getLumber() >= lumberCost &&
-					currentPlayer.getStone() >= stoneCost && currentPlayer.getHorses() >= horseCost) {
-					if (map[i][j] == currentTile && currentTile.getBuilding() instanceof Barracks && currentTile.getUnit() == null && currentTile.getBuilding().getPlayer() == currentPlayer) {
+				if (currentPlayer.getMarks() >= markCost && currentPlayer.getLumber() >= lumberCost
+						&& currentPlayer.getStone() >= stoneCost && currentPlayer.getHorses() >= horseCost) {
+					if (map[i][j] == currentTile && currentTile.getBuilding() instanceof Barracks
+							&& currentTile.getUnit() == null
+							&& currentTile.getBuilding().getPlayer() == currentPlayer) {
 						map[i][j].setUnit((Unit) item);
 						map[i][j].getUnit().setPlayer(currentPlayer);
 						gui.refreshMapTileIcons();
@@ -237,8 +250,9 @@ public class Game {
 						currentPlayer.setLumber(currentPlayer.getLumber() - lumberCost);
 						currentPlayer.setStone(currentPlayer.getStone() - stoneCost);
 						currentPlayer.setHorses(currentPlayer.getHorses() - horseCost);
-					} else if (map[i][j] == currentTile && currentTile.getBuilding() instanceof Settlement && item instanceof Hunter && currentTile.getBuilding().getPlayer() == currentPlayer) {
-						map[i][j].setUnit((Unit)item);
+					} else if (map[i][j] == currentTile && currentTile.getBuilding() instanceof Settlement
+							&& item instanceof Hunter && currentTile.getBuilding().getPlayer() == currentPlayer) {
+						map[i][j].setUnit((Unit) item);
 						map[i][j].getUnit().setPlayer(currentPlayer);
 						gui.refreshMapTileIcons();
 						currentPlayer.setMarks(currentPlayer.getMarks() - markCost);
@@ -250,15 +264,19 @@ public class Game {
 			}
 		}
 	}
+/*
+ * Handles movement
+ */
 	public void tryHandleMovement() {
 		for (int i = 0; i < MAP_SIZE; i++) {
 			for (int j = 0; j < MAP_SIZE; j++) {
 				if (map[i][j].getUnit() != null) {
 					if (map[i][j].getUnit().getCurrentMovement() > 0) {
 						if (gui.getUnitSelection() == map[i][j].getUnit()) {
-							try{
+							try {
 								if (gui.getTileSelection() == map[i - 1][j]) {
-									map[i][j].getUnit().setCurrentMovement(map[i][j].getUnit().getCurrentMovement() - 1);
+									map[i][j].getUnit()
+											.setCurrentMovement(map[i][j].getUnit().getCurrentMovement() - 1);
 									map[i - 1][j].setUnit(map[i][j].getUnit());
 									map[i][j].setUnit(null);
 									gui.setTileSelection(null);
@@ -266,11 +284,13 @@ public class Game {
 									gui.refreshMapTileIcons();
 									asset.Song(asset.getMovementMusic());
 									asset.play();
-								} 
-							} catch (Exception ArrayIndexOutOfBoundsException){}
-							try{
+								}
+							} catch (Exception ArrayIndexOutOfBoundsException) {
+							}
+							try {
 								if (gui.getTileSelection() == map[i + 1][j]) {
-									map[i][j].getUnit().setCurrentMovement(map[i][j].getUnit().getCurrentMovement() - 1);
+									map[i][j].getUnit()
+											.setCurrentMovement(map[i][j].getUnit().getCurrentMovement() - 1);
 									map[i + 1][j].setUnit(map[i][j].getUnit());
 									map[i][j].setUnit(null);
 									gui.setTileSelection(null);
@@ -279,10 +299,12 @@ public class Game {
 									asset.Song(asset.getMovementMusic());
 									asset.play();
 								}
-							} catch (Exception ArrayIndexOutOfBoundsException){}
-							try{
+							} catch (Exception ArrayIndexOutOfBoundsException) {
+							}
+							try {
 								if (gui.getTileSelection() == map[i][j - 1]) {
-									map[i][j].getUnit().setCurrentMovement(map[i][j].getUnit().getCurrentMovement() - 1);
+									map[i][j].getUnit()
+											.setCurrentMovement(map[i][j].getUnit().getCurrentMovement() - 1);
 									map[i][j - 1].setUnit(map[i][j].getUnit());
 									map[i][j].setUnit(null);
 									gui.setTileSelection(null);
@@ -291,10 +313,12 @@ public class Game {
 									asset.Song(asset.getMovementMusic());
 									asset.play();
 								}
-							} catch (Exception ArrayIndexOutOfBoundsException){}
-							try{
+							} catch (Exception ArrayIndexOutOfBoundsException) {
+							}
+							try {
 								if (gui.getTileSelection() == map[i][j + 1]) {
-									map[i][j].getUnit().setCurrentMovement(map[i][j].getUnit().getCurrentMovement() - 1);
+									map[i][j].getUnit()
+											.setCurrentMovement(map[i][j].getUnit().getCurrentMovement() - 1);
 									map[i][j + 1].setUnit(map[i][j].getUnit());
 									map[i][j].setUnit(null);
 									gui.setTileSelection(null);
@@ -303,7 +327,8 @@ public class Game {
 									asset.Song(asset.getMovementMusic());
 									asset.play();
 								}
-							} catch (Exception ArrayIndexOutOfBoundsException){}
+							} catch (Exception ArrayIndexOutOfBoundsException) {
+							}
 						}
 					}
 				}
@@ -312,7 +337,9 @@ public class Game {
 		gui.checkForExplored();
 		gui.refreshMapTileIcons();
 	}
-
+/*
+ * Handles attack
+ */
 	public void tryHandleAttack() {
 		boolean valid = false;
 		boolean archer = false;
@@ -321,19 +348,14 @@ public class Game {
 		for (int i = 0; i < MAP_SIZE; i++) {
 			for (int j = 0; j < MAP_SIZE; j++) {
 				if (map[i][j] == gui.getTileSelection()) {
-					System.out.println("made it to step 1");
 					defender = map[i][j].getUnit();
 				}
 				if (map[i][j].getUnit() != null) {
-					System.out.println("made it to step 2");
 					if (map[i][j].getUnit() == gui.getUnitSelection()) {
-						System.out.println("made it to step 3");
 						if (map[i][j].getUnit() instanceof Archer) {
-							System.out.println("made it to step 4");
 							archer = true;
 						}
 						attacker = map[i][j].getUnit();
-						System.out.println("made it to step 5");
 					}
 				}
 			}
@@ -341,133 +363,145 @@ public class Game {
 		for (int i = 0; i < MAP_SIZE; i++) {
 			for (int j = 0; j < MAP_SIZE; j++) {
 				if (map[i][j].getUnit() != null) {
-					System.out.println("made it to step 6");
+
 					if (map[i][j].getUnit() == gui.getUnitSelection()) {
-						try{
-							if (map[i - 1][j].getUnit() != null && map[i - 1][j].getUnit() == defender &&
-								map[i - 1][j].getUnit().getPlayer() != map[i][j].getUnit().getPlayer() ){
-								System.out.println("made it to first if statement");
+						try {
+							if (map[i - 1][j].getUnit() != null && map[i - 1][j].getUnit() == defender
+									&& map[i - 1][j].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
 								valid = true;
 							}
-						} catch (Exception ArrayIndexOutOfBoundsException){}
-						try{
-							if (map[i + 1][j].getUnit() != null && map[i + 1][j].getUnit() == defender &&
-								map[i + 1][j].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
-								System.out.println("made it to second if statement");
+						} catch (Exception ArrayIndexOutOfBoundsException) {
+						}
+						try {
+							if (map[i + 1][j].getUnit() != null && map[i + 1][j].getUnit() == defender
+									&& map[i + 1][j].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
 								valid = true;
 							}
-						} catch (Exception ArrayIndexOutOfBoundsException){}
-						try{
-							if (map[i][j - 1].getUnit() != null && map[i][j - 1].getUnit() == defender &&
-								map[i][j - 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
-								System.out.println("made it to third if statement");
+						} catch (Exception ArrayIndexOutOfBoundsException) {
+						}
+						try {
+							if (map[i][j - 1].getUnit() != null && map[i][j - 1].getUnit() == defender
+									&& map[i][j - 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
+
 								valid = true;
 							}
-						} catch (Exception ArrayIndexOutOfBoundsException){}
-						try{
-							if (map[i][j + 1].getUnit() != null && map[i][j + 1].getUnit() == defender &&
-								map[i][j + 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
-								System.out.println("made it to fourth if statement");
+						} catch (Exception ArrayIndexOutOfBoundsException) {
+						}
+						try {
+							if (map[i][j + 1].getUnit() != null && map[i][j + 1].getUnit() == defender
+									&& map[i][j + 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
+
 								valid = true;
 							}
-						} catch (Exception ArrayIndexOutOfBoundsException){}
+						} catch (Exception ArrayIndexOutOfBoundsException) {
+						}
 						if (archer) {
-							try{
-								if (map[i - 1][j + 1].getUnit() != null && map[i - 1][j + 1].getUnit() == defender &&
-									map[i - 1][j + 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
-									System.out.println("made it to fifth if statement");
+							try {
+								if (map[i - 1][j + 1].getUnit() != null && map[i - 1][j + 1].getUnit() == defender
+										&& map[i - 1][j + 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
+
 									valid = true;
 								}
-							} catch (Exception ArrayIndexOutOfBoundsException){}
-							try{
-								if (map[i + 1][j + 1].getUnit() != null && map[i + 1][j + 1].getUnit() == defender &&
-									map[i + 1][j + 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
-									System.out.println("made it to sixth if statement");
+							} catch (Exception ArrayIndexOutOfBoundsException) {
+							}
+							try {
+								if (map[i + 1][j + 1].getUnit() != null && map[i + 1][j + 1].getUnit() == defender
+										&& map[i + 1][j + 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
+
 									valid = true;
 								}
-							} catch (Exception ArrayIndexOutOfBoundsException){}
-							try{
-								if (map[i][j + 2].getUnit() != null && map[i][j + 2].getUnit() == defender &&
-									map[i][j + 2].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
-									System.out.println("made it to seventh if statement");
+							} catch (Exception ArrayIndexOutOfBoundsException) {
+							}
+							try {
+								if (map[i][j + 2].getUnit() != null && map[i][j + 2].getUnit() == defender
+										&& map[i][j + 2].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
+
 									valid = true;
 								}
-							} catch (Exception ArrayIndexOutOfBoundsException){}
-							try{
-								if (map[i][j - 2].getUnit() != null && map[i][j - 2].getUnit() == defender &&
-									map[i][j - 2].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
-									System.out.println("made it to eighth if statement");
+							} catch (Exception ArrayIndexOutOfBoundsException) {
+							}
+							try {
+								if (map[i][j - 2].getUnit() != null && map[i][j - 2].getUnit() == defender
+										&& map[i][j - 2].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
+
 									valid = true;
 								}
-							} catch (Exception ArrayIndexOutOfBoundsException){}
-							try{
-								if (map[i][j + 1].getUnit() != null && map[i][j + 1].getUnit() == defender &&
-									map[i][j + 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
-									System.out.println("made it to ninth if statement");
+							} catch (Exception ArrayIndexOutOfBoundsException) {
+							}
+							try {
+								if (map[i][j + 1].getUnit() != null && map[i][j + 1].getUnit() == defender
+										&& map[i][j + 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
+
 									valid = true;
 								}
-							} catch (Exception ArrayIndexOutOfBoundsException){}
-							try{
-								if (map[i - 1][j - 1].getUnit() != null && map[i - 1][j - 1].getUnit() == defender &&
-									map[i - 1][j - 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
-									System.out.println("made it to tenth if statement");
+							} catch (Exception ArrayIndexOutOfBoundsException) {
+							}
+							try {
+								if (map[i - 1][j - 1].getUnit() != null && map[i - 1][j - 1].getUnit() == defender
+										&& map[i - 1][j - 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
+
 									valid = true;
 								}
-							} catch (Exception ArrayIndexOutOfBoundsException){}
-							try{
-								if (map[i + 1][j - 1].getUnit() != null && map[i + 1][j - 1].getUnit() == defender &&
-									map[i + 1][j - 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
-									System.out.println("made it to eleventh if statement");
+							} catch (Exception ArrayIndexOutOfBoundsException) {
+							}
+							try {
+								if (map[i + 1][j - 1].getUnit() != null && map[i + 1][j - 1].getUnit() == defender
+										&& map[i + 1][j - 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
+
 									valid = true;
 								}
-							} catch (Exception ArrayIndexOutOfBoundsException){}
-							try{
-								if (map[i + 2][j].getUnit() != null && map[i + 2][j].getUnit() == defender &&
-									map[i + 2][j].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
-									System.out.println("made it to twelth if statement");
+							} catch (Exception ArrayIndexOutOfBoundsException) {
+							}
+							try {
+								if (map[i + 2][j].getUnit() != null && map[i + 2][j].getUnit() == defender
+										&& map[i + 2][j].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
+
 									valid = true;
 								}
-							} catch (Exception ArrayIndexOutOfBoundsException){}
-							try{
-								if (map[i - 2][j].getUnit() != null && map[i - 2][j].getUnit() == defender &&
-									map[i - 2][j].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()){
-									System.out.println("made it to thirteenth if statement");
+							} catch (Exception ArrayIndexOutOfBoundsException) {
+							}
+							try {
+								if (map[i - 2][j].getUnit() != null && map[i - 2][j].getUnit() == defender
+										&& map[i - 2][j].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
+
 									valid = true;
 								}
-							} catch (Exception ArrayIndexOutOfBoundsException){}
+							} catch (Exception ArrayIndexOutOfBoundsException) {
+							}
 						}
 					}
 				}
 			}
 		}
 		if (valid && attacker.getCurrentAttacks() > 0) {
-			System.out.println("made it to step 7 attacker health:" + attacker.getHealth() + " attacker attacks left: " + attacker.getCurrentAttacks());
-			System.out.println("defender health : " + defender.getHealth());
+			System.out.println("Attacker health:" + attacker.getHealth() + " attacker attacks left: "
+					+ attacker.getCurrentAttacks());
+			System.out.println("Defender health : " + defender.getHealth());
 			defender.setHealth(defender.getHealth() - attacker.getAttackDamage());
 			attacker.setCurrentAttacks(attacker.getCurrentAttacks() - 1);
-			System.out.println("made it to step 8 attacker health:" + attacker.getHealth() + " attacker attacks left: " + attacker.getCurrentAttacks());
-			System.out.println("defender health : " + defender.getHealth());
+			System.out.println("Attacker health:" + attacker.getHealth() + " attacker attacks left: "
+					+ attacker.getCurrentAttacks());
+			System.out.println("Defender health : " + defender.getHealth());
 			if (defender.getHealth() <= 0) {
 				defender = null;
-				System.out.println("made it to step 9");
 			}
 			for (int i = 0; i < MAP_SIZE; i++) {
 				for (int j = 0; j < MAP_SIZE; j++) {
 					if (map[i][j] == gui.getTileSelection()) {
 						map[i][j].setUnit(defender);
 						gui.refreshMapTileIcons();
-						System.out.println("made it to step 10");
 					}
 					if (map[i][j].getUnit() == gui.getUnitSelection()) {
 						map[i][j].setUnit(attacker);
 						gui.refreshMapTileIcons();
-						System.out.println("made it to step 11");
 					}
 				}
 			}
 		}
 	}
-
+/*
+ * Checks if there is an adjacent building
+ */
 	public boolean hasBuildingAdjacent() {
 		for (int i = 0; i < MAP_SIZE; i++) {
 			for (int j = 0; j < MAP_SIZE; j++) {
@@ -505,6 +539,9 @@ public class Game {
 		}
 		return false;
 	}
+/*
+ * Performs end turn function
+ */
 	public void doEndTurn() {
 		int lumberCount = 0;
 		int quarryCount = 0;
@@ -521,12 +558,12 @@ public class Game {
 						&& map[i][j].getBuilding().getPlayer() == currentPlayer) {
 					stableCount++;
 				}
-				if(map[i][j].getUnit() != null) {
+				if (map[i][j].getUnit() != null) {
 					map[i][j].getUnit().setCurrentMovement(map[i][j].getUnit().getTotalMovement());
 				}
 			}
 		}
-		currentPlayer.setMarks(currentPlayer.getMarks() + 20);
+		currentPlayer.setMarks((currentPlayer.getMarks() + (20 + ((lumberCount + quarryCount + stableCount) * 2))));
 		currentPlayer.setLumber(currentPlayer.getLumber() + (10 * lumberCount));
 		currentPlayer.setStone(currentPlayer.getStone() + (10 * quarryCount));
 		currentPlayer.setHorses(currentPlayer.getHorses() + (10 * stableCount));
@@ -536,16 +573,19 @@ public class Game {
 					if (map[k][l].getBuilding().getPlayer() != map[k][l].getUnit().getPlayer()) {
 						map[k][l].getBuilding().setHealth(map[k][l].getBuilding().getHealth() - 1);
 						if (map[k][l].getBuilding().getHealth() > 0) {
-							gui.setTurnEventBox(map[k][l].getUnit().getPlayer().getPlayerName() + " is attacking " + 
-							map[k][l].getBuilding().getPlayer().getPlayerName() + "'s " + map[k][l].getBuilding().getName() + "!");
-						} else if (map[k][l].getBuilding() instanceof Settlement && map[k][l].getBuilding().getHealth() <= 0) {
+							gui.setTurnEventBox(map[k][l].getUnit().getPlayer().getPlayerName() + " is attacking "
+									+ map[k][l].getBuilding().getPlayer().getPlayerName() + "'s "
+									+ map[k][l].getBuilding().getName() + "!");
+						} else if (map[k][l].getBuilding() instanceof Settlement
+								&& map[k][l].getBuilding().getHealth() <= 0) {
 							map[k][l].setBuilding(null);
 							gui.updateResources();
-							asset.Song(asset.getBuildingDestroyedMusic());
-							asset.play();
+							gui.refreshMapTileIcons();
+							win = true;
 							System.out.println("Someone won!?");
 						} else if (map[k][l].getBuilding().getHealth() <= 0) {
 							map[k][l].setBuilding(null);
+							gui.refreshMapTileIcons();
 							asset.Song(asset.getBuildingDestroyedMusic());
 							asset.play();
 							gui.updateResources();
@@ -554,38 +594,62 @@ public class Game {
 				}
 			}
 		}
+
 	}
 
+	/*
+	 * Returns gui
+	 */
 	public GUI getGui() {
 		return gui;
 	}
-
+	/*
+	 * Returns UI
+	 */
 	public UserInteractions getUI() {
 		return UI;
 	}
-
+	/*
+	 * Returns asset
+	 */
 	public Assets getAsset() {
 		return asset;
 	}
-
+	/*
+	 * Returns player1
+	 */
 	public Player getPlayer1() {
 		return player1;
 	}
-
+	/*
+	 * Returns player2
+	 */
 	public Player getPlayer2() {
 		return player2;
 	}
-
+	/*
+	 * Returns currentPlayer
+	 */
 	public Player getCurrentPlayer() {
 		return currentPlayer;
 	}
+	/*
+	 * Returns a random number from your given max
+	 */
 	public int getRandomNum(int max) {
 		return gen.nextInt(max);
 	}
-
+	/*
+	 * Returns currentPlayer
+	 */
 	public void setCurrentPlayer(Player currentPlayer) {
 		this.currentPlayer = currentPlayer;
 	}
-	
+	/*
+	 * Returns win
+	 */
+	public boolean isWin() {
+		return win;
+	}
 
 }

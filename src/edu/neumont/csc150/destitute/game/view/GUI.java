@@ -194,14 +194,14 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		jPanel1.setPreferredSize(new java.awt.Dimension(605, 1300));
 		
 
-		playerTurnLabel.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+		playerTurnLabel.setFont(new java.awt.Font("Tahoma", 0, 48)); 
 		playerTurnLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		playerTurnLabel.setText("Player 1");
 
-		jLabel2.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
+		jLabel2.setFont(new java.awt.Font("Tahoma", 0, 30)); 
 		jLabel2.setText("Units");
 
-		jLabel4.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
+		jLabel4.setFont(new java.awt.Font("Tahoma", 0, 30)); 
 		jLabel4.setText("Buildings");
 		player1BuyIcons();
 		jButton1.setMaximumSize(new java.awt.Dimension(119, 119));
@@ -303,7 +303,6 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		});
 		jButton10.addKeyListener(new java.awt.event.KeyAdapter() {
 			public void keyPressed(java.awt.event.KeyEvent evt) {
-				endTurnKeyPressed(evt);
 			}
 		});
 
@@ -316,7 +315,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		jScrollPane1.setViewportView(turnEventsTextArea);
 
 		jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-		jLabel8.setText("Console Commands");
+		jLabel8.setText("Console");
 
 		jLabel10.setFont(new java.awt.Font("Tahoma", 0, 25));
 		jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -862,8 +861,14 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		turnEventsTextArea.setText(source + "\n" + s);
 
 	}
-
+	
 	private void endTurn() {
+		if (game.isWin()) {
+			game.getAsset().stopBG();
+			victoryMusic();
+		} else {
+			
+		}
 		tileSelection = null;
 		unitSelection = null;
 		for (int i = 0; i < MAP_SIZE; i++) {
@@ -881,7 +886,8 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 			playerTurnLabel.setText("Player 1");
 			player1BuyIcons();
 		}
-		getCorrectRoad();
+		
+		refreshMapTileIcons();
 		updateResources();
 	}
 
@@ -899,10 +905,12 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				game.getAsset().play();
 				}
 		}
-		getCorrectRoad();
+		refreshMapTileIcons();
 		updateResources();
 	}
-
+/*
+ * Determines what happens when you press the Quarry Jbutton
+ */
 	private void quarryButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		int pMoney = game.getCurrentPlayer().getMarks();
 		Quarry quarry = new Quarry();
@@ -915,10 +923,12 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				game.getAsset().play();
 			}
 		}
-		getCorrectRoad();
+		refreshMapTileIcons();
 		updateResources();
 	}
-
+	/*
+	 * Determines what happens when you press the Stable Jbutton
+	 */
 	private void stableButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		int pMoney = game.getCurrentPlayer().getMarks();
 		Stable stable = new Stable();
@@ -931,10 +941,12 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				game.getAsset().play();
 			}
 		}
-		getCorrectRoad();
+		refreshMapTileIcons();
 		updateResources();
 	}
-
+	/*
+	 * Determines what happens when you press the Barracks Jbutton
+	 */
 	private void barracksButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		int pMoney = game.getCurrentPlayer().getMarks();
 		Barracks barrack = new Barracks();
@@ -947,10 +959,12 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				game.getAsset().play();
 			}
 		}
-		getCorrectRoad();
+		refreshMapTileIcons();
 		updateResources();
 	}
-
+	/*
+	 * Determines what happens when you press the Road Jbutton
+	 */
 	private void roadButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		Road road = new Road();
 		int pMoney = game.getCurrentPlayer().getMarks();
@@ -963,7 +977,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 			game.getAsset().play();
 			}
 		}
-		getCorrectRoad();
+		refreshMapTileIcons();
 		updateResources();
 	}
 	// ---------------------------------------------------\\ ---------
@@ -971,6 +985,9 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 
 	// ---------------------------------------------------\\ UNITS
 	// //---------------------------------------------------\\
+	/*
+	 * Determines what happens when you press the Hunter Jbutton
+	 */
 	private void hunterButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		int pMoney = game.getCurrentPlayer().getMarks();
 		Hunter hunter = new Hunter();
@@ -983,7 +1000,9 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		}
 		updateResources();
 	}
-
+	/*
+	 * Determines what happens when you press the Archer Jbutton
+	 */
 	private void archerActionPerformed(java.awt.event.ActionEvent evt) {
 		int pMoney = game.getCurrentPlayer().getMarks();
 		Archer archer = new Archer();
@@ -996,7 +1015,9 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		}
 		updateResources();
 	}
-
+	/*
+	 * Determines what happens when you press the HorseRider Jbutton
+	 */
 	private void horseRiderButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		int pMoney = game.getCurrentPlayer().getMarks();
 		HorseRider horseRider = new HorseRider();
@@ -1009,7 +1030,9 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		}
 		updateResources();
 	}
-
+	/*
+	 * Determines what happens when you press the Warrior Jbutton
+	 */
 	private void warriorButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		int pMoney = game.getCurrentPlayer().getMarks();
 		Warrior warrior = new Warrior();
@@ -1025,6 +1048,9 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 
 	// ---------------------------------------------------\\ -----
 	// //---------------------------------------------------\\
+	/*
+	 * Determines what happens when you press the Play Jbutton
+	 */
 	private void playTitleJButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
 		titleJPanel2.setVisible(false);
 		credits.setVisible(false);
@@ -1032,10 +1058,13 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		jPanel1.setVisible(true);
 		boardPanel.setVisible(true);
 		game.getAsset().stop();
-		game.getAsset().Song(game.getAsset().getBackgroundMusic());
-		game.getAsset().loop();
+		game.getAsset().SongBackground(game.getAsset().getBackgroundMusic());
+		game.getAsset().loopBG();
+		updateResources();
     }                                             
-
+	/*
+	 * Determines what happens when you press the Credits Jbutton
+	 */
     private void titleJButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                              
     	titleJPanel2.setVisible(false);
 		jPanel1.setVisible(false);
@@ -1043,7 +1072,9 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		rules.setVisible(false);
 		credits.setVisible(true);
     }                                             
-
+    /*
+	 * Determines what happens when you press the Rules Jbutton
+	 */
     private void titleJButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                              
     	titleJPanel2.setVisible(false);
 		jPanel1.setVisible(false);
@@ -1051,17 +1082,30 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		credits.setVisible(false);
 		rules.setVisible(true);
     }
+    /*
+	 * Determines what happens when you press the Exit Jbutton
+	 */
     private void titleJButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                              
     	System.exit(0);
     }
+    /*
+	 * Determines what happens when you press the End Turn Jbutton
+	 */
 	private void endTurnActionPerformed(java.awt.event.ActionEvent evt) {
 		endTurn();
 	}
-
-	private void endTurnKeyPressed(java.awt.event.KeyEvent evt) {
-
+	/*
+	 * Plays the victory music
+	 */
+	public void victoryMusic(){
+		game.getAsset().stop();
+		game.getAsset().Song(game.getAsset().getVictoryMusic());
+		game.getAsset().loop();
 	}
-
+/*
+ * Action Performed method, helps with cheat codes by taking what 
+ * is in the console, also helps with unit selection
+ */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cheatCode = consoleCommand.getText();
@@ -1081,17 +1125,18 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 			updateResources();
 		}
 		if(cheatCode.equalsIgnoreCase("there is no cow level")){
-			
+		//TODO	
 		}
 		if(cheatCode.equalsIgnoreCase("godmode")){
-			
-		}
-		if(cheatCode.equalsIgnoreCase("there is no cow level")){
-			
+			//TODO
 		}
 		if(cheatCode.equalsIgnoreCase("my other game")){
 			
 		}
+		if(cheatCode.equalsIgnoreCase("all seeing eye")){
+			
+		}
+		//if(cheatCode.equals())
 		else{
 			consoleCommand.setText("");
 		}
@@ -1121,15 +1166,20 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 			}
 		}
 	}
-
+/*
+ * Updates the resources JLabel by checking the current players resources
+ */
 	public void updateResources() {
 		marksLabel.setText(game.getCurrentPlayer().getMarks() + "");
 		lumberLabel.setText(game.getCurrentPlayer().getLumber() + "");
 		stoneLabel.setText(game.getCurrentPlayer().getStone() + "");
 		horsesLabel.setText(game.getCurrentPlayer().getHorses() + "");
 	}
-
+/*
+ * Refreshes the map Icons by checking every tile and what is currently held inside it
+ */
 	public void refreshMapTileIcons() {
+		getCorrectRoad();
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map.length; j++) {
 				if (!map[i][j].isFog()) {
@@ -1198,14 +1248,16 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 							map[i][j].setIcon(game.getAsset().getHorse());
 						} else if (map[i][j] instanceof Grass) {
 							map[i][j].setIcon(game.getAsset().getGrass());
-						} // TODO fix road updating bug
+						} 
 					}
 				}
 			}
 		}
-		getCorrectRoad();
+		
 	}
-
+/*
+ * Places the correct road image by checking the surrounding tiles for buildings
+ */
 	public void getCorrectRoad() {
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map.length; j++) {
@@ -1315,10 +1367,11 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 			}
 		}
 	}
-	/*private String getConsoleCommand(){
-		String cheatCode = consoleCommand.getText();
-		return cheatCode;
-	}*/
+	/*
+	 * Key pressed event currently brings the user to the 
+	 * title screen by pressing the escape key using KeyEvent
+	 * Also switches songs to the title screen music
+	 */
 	@Override
 	public void keyPressed(java.awt.event.KeyEvent e) {
 		int location = e.getKeyCode();
@@ -1329,6 +1382,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 			rules.setVisible(false);
 			titleJPanel2.setVisible(true);
 			game.getAsset().stop();
+			game.getAsset().stopBG();
 			game.getAsset().Song(game.getAsset().getTitleScreenMusic());
 			game.getAsset().loop();
 		}
