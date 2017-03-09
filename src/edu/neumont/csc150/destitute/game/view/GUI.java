@@ -369,7 +369,6 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		horsesLabel.setFont(new java.awt.Font("Tahoma", 0, 25));
 		horsesLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		horsesLabel.setText("0");
-		jPanel1.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 3)); // ----------------------------------------------------------------------
 		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
 		jPanel1.setLayout(jPanel1Layout);
 		jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
