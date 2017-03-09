@@ -13,6 +13,9 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 
 public class Assets {
+	private ImageIcon p1Win;
+	private ImageIcon p2Win;
+	
 	private ImageIcon titleScreen;
 	private ImageIcon mainBackground;
 	private ImageIcon menuBackground;
@@ -132,6 +135,9 @@ public class Assets {
 		buildingDestroyedMusic = "Assets\\Music\\BuildingDestroyed\\main.wav";
 		cheatsMusic = "Assets\\Music\\Cheats\\main.wav";
 		victoryMusic = "Assets\\Music\\Victory\\main.wav";
+		
+		p1Win = new ImageIcon("Assets\\Backgrounds\\p1_win.png");
+		p2Win = new ImageIcon("Assets\\Backgrounds\\p2_win.png");
 		
 		titleScreen = new ImageIcon("Assets\\Backgrounds\\titlescreen.png");
 		mainBackground = new ImageIcon("Assets\\Backgrounds\\mainbackground.png");
@@ -877,6 +883,20 @@ public class Assets {
 	}
 	public String getVictoryMusic() {
 		return victoryMusic;
+	}
+
+	/**
+	 * @return the p1Win
+	 */
+	public ImageIcon getP1Win() {
+		return p1Win;
+	}
+
+	/**
+	 * @return the p2Win
+	 */
+	public ImageIcon getP2Win() {
+		return p2Win;
 	}
 
 

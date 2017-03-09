@@ -86,6 +86,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	private javax.swing.JLabel jLabel9;
 	private javax.swing.JLabel jPanel1;
 	private javax.swing.JLabel credits;
+	private javax.swing.JLabel win;
 	private javax.swing.JLabel rules;
 	private javax.swing.JPanel boardPanel;
 	private javax.swing.JScrollPane jScrollPane1;
@@ -122,12 +123,14 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		this.map = map;
 		this.MAP_SIZE = MAP_SIZE;
 		setContentPane(new JLabel(game.getAsset().getMainBackround()));
-	    setLayout(new FlowLayout());
+		setLayout(new FlowLayout());
 		initComponents();
 		initTitleScreen();
 		initCredits();
 		initRules();
+		initWin();
 		credits.setVisible(false);
+		win.setVisible(false);
 		rules.setVisible(false);
 		jPanel1.addKeyListener(this);
 		boardPanel.addKeyListener(this);
@@ -184,7 +187,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		jLabel7 = new javax.swing.JLabel();
 		jLabel9 = new javax.swing.JLabel();
 		boardPanel = new javax.swing.JPanel();
-		
+
 		consoleCommand.addActionListener(this);
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -192,16 +195,15 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		setPreferredSize(new java.awt.Dimension(2596, 1320));
 		jPanel1.setIcon(game.getAsset().getMenuBackground());
 		jPanel1.setPreferredSize(new java.awt.Dimension(605, 1300));
-		
 
-		playerTurnLabel.setFont(new java.awt.Font("Tahoma", 0, 48)); 
+		playerTurnLabel.setFont(new java.awt.Font("Tahoma", 0, 48));
 		playerTurnLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		playerTurnLabel.setText("Player 1");
 
-		jLabel2.setFont(new java.awt.Font("Tahoma", 0, 30)); 
+		jLabel2.setFont(new java.awt.Font("Tahoma", 0, 30));
 		jLabel2.setText("Units");
 
-		jLabel4.setFont(new java.awt.Font("Tahoma", 0, 30)); 
+		jLabel4.setFont(new java.awt.Font("Tahoma", 0, 30));
 		jLabel4.setText("Buildings");
 		player1BuyIcons();
 		jButton1.setMaximumSize(new java.awt.Dimension(119, 119));
@@ -212,7 +214,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				lumberMillButtonActionPerformed(evt);
 			}
 		});
-		
+
 		jButton2.setActionCommand("Quarry");
 		jButton2.setMaximumSize(new java.awt.Dimension(119, 119));
 		jButton2.setMinimumSize(new java.awt.Dimension(119, 119));
@@ -222,7 +224,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				quarryButtonActionPerformed(evt);
 			}
 		});
-		
+
 		jButton3.setMaximumSize(new java.awt.Dimension(119, 119));
 		jButton3.setMinimumSize(new java.awt.Dimension(119, 119));
 		jButton3.setPreferredSize(new java.awt.Dimension(119, 119));
@@ -231,7 +233,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				stableButtonActionPerformed(evt);
 			}
 		});
-		
+
 		jButton4.setToolTipText("");
 		jButton4.setMaximumSize(new java.awt.Dimension(119, 119));
 		jButton4.setMinimumSize(new java.awt.Dimension(119, 119));
@@ -241,7 +243,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				barracksButtonActionPerformed(evt);
 			}
 		});
-		
+
 		jButton5.setActionCommand("jButton5actionCommand");
 		jButton5.setMaximumSize(new java.awt.Dimension(119, 119));
 		jButton5.setMinimumSize(new java.awt.Dimension(119, 119));
@@ -251,7 +253,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				roadButtonActionPerformed(evt);
 			}
 		});
-		
+
 		jButton6.setMaximumSize(new java.awt.Dimension(119, 119));
 		jButton6.setMinimumSize(new java.awt.Dimension(119, 119));
 		jButton6.setPreferredSize(new java.awt.Dimension(119, 119));
@@ -260,7 +262,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				hunterButtonActionPerformed(evt);
 			}
 		});
-		
+
 		jButton7.setMaximumSize(new java.awt.Dimension(119, 119));
 		jButton7.setMinimumSize(new java.awt.Dimension(119, 119));
 		jButton7.setPreferredSize(new java.awt.Dimension(119, 119));
@@ -278,7 +280,6 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 			}
 		});
 
-		
 		jButton9.setMaximumSize(new java.awt.Dimension(119, 119));
 		jButton9.setMinimumSize(new java.awt.Dimension(119, 119));
 		jButton9.setPreferredSize(new java.awt.Dimension(119, 119));
@@ -308,7 +309,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 
 		turnEventsTextArea.setEditable(false);
 		turnEventsTextArea.setColumns(20);
-		turnEventsTextArea.setFont(new java.awt.Font("Monospaced", 0, 18)); 
+		turnEventsTextArea.setFont(new java.awt.Font("Monospaced", 0, 18));
 		turnEventsTextArea.setLineWrap(true);
 		turnEventsTextArea.setRows(5);
 		turnEventsTextArea.setText("Welcome to Destitute");
@@ -321,23 +322,23 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel10.setText("Warrior");
 
-		jLabel11.setFont(new java.awt.Font("Tahoma", 0, 22)); 
+		jLabel11.setFont(new java.awt.Font("Tahoma", 0, 22));
 		jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel11.setText("Lumber Mill");
 
-		jLabel12.setFont(new java.awt.Font("Tahoma", 0, 25)); 
+		jLabel12.setFont(new java.awt.Font("Tahoma", 0, 25));
 		jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel12.setText("Hunter");
 
-		jLabel13.setFont(new java.awt.Font("Tahoma", 0, 25)); 
+		jLabel13.setFont(new java.awt.Font("Tahoma", 0, 25));
 		jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel13.setText("Stable");
 
-		jLabel14.setFont(new java.awt.Font("Tahoma", 0, 25)); 
+		jLabel14.setFont(new java.awt.Font("Tahoma", 0, 25));
 		jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel14.setText("Road");
 
-		jLabel15.setFont(new java.awt.Font("Tahoma", 0, 25)); 
+		jLabel15.setFont(new java.awt.Font("Tahoma", 0, 25));
 		jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel15.setText("Quarry");
 
@@ -345,30 +346,30 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel16.setText("Horse Rider");
 
-		jLabel17.setFont(new java.awt.Font("Tahoma", 0, 25)); 
+		jLabel17.setFont(new java.awt.Font("Tahoma", 0, 25));
 		jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel17.setText("Barracks");
 
-		jLabel18.setFont(new java.awt.Font("Tahoma", 0, 25)); 
+		jLabel18.setFont(new java.awt.Font("Tahoma", 0, 25));
 		jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel18.setText("Archer");
 
-		marksLabel.setFont(new java.awt.Font("Tahoma", 0, 25)); 
+		marksLabel.setFont(new java.awt.Font("Tahoma", 0, 25));
 		marksLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		marksLabel.setText("0");
 
-		lumberLabel.setFont(new java.awt.Font("Tahoma", 0, 25)); 
+		lumberLabel.setFont(new java.awt.Font("Tahoma", 0, 25));
 		lumberLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		lumberLabel.setText("0");
 
-		stoneLabel.setFont(new java.awt.Font("Tahoma", 0, 25)); 
+		stoneLabel.setFont(new java.awt.Font("Tahoma", 0, 25));
 		stoneLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		stoneLabel.setText("0");
 
-		horsesLabel.setFont(new java.awt.Font("Tahoma", 0, 25)); 
+		horsesLabel.setFont(new java.awt.Font("Tahoma", 0, 25));
 		horsesLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		horsesLabel.setText("0");
-		jPanel1.setBorder(BorderFactory.createLineBorder(new Color(255,255,255),3)); //----------------------------------------------------------------------
+		jPanel1.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 3)); // ----------------------------------------------------------------------
 		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
 		jPanel1.setLayout(jPanel1Layout);
 		jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -594,7 +595,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		boardPanel.setBackground(new java.awt.Color(0, 0, 240));
 		boardPanel.setMaximumSize(new java.awt.Dimension(1300, 1300));
 		boardPanel.setMinimumSize(new java.awt.Dimension(1300, 1300));
-		boardPanel.setName(""); 
+		boardPanel.setName("");
 		boardPanel.setPreferredSize(new java.awt.Dimension(1300, 1300));
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -619,7 +620,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
 						.addGap(50, 50, 50)));
 		boardPanel.setBackground(Color.black);
-		boardPanel.setLayout(new GridLayout(MAP_SIZE,MAP_SIZE));
+		boardPanel.setLayout(new GridLayout(MAP_SIZE, MAP_SIZE));
 		for (int i = 0; i < MAP_SIZE; i++) {
 			for (int j = 0; j < MAP_SIZE; j++) {
 				boardPanel.add(map[i][j]);
@@ -646,156 +647,177 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		}
 		pack();
 	}
+
 	public void initTitleScreen() {
 		titleJPanel2 = new javax.swing.JLabel();
-        titleJLabel1 = new javax.swing.JLabel();
-        titleJButton1 = new javax.swing.JButton();
-        titleJButton4 = new javax.swing.JButton();
-        titleJButton5 = new javax.swing.JButton();
-        titleJButton6 = new javax.swing.JButton();
+		titleJLabel1 = new javax.swing.JLabel();
+		titleJButton1 = new javax.swing.JButton();
+		titleJButton4 = new javax.swing.JButton();
+		titleJButton5 = new javax.swing.JButton();
+		titleJButton6 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(2596, 1320));
-        titleJPanel2.setIcon(game.getAsset().getTitleScreen());
-        titleJLabel1.setFont(new java.awt.Font("Tahoma", 0, 200));
-        titleJLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleJLabel1.setText("");
+		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setPreferredSize(new java.awt.Dimension(2596, 1320));
+		titleJPanel2.setIcon(game.getAsset().getTitleScreen());
+		titleJLabel1.setFont(new java.awt.Font("Tahoma", 0, 200));
+		titleJLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		titleJLabel1.setText("");
 
-        titleJButton1.setFont(new java.awt.Font("Tahoma", 0, 36)); 
-        titleJButton1.setText("Play");
-        titleJButton1.setFocusable(false);
-        titleJButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                playTitleJButtonActionPerformed(evt);
-            }
-        });
-        
-        titleJButton4.setFont(new java.awt.Font("Tahoma", 0, 36)); 
-        titleJButton4.setText("Credits");
-        titleJButton4.setFocusable(false);
-        titleJButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                titleJButton4ActionPerformed(evt);
-            }
-        });
-        
-        titleJButton5.setFont(new java.awt.Font("Tahoma", 0, 36)); 
-        titleJButton5.setText("Rules");
-        titleJButton5.setFocusable(false);
-        titleJButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                titleJButton5ActionPerformed(evt);
-            }
-        });
+		titleJButton1.setFont(new java.awt.Font("Tahoma", 0, 36));
+		titleJButton1.setText("Play");
+		titleJButton1.setFocusable(false);
+		titleJButton1.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				playTitleJButtonActionPerformed(evt);
+			}
+		});
 
-        titleJButton6.setFont(new java.awt.Font("Tahoma", 0, 36)); 
-        titleJButton6.setText("Exit");
-        titleJButton6.setFocusable(false);
-        titleJButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                titleJButton6ActionPerformed(evt);
-            }
-        });
-        javax.swing.GroupLayout titleJPanel2Layout = new javax.swing.GroupLayout(titleJPanel2);
-        titleJPanel2.setLayout(titleJPanel2Layout);
-        titleJPanel2Layout.setHorizontalGroup(
-            titleJPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, titleJPanel2Layout.createSequentialGroup()
-                .addContainerGap(1076, Short.MAX_VALUE)
-                .addGroup(titleJPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(titleJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)
-                    .addComponent(titleJButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                    .addComponent(titleJButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                    .addComponent(titleJButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                .addGap(1034, 1034, 1034))
-            .addComponent(titleJLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        titleJPanel2Layout.setVerticalGroup(
-            titleJPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(titleJPanel2Layout.createSequentialGroup()
-                .addComponent(titleJLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(143, 143, 143)
-                .addComponent(titleJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(titleJButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(titleJButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(titleJButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 51, Short.MAX_VALUE))
-        );
+		titleJButton4.setFont(new java.awt.Font("Tahoma", 0, 36));
+		titleJButton4.setText("Credits");
+		titleJButton4.setFocusable(false);
+		titleJButton4.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				titleJButton4ActionPerformed(evt);
+			}
+		});
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titleJPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titleJPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        int randomColor = game.getRandomNum(2);
-        if (randomColor == 0) {
-        	titleJButton1.setBackground(new Color(205,42,21));
-            titleJButton4.setBackground(new Color(205,42,21));
-            titleJButton5.setBackground(new Color(205,42,21));
-            titleJButton6.setBackground(new Color(205,42,21));
-        } else {
-        	titleJButton1.setBackground(new Color(81,97,251));
-            titleJButton4.setBackground(new Color(81,97,251));
-            titleJButton5.setBackground(new Color(81,97,251));
-            titleJButton6.setBackground(new Color(81,97,251));
-        }
-        titleJButton1.setForeground(Color.white);
-        titleJButton4.setForeground(Color.white);
-        titleJButton5.setForeground(Color.white);
-        titleJButton6.setForeground(Color.white);
-        
-        pack();
+		titleJButton5.setFont(new java.awt.Font("Tahoma", 0, 36));
+		titleJButton5.setText("Rules");
+		titleJButton5.setFocusable(false);
+		titleJButton5.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				titleJButton5ActionPerformed(evt);
+			}
+		});
+
+		titleJButton6.setFont(new java.awt.Font("Tahoma", 0, 36));
+		titleJButton6.setText("Exit");
+		titleJButton6.setFocusable(false);
+		titleJButton6.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				titleJButton6ActionPerformed(evt);
+			}
+		});
+		javax.swing.GroupLayout titleJPanel2Layout = new javax.swing.GroupLayout(titleJPanel2);
+		titleJPanel2.setLayout(titleJPanel2Layout);
+		titleJPanel2Layout
+				.setHorizontalGroup(titleJPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+								titleJPanel2Layout.createSequentialGroup().addContainerGap(1076, Short.MAX_VALUE)
+										.addGroup(titleJPanel2Layout
+												.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+												.addComponent(titleJButton1, javax.swing.GroupLayout.PREFERRED_SIZE,
+														500, Short.MAX_VALUE)
+												.addComponent(titleJButton4, javax.swing.GroupLayout.PREFERRED_SIZE,
+														javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+												.addComponent(titleJButton5, javax.swing.GroupLayout.PREFERRED_SIZE,
+														javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+												.addComponent(titleJButton6, javax.swing.GroupLayout.PREFERRED_SIZE,
+														javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+										.addGap(1034, 1034, 1034))
+						.addComponent(titleJLabel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+		titleJPanel2Layout
+				.setVerticalGroup(
+						titleJPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+								.addGroup(titleJPanel2Layout.createSequentialGroup()
+										.addComponent(titleJLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 575,
+												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addGap(143, 143, 143)
+										.addComponent(titleJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50,
+												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addGap(43, 43, 43)
+										.addComponent(titleJButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50,
+												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addGap(38, 38, 38)
+										.addComponent(titleJButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50,
+												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addGap(29, 29, 29)
+										.addComponent(titleJButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 50,
+												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addGap(0, 51, Short.MAX_VALUE)));
+
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+		getContentPane().setLayout(layout);
+		layout.setHorizontalGroup(
+				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(titleJPanel2,
+						javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+		layout.setVerticalGroup(
+				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(titleJPanel2,
+						javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+		int randomColor = game.getRandomNum(2);
+		if (randomColor == 0) {
+			titleJButton1.setBackground(new Color(205, 42, 21));
+			titleJButton4.setBackground(new Color(205, 42, 21));
+			titleJButton5.setBackground(new Color(205, 42, 21));
+			titleJButton6.setBackground(new Color(205, 42, 21));
+		} else {
+			titleJButton1.setBackground(new Color(81, 97, 251));
+			titleJButton4.setBackground(new Color(81, 97, 251));
+			titleJButton5.setBackground(new Color(81, 97, 251));
+			titleJButton6.setBackground(new Color(81, 97, 251));
+		}
+		titleJButton1.setForeground(Color.white);
+		titleJButton4.setForeground(Color.white);
+		titleJButton5.setForeground(Color.white);
+		titleJButton6.setForeground(Color.white);
+
+		pack();
 	}
-	
+
 	public void initCredits() {
 		credits = new javax.swing.JLabel();
-		credits.setPreferredSize(new Dimension(2596,1320));
+		credits.setPreferredSize(new Dimension(2596, 1320));
 		credits.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		credits.setIcon(game.getAsset().getCreditsBackground());
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(credits, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(credits, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        pack();
-		//this.add(credits);
+		getContentPane().setLayout(layout);
+		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+				credits, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+				credits, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+		pack();
 	}
 	
+	public void initWin() {
+		win = new javax.swing.JLabel();
+		win.setPreferredSize(new Dimension(2596, 1320));
+		win.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		win.setIcon(game.getAsset().getCreditsBackground());
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+		getContentPane().setLayout(layout);
+		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+				win, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+				win, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+		pack();
+	}
+	public void setWinScreen1() {
+		win.setIcon(game.getAsset().getP1Win());
+	}
+	
+	public void setWinScreen2() {
+		win.setIcon(game.getAsset().getP2Win());
+	}
+
 	public void initRules() {
 		rules = new javax.swing.JLabel();
-		rules.setPreferredSize(new Dimension(2596,1320));
+		rules.setPreferredSize(new Dimension(2596, 1320));
 		rules.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		rules.setIcon(game.getAsset().getRulesBackground());
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(rules, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(rules, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        pack();
-		//this.add(rules);
+		getContentPane().setLayout(layout);
+		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+				rules, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+				rules, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+		pack();
+		// this.add(rules);
 	}
-	
-	public void player1BuyIcons(){
-		jButton10.setBackground(new Color(81,97,251));
-		jLabel3.setIcon(game.getAsset().getMarkIcon()); 
+
+	public void player1BuyIcons() {
+		jButton10.setBackground(new Color(81, 97, 251));
+		jLabel3.setIcon(game.getAsset().getMarkIcon());
 		jLabel5.setIcon(game.getAsset().getLumberIcon());
 		jLabel7.setIcon(game.getAsset().getStoneIcon());
 		jLabel9.setIcon(game.getAsset().getHorsesIcon());
@@ -809,9 +831,10 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		jButton2.setIcon(game.getAsset().getBuyIconP1Quarry());
 		jButton1.setIcon(game.getAsset().getBuyIconP1Lumbermill());
 	}
-	public void player2BuyIcons(){
-		jButton10.setBackground(new Color(205,42,21));
-		jLabel3.setIcon(game.getAsset().getMarkIcon()); 
+
+	public void player2BuyIcons() {
+		jButton10.setBackground(new Color(205, 42, 21));
+		jLabel3.setIcon(game.getAsset().getMarkIcon());
 		jLabel5.setIcon(game.getAsset().getLumberIcon());
 		jLabel7.setIcon(game.getAsset().getStoneIcon());
 		jLabel9.setIcon(game.getAsset().getHorsesIcon());
@@ -825,6 +848,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		jButton2.setIcon(game.getAsset().getBuyIconP2Quarry());
 		jButton1.setIcon(game.getAsset().getBuyIconP2Lumbermill());
 	}
+
 	public void checkForExplored() {
 		for (int i = 0; i < MAP_SIZE; i++) {
 			for (int j = 0; j < MAP_SIZE; j++) {
@@ -855,20 +879,15 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		}
 		refreshMapTileIcons();
 	}
-	
+
 	public void setTurnEventBox(String s) {
 		String source = turnEventsTextArea.getText();
 		turnEventsTextArea.setText(source + "\n" + s);
 
 	}
-	
+
 	private void endTurn() {
-		if (game.isWin()) {
-			game.getAsset().stopBG();
-			victoryMusic();
-		} else {
-			
-		}
+		
 		tileSelection = null;
 		unitSelection = null;
 		for (int i = 0; i < MAP_SIZE; i++) {
@@ -886,7 +905,13 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 			playerTurnLabel.setText("Player 1");
 			player1BuyIcons();
 		}
-		
+		for (int i = 0; i < MAP_SIZE; i++) {
+			for (int j = 0; j < MAP_SIZE; j++) {
+				if (map[i][j].getUnit() != null) {
+					map[i][j].getUnit().setCurrentAttacks(map[i][j].getUnit().getTotalAttacks());
+				}
+			}
+		}
 		refreshMapTileIcons();
 		updateResources();
 	}
@@ -900,17 +925,18 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				lumberMill.getStoneCost(), lumberMill.getHorseCost())) {
 			game.handlePurchaseOfBuilding(lumberMill, lumberMill.getMarkCost(), lumberMill.getLumberCost(),
 					lumberMill.getStoneCost(), lumberMill.getHorseCost());
-			if(pMoney > game.getCurrentPlayer().getMarks()){
+			if (pMoney > game.getCurrentPlayer().getMarks()) {
 				game.getAsset().Song(game.getAsset().getLumberMillCreationMusic());
 				game.getAsset().play();
-				}
+			}
 		}
 		refreshMapTileIcons();
 		updateResources();
 	}
-/*
- * Determines what happens when you press the Quarry Jbutton
- */
+
+	/*
+	 * Determines what happens when you press the Quarry Jbutton
+	 */
 	private void quarryButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		int pMoney = game.getCurrentPlayer().getMarks();
 		Quarry quarry = new Quarry();
@@ -918,7 +944,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				quarry.getStoneCost(), quarry.getHorseCost())) {
 			game.handlePurchaseOfBuilding(quarry, quarry.getMarkCost(), quarry.getLumberCost(), quarry.getStoneCost(),
 					quarry.getHorseCost());
-			if(pMoney > game.getCurrentPlayer().getMarks()){
+			if (pMoney > game.getCurrentPlayer().getMarks()) {
 				game.getAsset().Song(game.getAsset().getQuarryCreationMusic());
 				game.getAsset().play();
 			}
@@ -926,6 +952,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		refreshMapTileIcons();
 		updateResources();
 	}
+
 	/*
 	 * Determines what happens when you press the Stable Jbutton
 	 */
@@ -936,7 +963,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				stable.getStoneCost(), stable.getHorseCost())) {
 			game.handlePurchaseOfBuilding(stable, stable.getMarkCost(), stable.getLumberCost(), stable.getStoneCost(),
 					stable.getHorseCost());
-			if(pMoney > game.getCurrentPlayer().getMarks()){
+			if (pMoney > game.getCurrentPlayer().getMarks()) {
 				game.getAsset().Song(game.getAsset().getStableCreationMusic());
 				game.getAsset().play();
 			}
@@ -944,6 +971,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		refreshMapTileIcons();
 		updateResources();
 	}
+
 	/*
 	 * Determines what happens when you press the Barracks Jbutton
 	 */
@@ -954,7 +982,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				barrack.getStoneCost(), barrack.getHorseCost())) {
 			game.handlePurchaseOfBuilding(barrack, barrack.getMarkCost(), barrack.getLumberCost(),
 					barrack.getStoneCost(), barrack.getHorseCost());
-			if(pMoney > game.getCurrentPlayer().getMarks()){
+			if (pMoney > game.getCurrentPlayer().getMarks()) {
 				game.getAsset().Song(game.getAsset().getBarracksCreationMusic());
 				game.getAsset().play();
 			}
@@ -962,6 +990,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		refreshMapTileIcons();
 		updateResources();
 	}
+
 	/*
 	 * Determines what happens when you press the Road Jbutton
 	 */
@@ -972,9 +1001,9 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 				road.getHorseCost())) {
 			game.handlePurchaseOfBuilding(road, road.getMarkCost(), road.getLumberCost(), road.getStoneCost(),
 					road.getHorseCost());
-			if(pMoney > game.getCurrentPlayer().getMarks()){
-			game.getAsset().Song(game.getAsset().getRoadCreationMusic());
-			game.getAsset().play();
+			if (pMoney > game.getCurrentPlayer().getMarks()) {
+				game.getAsset().Song(game.getAsset().getRoadCreationMusic());
+				game.getAsset().play();
 			}
 		}
 		refreshMapTileIcons();
@@ -993,13 +1022,14 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		Hunter hunter = new Hunter();
 		game.handlePurchaseOfUnit(hunter, hunter.getMarkCost(), hunter.getLumberCost(), hunter.getStoneCost(),
 				hunter.getHorseCost());
-		if(pMoney > game.getCurrentPlayer().getMarks()){
+		if (pMoney > game.getCurrentPlayer().getMarks()) {
 			game.getAsset().Song(game.getAsset().getHunterCreationMusic());
 			game.getAsset().play();
-			
+
 		}
 		updateResources();
 	}
+
 	/*
 	 * Determines what happens when you press the Archer Jbutton
 	 */
@@ -1008,13 +1038,14 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		Archer archer = new Archer();
 		game.handlePurchaseOfUnit(archer, archer.getMarkCost(), archer.getLumberCost(), archer.getStoneCost(),
 				archer.getHorseCost());
-		if(pMoney > game.getCurrentPlayer().getMarks()){
+		if (pMoney > game.getCurrentPlayer().getMarks()) {
 			game.getAsset().Song(game.getAsset().getArcherCreationMusic());
 			game.getAsset().play();
-			
+
 		}
 		updateResources();
 	}
+
 	/*
 	 * Determines what happens when you press the HorseRider Jbutton
 	 */
@@ -1023,13 +1054,14 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		HorseRider horseRider = new HorseRider();
 		game.handlePurchaseOfUnit(horseRider, horseRider.getMarkCost(), horseRider.getLumberCost(),
 				horseRider.getStoneCost(), horseRider.getHorseCost());
-		if(pMoney > game.getCurrentPlayer().getMarks()){
+		if (pMoney > game.getCurrentPlayer().getMarks()) {
 			game.getAsset().Song(game.getAsset().getHorseRiderMusic());
 			game.getAsset().play();
-			
+
 		}
 		updateResources();
 	}
+
 	/*
 	 * Determines what happens when you press the Warrior Jbutton
 	 */
@@ -1038,10 +1070,10 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		Warrior warrior = new Warrior();
 		game.handlePurchaseOfUnit(warrior, warrior.getMarkCost(), warrior.getLumberCost(), warrior.getStoneCost(),
 				warrior.getHorseCost());
-		if(pMoney > game.getCurrentPlayer().getMarks()){
+		if (pMoney > game.getCurrentPlayer().getMarks()) {
 			game.getAsset().Song(game.getAsset().getWarriorMusic());
 			game.getAsset().play();
-			
+
 		}
 		updateResources();
 	}
@@ -1051,7 +1083,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 	/*
 	 * Determines what happens when you press the Play Jbutton
 	 */
-	private void playTitleJButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
+	private void playTitleJButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		titleJPanel2.setVisible(false);
 		credits.setVisible(false);
 		rules.setVisible(false);
@@ -1061,60 +1093,66 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		game.getAsset().SongBackground(game.getAsset().getBackgroundMusic());
 		game.getAsset().loopBG();
 		updateResources();
-    }                                             
+	}
+
 	/*
 	 * Determines what happens when you press the Credits Jbutton
 	 */
-    private void titleJButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                              
-    	titleJPanel2.setVisible(false);
+	private void titleJButton4ActionPerformed(java.awt.event.ActionEvent evt) {
+		titleJPanel2.setVisible(false);
 		jPanel1.setVisible(false);
 		boardPanel.setVisible(false);
 		rules.setVisible(false);
 		credits.setVisible(true);
-    }                                             
-    /*
+	}
+
+	/*
 	 * Determines what happens when you press the Rules Jbutton
 	 */
-    private void titleJButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                              
-    	titleJPanel2.setVisible(false);
+	private void titleJButton5ActionPerformed(java.awt.event.ActionEvent evt) {
+		titleJPanel2.setVisible(false);
 		jPanel1.setVisible(false);
 		boardPanel.setVisible(false);
 		credits.setVisible(false);
 		rules.setVisible(true);
-    }
-    /*
+	}
+
+	/*
 	 * Determines what happens when you press the Exit Jbutton
 	 */
-    private void titleJButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                              
-    	System.exit(0);
-    }
-    /*
+	private void titleJButton6ActionPerformed(java.awt.event.ActionEvent evt) {
+		System.exit(0);
+	}
+
+	/*
 	 * Determines what happens when you press the End Turn Jbutton
 	 */
 	private void endTurnActionPerformed(java.awt.event.ActionEvent evt) {
 		endTurn();
 	}
+
 	/*
 	 * Plays the victory music
 	 */
-	public void victoryMusic(){
+	public void victoryMusic() {
 		game.getAsset().stop();
 		game.getAsset().Song(game.getAsset().getVictoryMusic());
 		game.getAsset().loop();
 	}
-/*
- * Action Performed method, helps with cheat codes by taking what 
- * is in the console, also helps with unit selection
- */
+
+	/*
+	 * Action Performed method, helps with cheat codes by taking what is in the
+	 * console, also helps with unit selection
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cheatCode = consoleCommand.getText();
-		if(cheatCode.equalsIgnoreCase("show me the money")){
+		if (cheatCode.equalsIgnoreCase("show me the money")) {
 			int currentMarks = game.getCurrentPlayer().getMarks();
 			int currentLumber = game.getCurrentPlayer().getLumber();
 			int currentStone = game.getCurrentPlayer().getStone();
 			int currentHorses = game.getCurrentPlayer().getHorses();
-			
+
 			game.getCurrentPlayer().setMarks(currentMarks + 100);
 			game.getCurrentPlayer().setLumber(currentLumber + 100);
 			game.getCurrentPlayer().setStone(currentStone + 100);
@@ -1124,20 +1162,20 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 			game.getAsset().play();
 			updateResources();
 		}
-		if(cheatCode.equalsIgnoreCase("there is no cow level")){
-		//TODO	
+		if (cheatCode.equalsIgnoreCase("there is no cow level")) {
+			// TODO
 		}
-		if(cheatCode.equalsIgnoreCase("godmode")){
-			//TODO
+		if (cheatCode.equalsIgnoreCase("godmode")) {
+			// TODO
 		}
-		if(cheatCode.equalsIgnoreCase("my other game")){
-			
+		if (cheatCode.equalsIgnoreCase("my other game")) {
+
 		}
-		if(cheatCode.equalsIgnoreCase("all seeing eye")){
-			
+		if (cheatCode.equalsIgnoreCase("all seeing eye")) {
+
 		}
-		//if(cheatCode.equals())
-		else{
+		// if(cheatCode.equals())
+		else {
 			consoleCommand.setText("");
 		}
 		for (int i = 0; i < MAP_SIZE; i++) {
@@ -1158,26 +1196,32 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 					map[i][j].setBorder(BorderFactory.createLineBorder(Color.RED, 4));
 					if (unitSelection != null) {
 						if (unitSelection.getPlayer() == game.getCurrentPlayer()) {
+							refreshMapTileIcons();
 							game.tryHandleMovement();
 							unitSelection = null;
+							refreshMapTileIcons();
 						}
 					}
 				}
 			}
 		}
+		refreshMapTileIcons();
 	}
-/*
- * Updates the resources JLabel by checking the current players resources
- */
+
+	/*
+	 * Updates the resources JLabel by checking the current players resources
+	 */
 	public void updateResources() {
 		marksLabel.setText(game.getCurrentPlayer().getMarks() + "");
 		lumberLabel.setText(game.getCurrentPlayer().getLumber() + "");
 		stoneLabel.setText(game.getCurrentPlayer().getStone() + "");
 		horsesLabel.setText(game.getCurrentPlayer().getHorses() + "");
 	}
-/*
- * Refreshes the map Icons by checking every tile and what is currently held inside it
- */
+
+	/*
+	 * Refreshes the map Icons by checking every tile and what is currently held
+	 * inside it
+	 */
 	public void refreshMapTileIcons() {
 		getCorrectRoad();
 		for (int i = 0; i < map.length; i++) {
@@ -1225,7 +1269,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 								map[i][j].setIcon(game.getAsset().getP1Quarry());
 							} else if (map[i][j].getBuilding() instanceof Stable) {
 								map[i][j].setIcon(game.getAsset().getP1Stable());
-							} 
+							}
 						} else {
 							if (map[i][j].getBuilding() instanceof Settlement) {
 								map[i][j].setIcon(game.getAsset().getP2Settlement());
@@ -1237,7 +1281,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 								map[i][j].setIcon(game.getAsset().getP2Quarry());
 							} else if (map[i][j].getBuilding() instanceof Stable) {
 								map[i][j].setIcon(game.getAsset().getP2Stable());
-							} 
+							}
 						}
 					} else {
 						if (map[i][j] instanceof Lumber) {
@@ -1248,129 +1292,165 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 							map[i][j].setIcon(game.getAsset().getHorse());
 						} else if (map[i][j] instanceof Grass) {
 							map[i][j].setIcon(game.getAsset().getGrass());
-						} 
+						}
 					}
 				}
 			}
 		}
-		
+
 	}
-/*
- * Places the correct road image by checking the surrounding tiles for buildings
- */
+
+	/*
+	 * Places the correct road image by checking the surrounding tiles for
+	 * buildings
+	 */
 	public void getCorrectRoad() {
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map.length; j++) {
 				boolean isPlayersRoad = map[i][j].getBuilding() instanceof Building
-						&& map[i][j].getBuilding().getPlayer() == game.getCurrentPlayer();
+						&& map[i][j].getBuilding().getPlayer() == game.getPlayer1();
 				boolean isPlayerRoadNorth = false;
 				boolean isPlayerRoadSouth = false;
 				boolean isPlayerRoadEast = false;
 				boolean isPlayerRoadWest = false;
 				try {
 					isPlayerRoadNorth = map[i - 1][j].getBuilding() instanceof Building
-							&& map[i - 1][j].getBuilding().getPlayer() == game.getCurrentPlayer();
+							&& map[i - 1][j].getBuilding().getPlayer() == game.getPlayer1();
 				} catch (Exception ArrayIndexOutOfBoundsException) {
 				}
 				;
 				try {
 					isPlayerRoadSouth = map[i + 1][j].getBuilding() instanceof Building
-							&& map[i + 1][j].getBuilding().getPlayer() == game.getCurrentPlayer();
+							&& map[i + 1][j].getBuilding().getPlayer() == game.getPlayer1();
 				} catch (Exception ArrayIndexOutOfBoundsException) {
 				}
 				;
 				try {
 					isPlayerRoadEast = map[i][j + 1].getBuilding() instanceof Building
-							&& map[i][j + 1].getBuilding().getPlayer() == game.getCurrentPlayer();
+							&& map[i][j + 1].getBuilding().getPlayer() == game.getPlayer1();
 				} catch (Exception ArrayIndexOutOfBoundsException) {
 				}
 				;
 				try {
 					isPlayerRoadWest = map[i][j - 1].getBuilding() instanceof Building
-							&& map[i][j - 1].getBuilding().getPlayer() == game.getCurrentPlayer();
+							&& map[i][j - 1].getBuilding().getPlayer() == game.getPlayer1();
 				} catch (Exception ArrayIndexOutOfBoundsException) {
 				}
 				;
-				if (game.getCurrentPlayer() == game.getPlayer1()) {
-					if (isPlayersRoad && map[i][j].getBuilding() instanceof Road && map[i][j].getUnit() == null) {
-						if (isPlayerRoadNorth && isPlayerRoadSouth && isPlayerRoadEast && isPlayerRoadWest) {
-							map[i][j].setIcon(game.getAsset().getP1RoadAll());
-						} else if (isPlayerRoadNorth && isPlayerRoadSouth && isPlayerRoadEast) {
-							map[i][j].setIcon(game.getAsset().getP1RoadTopBottomRight());
-						} else if (isPlayerRoadNorth && isPlayerRoadSouth && isPlayerRoadWest) {
-							map[i][j].setIcon(game.getAsset().getP1RoadTopLeftBottom());
-						} else if (isPlayerRoadNorth && isPlayerRoadWest && isPlayerRoadEast) {
-							map[i][j].setIcon(game.getAsset().getP1RoadTopLeftRight());
-						} else if (isPlayerRoadWest && isPlayerRoadSouth && isPlayerRoadEast) {
-							map[i][j].setIcon(game.getAsset().getP1RoadLeftBottomRight());
-						} else if (isPlayerRoadNorth && isPlayerRoadSouth) {
-							map[i][j].setIcon(game.getAsset().getP1RoadTopBottom());
-						} else if (isPlayerRoadNorth && isPlayerRoadEast) {
-							map[i][j].setIcon(game.getAsset().getP1RoadTopRight());
-						} else if (isPlayerRoadNorth && isPlayerRoadWest) {
-							map[i][j].setIcon(game.getAsset().getP1RoadTopLeft());
-						} else if (isPlayerRoadSouth && isPlayerRoadEast) {
-							map[i][j].setIcon(game.getAsset().getP1RoadBottomRight());
-						} else if (isPlayerRoadSouth && isPlayerRoadWest) {
-							map[i][j].setIcon(game.getAsset().getP1RoadLeftBottom());
-						} else if (isPlayerRoadEast && isPlayerRoadWest) {
-							map[i][j].setIcon(game.getAsset().getP1RoadLeftRight());
-						} else if (isPlayerRoadNorth) {
-							map[i][j].setIcon(game.getAsset().getP1RoadTopBottom());
-						} else if (isPlayerRoadSouth) {
-							map[i][j].setIcon(game.getAsset().getP1RoadTopBottom());
-						} else if (isPlayerRoadWest) {
-							map[i][j].setIcon(game.getAsset().getP1RoadLeftRight());
-						} else if (isPlayerRoadEast) {
-							map[i][j].setIcon(game.getAsset().getP1RoadLeftRight());
-						} else {
-							map[i][j].setIcon(game.getAsset().getP1RoadAll());
-						}
+				if (isPlayersRoad && map[i][j].getBuilding() instanceof Road) {
+					if (isPlayerRoadNorth && isPlayerRoadSouth && isPlayerRoadEast && isPlayerRoadWest) {
+						map[i][j].setIcon(game.getAsset().getP1RoadAll());
+					} else if (isPlayerRoadNorth && isPlayerRoadSouth && isPlayerRoadEast) {
+						map[i][j].setIcon(game.getAsset().getP1RoadTopBottomRight());
+					} else if (isPlayerRoadNorth && isPlayerRoadSouth && isPlayerRoadWest) {
+						map[i][j].setIcon(game.getAsset().getP1RoadTopLeftBottom());
+					} else if (isPlayerRoadNorth && isPlayerRoadWest && isPlayerRoadEast) {
+						map[i][j].setIcon(game.getAsset().getP1RoadTopLeftRight());
+					} else if (isPlayerRoadWest && isPlayerRoadSouth && isPlayerRoadEast) {
+						map[i][j].setIcon(game.getAsset().getP1RoadLeftBottomRight());
+					} else if (isPlayerRoadNorth && isPlayerRoadSouth) {
+						map[i][j].setIcon(game.getAsset().getP1RoadTopBottom());
+					} else if (isPlayerRoadNorth && isPlayerRoadEast) {
+						map[i][j].setIcon(game.getAsset().getP1RoadTopRight());
+					} else if (isPlayerRoadNorth && isPlayerRoadWest) {
+						map[i][j].setIcon(game.getAsset().getP1RoadTopLeft());
+					} else if (isPlayerRoadSouth && isPlayerRoadEast) {
+						map[i][j].setIcon(game.getAsset().getP1RoadBottomRight());
+					} else if (isPlayerRoadSouth && isPlayerRoadWest) {
+						map[i][j].setIcon(game.getAsset().getP1RoadLeftBottom());
+					} else if (isPlayerRoadEast && isPlayerRoadWest) {
+						map[i][j].setIcon(game.getAsset().getP1RoadLeftRight());
+					} else if (isPlayerRoadNorth) {
+						map[i][j].setIcon(game.getAsset().getP1RoadTopBottom());
+					} else if (isPlayerRoadSouth) {
+						map[i][j].setIcon(game.getAsset().getP1RoadTopBottom());
+					} else if (isPlayerRoadWest) {
+						map[i][j].setIcon(game.getAsset().getP1RoadLeftRight());
+					} else if (isPlayerRoadEast) {
+						map[i][j].setIcon(game.getAsset().getP1RoadLeftRight());
+					} else {
+						map[i][j].setIcon(game.getAsset().getP1RoadAll());
 					}
-				} else {
-					if (isPlayersRoad && map[i][j].getBuilding() instanceof Road) {
-						if (isPlayerRoadNorth && isPlayerRoadSouth && isPlayerRoadEast && isPlayerRoadWest) {
-							map[i][j].setIcon(game.getAsset().getP2RoadAll());
-						} else if (isPlayerRoadNorth && isPlayerRoadSouth && isPlayerRoadEast) {
-							map[i][j].setIcon(game.getAsset().getP2RoadTopBottomRight());
-						} else if (isPlayerRoadNorth && isPlayerRoadSouth && isPlayerRoadWest) {
-							map[i][j].setIcon(game.getAsset().getP2RoadTopLeftBottom());
-						} else if (isPlayerRoadNorth && isPlayerRoadWest && isPlayerRoadEast) {
-							map[i][j].setIcon(game.getAsset().getP2RoadTopLeftRight());
-						} else if (isPlayerRoadWest && isPlayerRoadSouth && isPlayerRoadEast) {
-							map[i][j].setIcon(game.getAsset().getP2RoadLeftBottomRight());
-						} else if (isPlayerRoadNorth && isPlayerRoadSouth) {
-							map[i][j].setIcon(game.getAsset().getP2RoadTopBottom());
-						} else if (isPlayerRoadNorth && isPlayerRoadEast) {
-							map[i][j].setIcon(game.getAsset().getP2RoadTopRight());
-						} else if (isPlayerRoadNorth && isPlayerRoadWest) {
-							map[i][j].setIcon(game.getAsset().getP2RoadTopLeft());
-						} else if (isPlayerRoadSouth && isPlayerRoadEast) {
-							map[i][j].setIcon(game.getAsset().getP2RoadBottomRight());
-						} else if (isPlayerRoadSouth && isPlayerRoadWest) {
-							map[i][j].setIcon(game.getAsset().getP2RoadLeftBottom());
-						} else if (isPlayerRoadEast && isPlayerRoadWest) {
-							map[i][j].setIcon(game.getAsset().getP2RoadLeftRight());
-						} else if (isPlayerRoadNorth) {
-							map[i][j].setIcon(game.getAsset().getP2RoadTopBottom());
-						} else if (isPlayerRoadSouth) {
-							map[i][j].setIcon(game.getAsset().getP2RoadTopBottom());
-						} else if (isPlayerRoadWest) {
-							map[i][j].setIcon(game.getAsset().getP2RoadLeftRight());
-						} else if (isPlayerRoadEast) {
-							map[i][j].setIcon(game.getAsset().getP2RoadLeftRight());
-						} else {
-							map[i][j].setIcon(game.getAsset().getP2RoadAll());
-						}
-					}
+
 				}
 			}
 		}
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map.length; j++) {
+				boolean isPlayersRoad = map[i][j].getBuilding() instanceof Building
+						&& map[i][j].getBuilding().getPlayer() == game.getPlayer2();
+				boolean isPlayerRoadNorth = false;
+				boolean isPlayerRoadSouth = false;
+				boolean isPlayerRoadEast = false;
+				boolean isPlayerRoadWest = false;
+				try {
+					isPlayerRoadNorth = map[i - 1][j].getBuilding() instanceof Building
+							&& map[i - 1][j].getBuilding().getPlayer() == game.getPlayer2();
+				} catch (Exception ArrayIndexOutOfBoundsException) {
+				}
+				;
+				try {
+					isPlayerRoadSouth = map[i + 1][j].getBuilding() instanceof Building
+							&& map[i + 1][j].getBuilding().getPlayer() == game.getPlayer2();
+				} catch (Exception ArrayIndexOutOfBoundsException) {
+				}
+				;
+				try {
+					isPlayerRoadEast = map[i][j + 1].getBuilding() instanceof Building
+							&& map[i][j + 1].getBuilding().getPlayer() == game.getPlayer2();
+				} catch (Exception ArrayIndexOutOfBoundsException) {
+				}
+				;
+				try {
+					isPlayerRoadWest = map[i][j - 1].getBuilding() instanceof Building
+							&& map[i][j - 1].getBuilding().getPlayer() == game.getPlayer2();
+				} catch (Exception ArrayIndexOutOfBoundsException) {
+				}
+				;
+				if (isPlayersRoad && map[i][j].getBuilding() instanceof Road) {
+					if (isPlayerRoadNorth && isPlayerRoadSouth && isPlayerRoadEast && isPlayerRoadWest) {
+						map[i][j].setIcon(game.getAsset().getP2RoadAll());
+					} else if (isPlayerRoadNorth && isPlayerRoadSouth && isPlayerRoadEast) {
+						map[i][j].setIcon(game.getAsset().getP2RoadTopBottomRight());
+					} else if (isPlayerRoadNorth && isPlayerRoadSouth && isPlayerRoadWest) {
+						map[i][j].setIcon(game.getAsset().getP2RoadTopLeftBottom());
+					} else if (isPlayerRoadNorth && isPlayerRoadWest && isPlayerRoadEast) {
+						map[i][j].setIcon(game.getAsset().getP2RoadTopLeftRight());
+					} else if (isPlayerRoadWest && isPlayerRoadSouth && isPlayerRoadEast) {
+						map[i][j].setIcon(game.getAsset().getP2RoadLeftBottomRight());
+					} else if (isPlayerRoadNorth && isPlayerRoadSouth) {
+						map[i][j].setIcon(game.getAsset().getP2RoadTopBottom());
+					} else if (isPlayerRoadNorth && isPlayerRoadEast) {
+						map[i][j].setIcon(game.getAsset().getP2RoadTopRight());
+					} else if (isPlayerRoadNorth && isPlayerRoadWest) {
+						map[i][j].setIcon(game.getAsset().getP2RoadTopLeft());
+					} else if (isPlayerRoadSouth && isPlayerRoadEast) {
+						map[i][j].setIcon(game.getAsset().getP2RoadBottomRight());
+					} else if (isPlayerRoadSouth && isPlayerRoadWest) {
+						map[i][j].setIcon(game.getAsset().getP2RoadLeftBottom());
+					} else if (isPlayerRoadEast && isPlayerRoadWest) {
+						map[i][j].setIcon(game.getAsset().getP2RoadLeftRight());
+					} else if (isPlayerRoadNorth) {
+						map[i][j].setIcon(game.getAsset().getP2RoadTopBottom());
+					} else if (isPlayerRoadSouth) {
+						map[i][j].setIcon(game.getAsset().getP2RoadTopBottom());
+					} else if (isPlayerRoadWest) {
+						map[i][j].setIcon(game.getAsset().getP2RoadLeftRight());
+					} else if (isPlayerRoadEast) {
+						map[i][j].setIcon(game.getAsset().getP2RoadLeftRight());
+					} else {
+						map[i][j].setIcon(game.getAsset().getP2RoadAll());
+					}
+				}
+
+			}
+		}
 	}
+
 	/*
-	 * Key pressed event currently brings the user to the 
-	 * title screen by pressing the escape key using KeyEvent
-	 * Also switches songs to the title screen music
+	 * Key pressed event currently brings the user to the title screen by
+	 * pressing the escape key using KeyEvent Also switches songs to the title
+	 * screen music
 	 */
 	@Override
 	public void keyPressed(java.awt.event.KeyEvent e) {
@@ -1414,6 +1494,12 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 
 	public void setUnitSelection(Unit unit) {
 		this.unitSelection = unit;
+	}
+
+	public void winScreen() {
+		jPanel1.setVisible(false);
+		boardPanel.setVisible(false);
+		win.setVisible(true);
 	}
 
 }

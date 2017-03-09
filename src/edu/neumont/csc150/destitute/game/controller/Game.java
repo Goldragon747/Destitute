@@ -268,6 +268,7 @@ public class Game {
  * Handles movement
  */
 	public void tryHandleMovement() {
+		gui.refreshMapTileIcons();
 		for (int i = 0; i < MAP_SIZE; i++) {
 			for (int j = 0; j < MAP_SIZE; j++) {
 				if (map[i][j].getUnit() != null) {
@@ -369,6 +370,7 @@ public class Game {
 							if (map[i - 1][j].getUnit() != null && map[i - 1][j].getUnit() == defender
 									&& map[i - 1][j].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
 								valid = true;
+								System.out.println("Valid");
 							}
 						} catch (Exception ArrayIndexOutOfBoundsException) {
 						}
@@ -376,22 +378,23 @@ public class Game {
 							if (map[i + 1][j].getUnit() != null && map[i + 1][j].getUnit() == defender
 									&& map[i + 1][j].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
 								valid = true;
+								System.out.println("Valid");
 							}
 						} catch (Exception ArrayIndexOutOfBoundsException) {
 						}
 						try {
 							if (map[i][j - 1].getUnit() != null && map[i][j - 1].getUnit() == defender
 									&& map[i][j - 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
-
 								valid = true;
+								System.out.println("Valid");
 							}
 						} catch (Exception ArrayIndexOutOfBoundsException) {
 						}
 						try {
 							if (map[i][j + 1].getUnit() != null && map[i][j + 1].getUnit() == defender
 									&& map[i][j + 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
-
 								valid = true;
+								System.out.println("Valid");
 							}
 						} catch (Exception ArrayIndexOutOfBoundsException) {
 						}
@@ -399,72 +402,72 @@ public class Game {
 							try {
 								if (map[i - 1][j + 1].getUnit() != null && map[i - 1][j + 1].getUnit() == defender
 										&& map[i - 1][j + 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
-
 									valid = true;
+									System.out.println("Valid");
 								}
 							} catch (Exception ArrayIndexOutOfBoundsException) {
 							}
 							try {
 								if (map[i + 1][j + 1].getUnit() != null && map[i + 1][j + 1].getUnit() == defender
 										&& map[i + 1][j + 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
-
 									valid = true;
+									System.out.println("Valid");
 								}
 							} catch (Exception ArrayIndexOutOfBoundsException) {
 							}
 							try {
 								if (map[i][j + 2].getUnit() != null && map[i][j + 2].getUnit() == defender
 										&& map[i][j + 2].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
-
 									valid = true;
+									System.out.println("Valid");
 								}
 							} catch (Exception ArrayIndexOutOfBoundsException) {
 							}
 							try {
 								if (map[i][j - 2].getUnit() != null && map[i][j - 2].getUnit() == defender
 										&& map[i][j - 2].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
-
 									valid = true;
+									System.out.println("Valid");
 								}
 							} catch (Exception ArrayIndexOutOfBoundsException) {
 							}
 							try {
 								if (map[i][j + 1].getUnit() != null && map[i][j + 1].getUnit() == defender
 										&& map[i][j + 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
-
 									valid = true;
+									System.out.println("Valid");
 								}
 							} catch (Exception ArrayIndexOutOfBoundsException) {
 							}
 							try {
 								if (map[i - 1][j - 1].getUnit() != null && map[i - 1][j - 1].getUnit() == defender
 										&& map[i - 1][j - 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
-
 									valid = true;
+									System.out.println("Valid");
 								}
 							} catch (Exception ArrayIndexOutOfBoundsException) {
 							}
 							try {
 								if (map[i + 1][j - 1].getUnit() != null && map[i + 1][j - 1].getUnit() == defender
 										&& map[i + 1][j - 1].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
-
 									valid = true;
+									System.out.println("Valid");
 								}
 							} catch (Exception ArrayIndexOutOfBoundsException) {
 							}
 							try {
 								if (map[i + 2][j].getUnit() != null && map[i + 2][j].getUnit() == defender
 										&& map[i + 2][j].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
-
 									valid = true;
+									System.out.println("Valid");
 								}
 							} catch (Exception ArrayIndexOutOfBoundsException) {
 							}
 							try {
 								if (map[i - 2][j].getUnit() != null && map[i - 2][j].getUnit() == defender
 										&& map[i - 2][j].getUnit().getPlayer() != map[i][j].getUnit().getPlayer()) {
-
 									valid = true;
+									System.out.println("Valid");
 								}
 							} catch (Exception ArrayIndexOutOfBoundsException) {
 							}
@@ -583,10 +586,18 @@ public class Game {
 									+ map[k][l].getBuilding().getName() + "!");
 						} else if (map[k][l].getBuilding() instanceof Settlement
 								&& map[k][l].getBuilding().getHealth() <= 0) {
+							if (map[k][l].getBuilding().getPlayer() == player1) {
+								gui.setWinScreen2();
+							} else {
+								gui.setWinScreen1();
+							}
 							map[k][l].setBuilding(null);
 							gui.updateResources();
 							gui.refreshMapTileIcons();
 							win = true;
+							gui.winScreen();
+							asset.stopBG();
+							gui.victoryMusic();
 							System.out.println("Someone won!?");
 						} else if (map[k][l].getBuilding().getHealth() <= 0) {
 							map[k][l].setBuilding(null);
