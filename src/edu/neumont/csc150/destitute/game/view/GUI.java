@@ -855,7 +855,7 @@ public class GUI extends javax.swing.JFrame implements ActionListener, KeyListen
 		}
 		refreshMapTileIcons();
 	}
-
+	
 	public void setTurnEventBox(String s) {
 		String source = turnEventsTextArea.getText();
 		turnEventsTextArea.setText(source + "\n" + s);

@@ -28,8 +28,8 @@ import edu.neumont.csc150.destitute.game.view.UserInteractions;
 public class Game {
 	private GUI gui;
 	private UserInteractions UI;
-	private Player player1 = new Player("Player1");
-	private Player player2 = new Player("Player2");
+	private Player player1 = new Player("Player 1");
+	private Player player2 = new Player("Player 2");
 	private Player currentPlayer;
 	private boolean win = false;
 	private final int MAP_SIZE = 10;
@@ -567,6 +567,11 @@ public class Game {
 		currentPlayer.setLumber(currentPlayer.getLumber() + (10 * lumberCount));
 		currentPlayer.setStone(currentPlayer.getStone() + (10 * quarryCount));
 		currentPlayer.setHorses(currentPlayer.getHorses() + (10 * stableCount));
+		gui.setTurnEventBox(getCurrentPlayer().getPlayerName() + "\n "
+						  + "Gold Generated: " + ((20 + ((lumberCount + quarryCount + stableCount) * 2))) + " "
+						  + "Lumber Generated: " + (lumberCount * 10) + "\n "
+						  + "Stone Generated: " + (quarryCount * 10) + " "
+						  + "Horses Generated: " + (stableCount * 10));
 		for (int k = 0; k < MAP_SIZE; k++) {
 			for (int l = 0; l < MAP_SIZE; l++) {
 				if (map[k][l].getBuilding() != null & map[k][l].getUnit() != null) {
